@@ -1,6 +1,6 @@
 # SoPra FS22 - Group 30 -
 
-## Getting started
+## Getting started @
 
 Read and go through these Tutorials. It will make your life easier!
 
