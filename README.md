@@ -1,4 +1,4 @@
-# SoPra FS22 - Client Template
+# SoPra FS22 - Group 30
 
 ## Getting started
 
