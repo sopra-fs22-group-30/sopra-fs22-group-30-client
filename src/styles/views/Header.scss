@@ -2,12 +2,61 @@
 
 .header {
   &.container {
-    @include center;
+    display: block;
+    position: sticky;
+    width: 100vw;
+    height: 9vh;
+    top: 0;
+    border-bottom: 0.3px solid rgba(54,54,54,0.5);
+    background-color: $accent;
+    overflow: hidden;
+    padding: 7px;
+    margin-bottom: 20px;
   }
 
-  &.title {
-    font-weight: bold;
-    color: $background;
-    text-align: center;
+  &.logo {
+    display: inline;
+    text-align: justify;
+    vertical-align:middle;
+    &.text {
+      font-family: 'Montserrat', ui-serif;
+      font-weight: 700;
+      font-size: 2em;
+      margin-left: 5%;
+    }
+
+    &.first-part {
+      color: #363636;
+    }
+
+    &.last-part {
+      color: #2AD278;
+    }
+  }
+
+  &.navigate {
+    &.list {
+      display: inline;
+      float: right;
+      list-style-type: none;
+      overflow: hidden;
+      padding: 0;
+      margin-right: 5%;
+      color: $textColor;
+    }
+
+    &.item {
+      float: right;
+      display: block;
+      border-right: 0.3px solid rgba(54,54,54,0.5);
+      padding: 0 30px 0 30px;
+      vertical-align:middle;
+    }
+    &.post_icon {
+      float: left;
+      display: block;
+      margin-right: 10px;
+
+    }
   }
 }

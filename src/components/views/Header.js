@@ -2,6 +2,7 @@ import React from "react";
 import {ReactLogo} from "components/ui/ReactLogo";
 import PropTypes from "prop-types";
 import "styles/views/Header.scss";
+import icon_post from 'icon_post.svg';
 
 /**
  * This is an example of a Functional and stateless component (View) in React. Functional components are not classes and thus don't handle internal state changes.
@@ -11,16 +12,36 @@ import "styles/views/Header.scss";
  * https://reactjs.org/docs/components-and-props.html
  * @FunctionalComponent
  */
+
+const Logo = props => (
+    <div className="header logo">
+        <p className="header logo text">
+            <span className="header logo first-part">Cook</span>
+            <span className="header logo last-part">ever</span>
+        </p>
+    </div>
+)
+
+const Navigate = props => (
+    <ul className="header navigate list">
+        <li className="header navigate item" style={{border: "none"}}>Logout</li>
+        <li className="header navigate item">My profile</li>
+        <li className="header navigate item">
+            <img src={icon_post} className="header navigate post_icon" alt="icon_post" />
+            <span>New Recipe</span>
+        </li>
+        <li className="header navigate item">Home</li>
+
+    </ul>
+)
+
 const Header = props => (
-  <div className="header container" style={{height: props.height}}>
-    <h1 className="header title">SoPra FS22 Group 30!</h1>
-    <ReactLogo width="60px" height="60px"/>
-  </div>
+    <div className="header container">
+        <Logo/>
+        <Navigate/>
+    </div>
 );
 
-Header.propTypes = {
-  height: PropTypes.string
-};
 
 /**
  * Don't forget to export your component!
