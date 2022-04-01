@@ -5,7 +5,7 @@ import {Button} from 'components/ui/Button';
 import {useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
-import "styles/views/Game.scss";
+import "styles/views/Home.scss";
 
 const Player = ({user}) => (
     <div className="player container">
@@ -19,7 +19,7 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
-const Game = () => {
+const Home = () => {
     // use react-router-dom's hook to access the history
     const history = useHistory();
 
@@ -65,8 +65,8 @@ const Game = () => {
 
     if (users) {
         content = (
-            <div className="game">
-                <ul className="game user-list">
+            <div className="home">
+                <ul className="home user-list">
                     {/*{users.map(user => (*/}
                     {/*    <Player user={user} key={user.id}/>*/}
                     {/*))}*/}
@@ -83,11 +83,11 @@ const Game = () => {
     }
 
     return (
-        <BaseContainer className="game container">
+        <BaseContainer className="home container">
             <h2>Home page to be implement</h2>
             {content}
         </BaseContainer>
     );
 }
 
-export default Game;
+export default Home;
