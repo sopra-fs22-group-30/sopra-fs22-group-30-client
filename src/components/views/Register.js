@@ -34,20 +34,18 @@ const FormField = props => {
 FormField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
-    value1: PropTypes.string,
     onChange: PropTypes.func
 };
 
 const Register = props => {
     const history = useHistory();
-    const [name, setName] = useState(null);
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
 
 
     const doRegister = async () => {
         try {
-            const requestBody = JSON.stringify({username,name,password});
+            const requestBody = JSON.stringify({username,password});
             const response = await api.post('/users', requestBody);
 
             // Get the returned user and update a new object.
