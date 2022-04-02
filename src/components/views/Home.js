@@ -11,42 +11,60 @@ import Home_Party from "./Home_party";
 
 
 
-const Recipe = ({recipe}) => {
+const Recipe = ({/* recipe */}) => {
     /*
     const redirectToProfile = (recipe) => {
         window.location.href = `/recipes/${recipe.id}`;
-    }
+    }*/
+
     return (
+        <div className="recipe container">
+            <h2 className = "recipe panel container card title">
+                Title: Hotpot
+            </h2>
+        </div>
+    /*
         <div className="player container" key={recipe.id}>
             <Link className="player username" to={`recipes/${recipe.id}`} props={recipe} onClick={() => redirectToProfile.bind(this, recipe)}>
                 {recipe.name}
             </Link>
             <div className="player id">id: {recipe.id}</div>
         </div>
-    )
 
      */
+    )
+
+
 };
 
 Recipe.propTypes = {
     recipe: PropTypes.object
 };
 
-const Party = ({party}) => {
+const Party = ({/* party */}) => {
     /*
     const redirectToProfile = (party) => {
         window.location.href = `/parties/${party.id}`;
     }
+    */
     return (
+        <div className="party panel container">
+            <h2>
+                Alice birthday party
+            </h2>
+        </div>
+        /*
         <div className="party container" key={party.id}>
             <Link className="party name" to={`parties/${party.id}`} props={party} onClick={() => redirectToProfile.bind(this, party)}>
                 {party.name}
             </Link>
             <div className="party id">id: {party.id}</div>
         </div>
+
+         */
     )
 
-     */
+
 };
 
 Party.propTypes = {
@@ -111,7 +129,7 @@ const Home = () => {
 
     recipePanel = (
         <div className="recipe panel">
-            <Home_Recipe/>
+            <Recipe/>
             {/*
             recipes.map(recipe => (
                 <Recipe recipe={recipe} key={recipe.id}/>
@@ -122,7 +140,7 @@ const Home = () => {
 
     partyPanel = (
         <div className="party panel">
-            <Home_Party/>
+            <Party/>
             {/*
             parties.map(party => (
                 <Party party={party} key={party.id}/>

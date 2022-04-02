@@ -9,7 +9,7 @@ const Home_Recipe = (props) => {
     return(
         <div className="recipe panel container">
             <h2 className = "recipe panel container card title">
-                Title: Hotpot
+                Alice birthday party
             </h2>
         </div>
     )
