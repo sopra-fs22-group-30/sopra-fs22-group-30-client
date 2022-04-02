@@ -7,30 +7,30 @@
   for more information visit https://sass-lang.com/guide
  */
 
-//.home {
-//  &.container {
-//    background: $background;
-//    padding: 1.5em;
-//    border-radius: $borderRadius;
-//    display: flex;
-//    flex-direction: column;
-//    align-items: center;
-//    box-shadow: $dropShadow;
-//  }
-//  &.user-list {
-//    list-style: none;
-//    padding-left: 0;
-//  }
-//  &.user-item {
-//    display: flex;
-//    flex-direction: column;
-//    align-items: center;
-//    justify-content: center;
-//  }
-//  & p,h2 {
-//    margin: 0.5em 0;
-//  }
-//}
+.home {
+  &.container {
+    background: $background;
+    padding: 1.5em;
+    border-radius: $borderRadius;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: $dropShadow;
+  }
+  &.user-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  &.user-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  & p,h2 {
+    margin: 0.5em 0;
+  }
+}
 
 .recipe {
   &.container {
