@@ -5,7 +5,7 @@ import "styles/views/Home.scss";
 
 
 // two columns view
-const Recipe = (props) => {
+const Home_Recipe = (props) => {
     return(
         <div className="recipe container">
             <h2>
@@ -17,4 +17,4 @@ const Recipe = (props) => {
 
 
 
-export default Recipe;
+export default Home_Recipe;

@@ -6,6 +6,8 @@ import {Link, useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Home.scss";
+import Home_Recipe from "./Home_recipe";
+import Home_Party from "./Home_party";
 
 
 
@@ -110,7 +112,7 @@ const Home = () => {
     recipePanel = (
         <div className="recipe panel">
             <ul className="recipe list">
-                <Recipe/>
+                <Home_Recipe/>
                 {/*
                 recipes.map(recipe => (
                     <Recipe recipe={recipe} key={recipe.id}/>
@@ -124,7 +126,7 @@ const Home = () => {
     partyPanel = (
         <div className="party panel">
             <ul className="party list">
-                <Party/>
+                <Home_Party/>
                 {/*
                 parties.map(party => (
                     <Party party={party} key={party.id}/>
