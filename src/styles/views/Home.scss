@@ -7,125 +7,125 @@
   for more information visit https://sass-lang.com/guide
  */
 
+
 .home {
-  &.container {
-    background: $background;
-    border-radius: $borderRadius;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-shadow: $dropShadow;
+  .recipe {
+    &.panel {
+      position: absolute;
+      height: 473px;
+      left: 98px;
+      right: 401px;
+      top: 122px;
+      background: lighten($background, 5);
+    }
+    &.container {
+      position: absolute;
+      height: 276px;
+      left: 0px;
+      right: 598px;
+      top: 0px;
+      background: #FFFFFF;
+      border: 1px solid #EDEEF2;
+      box-sizing: border-box;
+      border-radius: 16px;
+      &.card title {
+        position: absolute;
+        height: 24px;
+        left: 0px;
+        right: 32px;
+        top: 0px;
+      }
+      &.h2 {
+        font-family: 'Nunito', ui-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 24px;
+        color: #2B2B43;
+      }
+    }
+    &.h2 {
+      position: static;
+      height: 28px;
+      left: 10px;
+      right: 10px;
+      top: 10px;
+      font-family: 'Nunito', ui-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 0.1px;
+      color: #2B2B43;
+    }
+  }
 
-  }
-  &.user-list {
-    list-style: none;
-    padding-left: 0;
-  }
-  &.user-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  & p,h2 {
-    margin: 0.5em 0;
-  }
-}
+  .party {
+    &.panel {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0px;
+      position: absolute;
+      width: 280px;
+      height: 584px;
+      left: 1047px;
+      top: 122px;
+      background: lighten($background, 5);
 
-.recipe {
-  &.panel {
-    position: absolute;
-    height: 473px;
-    left: 98px;
-    right: 401px;
-    top: 122px;
-    background: lighten($background, 5);
-  }
-  &.container {
-    position: absolute;
-    height: 276px;
-    left: 0px;
-    right: 598px;
-    top: 0px;
-    //&.title{
-    //  position: static;
-    //  height: 28px;
-    //  left: 10px;
-    //  right: 10px;
-    //  top: 10px;
-    //  /* H5 - semibold 20 (28, 0.1px) */
-    //  font-family: 'Nunito';
-    //  font-style: normal;
-    //  font-weight: 600;
-    //  font-size: 20px;
-    //  line-height: 28px;
-    //  /* identical to box height, or 140% */
-    //  letter-spacing: 0.1px;
-    //  /* neutral/black */
-    //  color: #2B2B43;
-    //  flex: none;
-    //  order: 0;
-    //  flex-grow: 0;
-    //  margin: 10px 0px;
-    //}
-  }
-  &.name {
-    font-weight: 300;
-    margin-left: 5px;
-  }
-  &.id {
-    margin-left: auto;
-    margin-right: 10px;
-    font-family: $fontMono;
-    font-weight: 300;
-  }
-}
+      &.container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 0px;
 
-.party {
-  &.panel {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
+        position: static;
+        width: 270px;
+        height: 71px;
+        left: 0px;
+        top: 48px;
 
-    position: absolute;
-    width: 280px;
-    height: 584px;
-    left: 1047px;
-    top: 122px;
-    background: lighten($background, 5);
-  }
-  &.container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
+        background: rgba(14, 165, 233, 0.1);
+        border-radius: 4px;
 
-    position: static;
-    width: 270px;
-    height: 71px;
-    left: 0px;
-    top: 68px;
+        &.p, h2 {
+          position: static;
+          width: 255px;
+          height: 16px;
+          left: 6px;
+          top: 22px;
 
-    background: rgba(14, 165, 233, 0.1);
-    border-radius: 4px;
+          font-family: 'Inter', ui-serif;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 16px;
+          /* identical to box height, or 133% */
 
-    /* Inside auto layout */
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    margin: 20px 0px;
-  }
-  &.name {
-    font-family: 'Montserrat', ui-serif;
-    font-weight: 700;
-    font-size: 2em;
-    margin-left: 5%;
-  }
-  &.id {
-    margin-left: auto;
-    margin-right: 10px;
-    font-family: $fontMono;
-    font-weight: 300;
+          display: flex;
+          align-items: center;
+
+          /* lightBlue/700 */
+
+          color: #0369A1;
+        }
+      }
+    }
+    &.h2 {
+      position: static;
+      height: 28px;
+      left: 0px;
+      right: 215px;
+      top: 0px;
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+
+      letter-spacing: 0.1px;
+
+      color: #2B2B43;
+    }
   }
 }

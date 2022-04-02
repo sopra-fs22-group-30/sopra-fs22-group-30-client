@@ -8,7 +8,7 @@ import "styles/views/Home.scss";
 const Home_Recipe = (props) => {
     return(
         <div className="recipe container">
-            <h2 className = "title">
+            <h2 className = "card title">
                 Title: Hotpot
             </h2>
         </div>
