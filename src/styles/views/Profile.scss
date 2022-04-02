@@ -2,31 +2,33 @@
 
 .profile {
   &.container{
-
+    display: block;
+    margin: 0 auto;
+    width: 62em;
+    height: auto;
   }
   &.column {
     float: left;
-    background: $background;
     padding: 1.5em;
     border-radius: $borderRadius;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: $dropShadow;
-    width: 30vw;
+    width: 30em;
+
     &.left {
-      margin: 0 2vw 0 18vw;
+      margin: 0 1em 1em auto;
     }
     &.right {
-      margin: 0 18vw 0 2vw;
+      margin: 0 auto 1em 1em;
     }
   }
 
   .line
   {
     display:inline-block;
-    width:7vw;
-    margin: 0 1vw 0 1vw;
+    width:5em;
+    margin: 0 0.6em 0 0.6em;
     border-top:1.5px solid $textColor;
     vertical-align:5px;
   }
@@ -39,7 +41,7 @@
       border-radius: $borderRadius;
       display: flex;
       align-items: center;
-      background: lighten($background, 5);
+      background: #F0E4C6;
     }
     &.label {
       font-weight: 500;
