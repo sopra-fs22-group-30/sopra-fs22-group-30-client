@@ -1,12 +1,13 @@
 @import 'styles/theme';
 
 .profile {
-  &.container{
+  &.container {
     display: block;
     margin: 0 auto;
     width: 62em;
     height: auto;
   }
+
   &.column {
     float: left;
     padding: 1.5em;
@@ -19,18 +20,18 @@
     &.left {
       margin: 0 1em 1em auto;
     }
+
     &.right {
       margin: 0 auto 1em 1em;
     }
   }
 
-  .line
-  {
-    display:inline-block;
-    width:5em;
+  .line {
+    display: inline-block;
+    width: 5em;
     margin: 0 0.6em 0 0.6em;
-    border-top:1.5px solid $textColor;
-    vertical-align:5px;
+    border-top: 1.5px solid $textColor;
+    vertical-align: 5px;
   }
 
   .userInfo {
@@ -43,15 +44,68 @@
       align-items: center;
       background: #F0E4C6;
     }
+
     &.label {
       font-weight: 500;
       color: $textColor;
     }
+
     &.value {
       margin-left: auto;
       margin-right: 10px;
       font-family: $fontMono;
       font-weight: 300;
+    }
+  }
+
+  .recipe {
+    &.box {
+      margin-top: 10px;
+      padding-top: 10px;
+      width: 25em;
+      background: #FFFFFF;
+      box-shadow: $recipeBoxShadow;
+      border-radius: $recipeBorderRadius;
+    }
+    &.container {
+      padding: 10px;
+      border-radius: $borderRadius;
+      display: flex;
+      align-items: center;
+    }
+
+    &.recipe-name {
+      margin-left: 1em;
+      font-weight: 700;
+      color: $textColor;
+    }
+
+    &.button {
+      &.container {
+        margin: 0 0 0 auto;
+        width: 10em;
+      }
+
+      &.item {
+        &:hover {
+          transform: translateY(-2px);
+        }
+        margin-left: 1em;
+        width: 5em;
+        padding: 6px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 13px;
+        text-align: center;
+        height: 35px;
+        border-radius: $borderRadius;
+        border: 1px solid #ffffff;
+        cursor: pointer;
+        color: $textColor;
+        background-color: #EEEEEE;
+        transition: all 0.3s ease;
+      }
+
     }
   }
 
