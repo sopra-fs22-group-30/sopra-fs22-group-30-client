@@ -47,9 +47,9 @@ const Party = ({/* party */}) => {
     */
     return (
         <div className="home party panel container">
-            {/*<h2 className="home party card title">*/}
-            {/*    Alice birthday party*/}
-            {/*</h2>*/}
+            <h2 className="home party card title">
+                Alice birthday party
+            </h2>
         </div>
         /*
         <div className="party container" key={party.id}>
