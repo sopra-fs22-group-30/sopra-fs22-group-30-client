@@ -10,6 +10,7 @@ import "styles/views/Home.scss";
 
 
 const Recipe = ({recipe}) => {
+    /*
     const redirectToProfile = (recipe) => {
         window.location.href = `/recipes/${recipe.id}`;
     }
@@ -21,6 +22,8 @@ const Recipe = ({recipe}) => {
             <div className="player id">id: {recipe.id}</div>
         </div>
     )
+
+     */
 };
 
 Recipe.propTypes = {
@@ -28,6 +31,7 @@ Recipe.propTypes = {
 };
 
 const Party = ({party}) => {
+    /*
     const redirectToProfile = (party) => {
         window.location.href = `/parties/${party.id}`;
     }
@@ -39,6 +43,8 @@ const Party = ({party}) => {
             <div className="party id">id: {party.id}</div>
         </div>
     )
+
+     */
 };
 
 Party.propTypes = {
