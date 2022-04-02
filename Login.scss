@@ -1,0 +1,60 @@
+@import 'styles/theme';
+
+.login {
+  &.container {
+    //margin-top: 2em;
+    margin-top:100px;
+    min-height: 300px;
+    /* we include the center mixin defined in _theme.scss and save three duplicate lines :) */
+    @include center;
+    flex-direction: column;
+  }
+  &.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:350px;
+    height:350px;
+    font-size: 16px;
+    font-weight: 300;
+    padding:10px 20px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    box-shadow: $dropShadow;
+  }
+  &.field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &.input {
+    height: 40px;
+    padding-left: 15px;
+    margin-left: -4px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background:#F6F6F6;
+    color: $textColor;
+  }
+  &.label {
+    color: $textColor;
+    margin-bottom: 10px;
+    text-transform: lowercase;
+    font-weight: 300;
+  }
+  &.button-container {
+    display: flex;
+    justify-content: center;
+    height:40px;
+    top: calc(50% - 40px/2 + 125px);
+    margin-bottom: 10px;
+  }
+  a:link,a:visited{
+    color:#5A9D79;
+    text-decoration: none;
+    font-family: 'Nunito';
+    font-weight: 400;
+  }
+}
