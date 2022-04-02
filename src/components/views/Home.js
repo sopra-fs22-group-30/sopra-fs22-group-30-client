@@ -1,23 +1,61 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Home.scss";
 
-const Player = ({user}) => (
-    <div className="player container">
-        <div className="player username">{user.username}</div>
-        <div className="player name">{user.name}</div>
-        <div className="player id">id: {user.id}</div>
-    </div>
-);
+// const Player = ({user}) => (
+//     <div className="player container">
+//         <div className="player username">{user.username}</div>
+//         <div className="player name">{user.name}</div>
+//         <div className="player id">id: {user.id}</div>
+//     </div>
+// );
+//
+// Player.propTypes = {
+//     user: PropTypes.object
+// };
 
-Player.propTypes = {
-    user: PropTypes.object
+const Recipe = ({recipe}) => {
+    const redirectToProfile = (recipe) => {
+        window.location.href = `/recipes/${recipe.id}`;
+    }
+    return (
+        <div className="player container" key={recipe.id}>
+            <Link className="player username" to={`recipes/${recipe.id}`} props={recipe} onClick={() => redirectToProfile.bind(this, recipe)}>
+                {recipe.name}
+            </Link>
+            <div className="player id">id: {recipe.id}</div>
+        </div>
+    )
 };
+
+Recipe.propTypes = {
+    recipe: PropTypes.object
+};
+
+const Party = ({party}) => {
+    const redirectToProfile = (party) => {
+        window.location.href = `/parties/${party.id}`;
+    }
+    return (
+        <div className="party container" key={party.id}>
+            <Link className="party name" to={`parties/${party.id}`} props={party} onClick={() => redirectToProfile.bind(this, party)}>
+                {party.name}
+            </Link>
+            <div className="party id">id: {party.id}</div>
+        </div>
+    )
+};
+
+Party.propTypes = {
+    party: PropTypes.object
+};
+
+
 
 const Home = () => {
     // use react-router-dom's hook to access the history
@@ -31,9 +69,15 @@ const Home = () => {
     const [recipes, setRecipes] = useState(null);
     const [parties, setParties] = useState(null);
 
-    const logout = () => {
+    const logout = async () => {
         localStorage.removeItem('token');
         history.push('/login');
+        try {
+            const requestBody = localStorage.getItem('id');
+            await api.put(`/users/checking/{id}`, requestBody);
+        } catch (error) {
+            alert(`Logout Fail \n${handleError(error)}`);
+        }
     }
 
     // the effect hook can be used to react to change in your component.
@@ -59,31 +103,40 @@ const Home = () => {
         fetchData();
     }, []);
 
-    let content = <Spinner/>;
+    let recipePanel = <Spinner/>;
+    let partyPanel = <Spinner/>;
 
-
-    content = (
-        <div className="home">
-            <ul className="home user-list">
-                {/*{users.map(user => (*/}
-                {/*    <Player user={user} key={user.id}/>*/}
-                {/*))}*/}
-                <h1>implement recipes and parties here</h1>
+    recipePanel = (
+        <div className="recipe panel">
+            <ul className="recipe list">
+                {recipes.map(recipe => (
+                    <Recipe recipe={recipe} key={recipe.id}/>
+                ))}
             </ul>
-            {/*<Button*/}
-            {/*    width="100%"*/}
-            {/*    onClick={() => logout()}*/}
-            {/*>*/}
-            {/*    Logout*/}
-            {/*</Button>*/}
+        </div>
+    );
+
+    partyPanel = (
+        <div className="party panel">
+            <ul className="party list">
+                {parties.map(party => (
+                    <Party party={party} key={party.id}/>
+                ))}
+            </ul>
         </div>
     );
 
 
     return (
         <BaseContainer className="home container">
-            <h2>Home page to be implement</h2>
-            {content}
+            <div className="recipe container">
+                <h2>Recipes</h2>
+                {recipePanel}
+            </div>
+            <div className="party container">
+                <h2>Parties</h2>
+                {partyPanel}
+            </div>
         </BaseContainer>
     );
 }
