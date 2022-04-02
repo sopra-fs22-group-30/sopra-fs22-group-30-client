@@ -152,14 +152,18 @@ const Home = () => {
 
     return (
         <div className="home container">
-            <div className="home recipe panel">
-                <h2>Recipes</h2>
-                {recipePanel}
-            </div>
-            <div className="home party panel">
-                <h2>Parties</h2>
-                {partyPanel}
-            </div>
+            <h2>Recipes</h2>}
+            {recipePanel}
+            <h2>Parties</h2>
+            {partyPanel}
+            {/*<div className="home recipe panel">*/}
+            {/*    <h2>Recipes</h2>*/}
+            {/*    {recipePanel}*/}
+            {/*</div>*/}
+            {/*<div className="home party panel">*/}
+            {/*    <h2>Parties</h2>*/}
+            {/*    {partyPanel}*/}
+            {/*</div>*/}
         </div>
     );
 }
