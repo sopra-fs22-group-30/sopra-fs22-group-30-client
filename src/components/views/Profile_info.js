@@ -60,6 +60,14 @@ const UserInfoIntro = ({user}) => {
     );
 };
 
+const AdminButton = ({label}) => {
+    return (
+        <div className="admin-button item">
+            {label}
+        </div>
+    )
+}
+
 const Profile_info = (props) => {
     return(
         <div className="profile column right">
@@ -72,7 +80,10 @@ const Profile_info = (props) => {
             <UserInfoIntro/>
 
             {/*EDIT & BACK button*/}
-
+            <div className="admin-button container">
+                <AdminButton label="EDIT"/>
+                <AdminButton label="BACK"/>
+            </div>
 
         </div>
     )

@@ -25,7 +25,7 @@ const Logo = props => (
 const Navigate = props => (
     <ul className="header navigate list">
         <li className="header navigate item" style={{border: "none"}}>Logout</li>
-        <li className="header navigate item">My profile</li>
+        <li className="header navigate item">My Profile</li>
         <li className="header navigate item">
             <img src={icon_post} className="header navigate post_icon" alt="icon_post" />
             <span>New Recipe</span>
