@@ -111,28 +111,23 @@ const Home = () => {
 
     recipePanel = (
         <div className="recipe panel">
-            <ul className="recipe list">
-                <Home_Recipe/>
-                {/*
-                recipes.map(recipe => (
-                    <Recipe recipe={recipe} key={recipe.id}/>
-                ))
-                */}
-
-            </ul>
+            <Home_Recipe/>
+            {/*
+            recipes.map(recipe => (
+                <Recipe recipe={recipe} key={recipe.id}/>
+            ))
+            */}
         </div>
     );
 
     partyPanel = (
         <div className="party panel">
-            <ul className="party list">
-                <Home_Party/>
-                {/*
-                parties.map(party => (
-                    <Party party={party} key={party.id}/>
-                ))
-                */}
-            </ul>
+            <Home_Party/>
+            {/*
+            parties.map(party => (
+                <Party party={party} key={party.id}/>
+            ))
+            */}
         </div>
     );
 
