@@ -49,7 +49,7 @@ const Party = ({/* party */}) => {
     */
     return (
         <div className="party panel container">
-            <h2>
+            <h2 className="party panel container card title">
                 Alice birthday party
             </h2>
         </div>
