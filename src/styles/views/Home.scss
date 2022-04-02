@@ -72,45 +72,45 @@
       left: 1047px;
       top: 122px;
       background: lighten($background, 5);
+    }
+    &.container {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 0px;
 
-      &.container {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        padding: 0px;
+      position: static;
+      width: 270px;
+      height: 71px;
+      left: 0px;
+      top: 48px;
 
+      background: rgba(14, 165, 233, 0.1);
+      border-radius: 4px;
+
+      &.card title {
         position: static;
-        width: 270px;
-        height: 71px;
-        left: 0px;
-        top: 48px;
+        width: 255px;
+        height: 16px;
+        left: 6px;
+        top: 22px;
 
-        background: rgba(14, 165, 233, 0.1);
-        border-radius: 4px;
+        font-family: 'Inter', ui-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        /* identical to box height, or 133% */
 
-        &.card title {
-          position: static;
-          width: 255px;
-          height: 16px;
-          left: 6px;
-          top: 22px;
+        display: flex;
+        align-items: center;
 
-          font-family: 'Inter', ui-serif;
-          font-style: normal;
-          font-weight: 600;
-          font-size: 12px;
-          line-height: 16px;
-          /* identical to box height, or 133% */
+        /* lightBlue/700 */
 
-          display: flex;
-          align-items: center;
-
-          /* lightBlue/700 */
-
-          color: #0369A1;
-        }
+        color: #0369A1;
       }
     }
+
     &.h2 {
       position: static;
       height: 28px;
