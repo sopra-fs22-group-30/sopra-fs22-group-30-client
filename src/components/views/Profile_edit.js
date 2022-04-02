@@ -11,11 +11,12 @@ import "styles/views/Profile.scss";
 const EditFormField = props => {
     return (
         <div className="profile edit field">
-            <label className="profile edit label">
+            <label className={`profile edit label`}>
                 {props.label}
             </label>
             <input
-                className="profile edit input"
+                className={`profile edit input ${props.className}`}
+                type={props.type}
                 placeholder={props.placeholder}
                 value={props.value}
                 onChange={e => props.onChange(e.target.value)}
@@ -27,22 +28,21 @@ const EditFormField = props => {
 
 const EditBox = (props) => {
 
-    const userId= localStorage.getItem("id");
-    const [username,setUsername] = useState("");
-    const [birthday,setBirthday] = useState("");
-    const [gender,setGender] = useState("");
-    const [intro,setIntro] = useState("");
+    const userId = localStorage.getItem("id");
+    const [username, setUsername] = useState("");
+    const [birthday, setBirthday] = useState("");
+    const [gender, setGender] = useState("");
+    const [intro, setIntro] = useState("");
     const [isValid, setIsValid] = useState(true);
 
     const checkDateFormat = () => {
         setIsValid(false);
         const wrongMessage = "wrong date format";
-        if (convertDateToJavaDateFormat(birthday) === wrongMessage){
+        if (convertDateToJavaDateFormat(birthday) === wrongMessage) {
             // if not valid, do nothing
             setIsValid(false);
 
-        }
-        else{
+        } else {
             // if valid, execute doSubmit()
             setIsValid(true);
             doSubmit();
@@ -55,7 +55,7 @@ const EditBox = (props) => {
             // convert birthday to Java Date Format, then add it to requestBody
             setBirthday(convertDateToJavaDateFormat(birthday));
             // we need id to identity a user
-            const requestBody = JSON.stringify({id:userId, username, birthday ,gender, intro});
+            const requestBody = JSON.stringify({id: userId, username, birthday, gender, intro});
             await api.put(`/users/${userId}`, requestBody);
 
             // submit successfully worked --> navigate to his/her own profile
@@ -91,7 +91,7 @@ const EditBox = (props) => {
     return (
         <div className="profile edit box">
             <div className="profile edit form">
-                <h2>Edit your profile:</h2>
+                <h2>Upload your profile:</h2>
                 <EditFormField
                     label="Username"
                     value={username}
@@ -111,29 +111,30 @@ const EditBox = (props) => {
                     onChange={un => setBirthday(un)}
                 />
                 {/* if the Date input by the user is not valid, this <p/> tag will appear and prompt the user. */}
-                {   !isValid
+                {!isValid
                     &&
-                    <p className="edit wrongFormat"> Invalid Date Format!</p>
+                    <p className="profile edit wrongFormat"> Invalid Date Format!</p>
                 }
                 <EditFormField
+                    type="text"
+                    className="intro"
                     label="Intro"
                     value={intro}
                     placeholder="Say something about yourself..."
                     onChange={un => setIntro(un)}
                 />
-                <div className="edit button-container">
-                    <Button
+
+                <Button className="profile edit button-container"
                         disabled={!username}
                         width="100%"
                         onClick={() => checkDateFormat()}
-                    >
-                        Submit
-                    </Button>
-                </div>
+                >
+                    Upload
+                </Button>
+
             </div>
 
         </div>
-
 
 
     )
