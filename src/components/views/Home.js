@@ -128,7 +128,7 @@ const Home = () => {
 
 
     recipePanel = (
-        <div className="recipe panel">
+        <div className="home recipe panel">
             <Recipe/>
             {/*
             recipes.map(recipe => (
@@ -139,7 +139,7 @@ const Home = () => {
     );
 
     partyPanel = (
-        <div className="party panel">
+        <div className="home party panel">
             <Party/>
             {/*
             parties.map(party => (
@@ -152,11 +152,11 @@ const Home = () => {
 
     return (
         <div className="home container">
-            <div className="recipe panel">
+            <div className="home recipe panel">
                 <h2>Recipes</h2>
                 {recipePanel}
             </div>
-            <div className="party panel">
+            <div className="home party panel">
                 <h2>Parties</h2>
                 {partyPanel}
             </div>
