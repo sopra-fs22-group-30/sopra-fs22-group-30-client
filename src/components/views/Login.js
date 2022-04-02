@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
-import {Button} from "../ui/Button";
 import {GreenButton} from "../ui/GreenButton";
 import 'styles/views/Login.scss';
 import BaseContainer from "components/ui/BaseContainer";
@@ -45,7 +44,7 @@ const Login = props => {
   const doLogin = async () => {
     try {
       const requestBody = JSON.stringify({username,password});
-      const response = await api.post('/login', requestBody);
+      const response = await api.post('/users/checking', requestBody);
       console.log(response);
 
       // Get the returned user and update a new object.
