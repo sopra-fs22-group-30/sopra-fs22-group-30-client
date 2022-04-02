@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Button} from 'components/ui/Button';
 import BaseContainer from "components/ui/BaseContainer";
@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import convertDateToSwissDateFormat from "components/date/ToSwissDateFormat";
 import convertDateToJavaDateFormat from "components/date/ToJavaDateFormat";
 import "styles/views/Profile.scss";
+
 
 const EditFormField = props => {
     return (
@@ -23,29 +24,116 @@ const EditFormField = props => {
     );
 };
 
+
 const EditBox = (props) => {
 
-    // fake user id 1
-    localStorage.setItem("id","1");
+    const userId= localStorage.getItem("id");
+    const [username,setUsername] = useState("");
+    const [birthday,setBirthday] = useState("");
+    const [gender,setGender] = useState("");
+    const [intro,setIntro] = useState("");
+    const [isValid, setIsValid] = useState(true);
 
-    const [userId, setUserId] = useState(localStorage.getItem("id"));
-    const [username, setUsername] = useState(null);
+    const checkDateFormat = () => {
+        setIsValid(false);
+        const wrongMessage = "wrong date format";
+        if (convertDateToJavaDateFormat(birthday) === wrongMessage){
+            // if not valid, do nothing
+            setIsValid(false);
+
+        }
+        else{
+            // if valid, execute doSubmit()
+            setIsValid(true);
+            doSubmit();
+        }
+    }
+
+
+    const doSubmit = async () => {
+        try {
+            // convert birthday to Java Date Format, then add it to requestBody
+            setBirthday(convertDateToJavaDateFormat(birthday));
+            // we need id to identity a user
+            const requestBody = JSON.stringify({id:userId, username, birthday ,gender, intro});
+            await api.put(`/users/${userId}`, requestBody);
+
+            // submit successfully worked --> navigate to his/her own profile
+            let path = `/users/${userId}`;
+            window.location.href = path;
+
+        } catch (error) {
+            alert(`Something went wrong during the edit: \n${handleError(error)}`);
+        }
+    };
+
+    useEffect(() => {
+        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
+        async function fetchData() {
+            try {
+                const response = await api.get('/users/' + userId);
+                setUsername(response.data.username);
+                setBirthday(response.data.birthday);
+                setGender(response.data.gender);
+                setIntro(response.data.intro);
+
+            } catch (error) {
+                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("Something went wrong while fetching the users! See the console for details.");
+            }
+        }
+
+        fetchData();
+    }, []);
+
 
     return (
         <div className="profile edit box">
-            <EditFormField
-                label="Username"
-                value={username}
-                placeholder="enter your username..."
-                onChange={un => setUsername(un)}
-            />
-            <EditFormField
-                label="Useridtest"
-                value={userId}
-                placeholder="enter your userId..."
-                onChange={un => setUserId(un)}
-            />
+            <div className="profile edit form">
+                <h2>Edit your profile:</h2>
+                <EditFormField
+                    label="Username"
+                    value={username}
+                    placeholder="enter your username..."
+                    onChange={un => setUsername(un)}
+                />
+                <EditFormField
+                    label="Gender"
+                    value={gender}
+                    placeholder="enter your gender..."
+                    onChange={un => setGender(un)}
+                />
+                <EditFormField
+                    label="Birthday"
+                    value={birthday}
+                    placeholder="enter your birthday..."
+                    onChange={un => setBirthday(un)}
+                />
+                {/* if the Date input by the user is not valid, this <p/> tag will appear and prompt the user. */}
+                {   !isValid
+                    &&
+                    <p className="edit wrongFormat"> Invalid Date Format!</p>
+                }
+                <EditFormField
+                    label="Intro"
+                    value={intro}
+                    placeholder="Say something about yourself..."
+                    onChange={un => setIntro(un)}
+                />
+                <div className="edit button-container">
+                    <Button
+                        disabled={!username}
+                        width="100%"
+                        onClick={() => checkDateFormat()}
+                    >
+                        Submit
+                    </Button>
+                </div>
+            </div>
+
         </div>
+
 
 
     )
@@ -53,10 +141,11 @@ const EditBox = (props) => {
 
 const ProfileEdit = props => {
     return (
-            <BaseContainer>
-                <EditBox/>
-            </BaseContainer>
-        )
+        <BaseContainer>
+            <EditBox/>
+
+        </BaseContainer>
+    )
 };
 
 /**

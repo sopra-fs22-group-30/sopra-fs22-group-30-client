@@ -5,20 +5,19 @@ import {useEffect, useState} from "react";
 import {api, handleError} from "../../helpers/api";
 
 
-
 const Profile_info = ({match}) => {
     const history = useHistory();
-    const [user, setUsers]=useState({
-            id:"",
-            username:"",
-            gender:null,
-            creationDate:"",
-            birthday:"",
-            intro:"",
+    const [user, setUsers] = useState({
+            id: "",
+            username: "",
+            gender: null,
+            creationDate: "",
+            birthday: "",
+            intro: "",
         }
     );
-    const path=window.location.pathname;
-    const userID=path.substring(path.lastIndexOf('/')+1);
+    const path = window.location.pathname;
+    const userID = path.substring(path.lastIndexOf('/') + 1);
 
 
     useEffect(() => {
@@ -26,23 +25,27 @@ const Profile_info = ({match}) => {
         async function fetchData() {
             try {
                 //const response = await api.get('/users/'+match.params.id);
-                const response = await api.get('/users/'+userID);
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                const response = await api.get('/users/' + userID);
                 setUsers(response.data);
-                console.log('request to:', response.request.responseURL);
-                console.log('status code:', response.status);
-                console.log('status text:', response.statusText);
-                console.log('requested data:', response.data);
-                console.log(response);
+
             } catch (error) {
                 console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
                 console.error("Details:", error);
                 alert("Something went wrong while fetching the users! See the console for details.");
             }
         }
+
         fetchData();
     }, []);
-    return(
+
+    const goEdit = () => {
+        history.push('/profile/edit');
+    }
+    const goBack = () => {
+        history.push('/home');
+    }
+
+    return (
         <div className="profile column right">
             <h3><span className="line"></span> Attributes <span className="line"></span></h3>
             {/*basic info*/}
@@ -54,8 +57,8 @@ const Profile_info = ({match}) => {
 
             {/*EDIT & BACK button*/}
             <div className="admin-button container">
-                <AdminButton label="EDIT"/>
-                <AdminButton label="BACK"/>
+                <AdminButton label="EDIT" func={() => goEdit()}/>
+                <AdminButton label="BACK" func={() => goBack()}/>
             </div>
 
         </div>
@@ -96,11 +99,6 @@ const UserInfoCreation = ({user}) => {
 let defaultBirthday = "(optional)";
 const UserInfoBirthday = ({user}) => {
 
-    // if the user has not set his/her birthday, it will show defaultBirthday.
-    // Otherwise, show the existing birthday
-    // if (user.birthday != null){
-    //     defaultBirthday = convertDateToSwissDateFormat(user.birthday.substring(0,10));
-    // }
     return (
         <div className="userInfo container">
             <div className="userInfo label"> Birth Date:</div>
@@ -111,7 +109,6 @@ const UserInfoBirthday = ({user}) => {
 };
 
 const UserInfoIntro = ({user}) => {
-    const fakeIntro = "GitHub is a web-based version-control and collaboration platform for software developers. Microsoft, the biggest single contributor to GitHub, initiated an acquisition of GitHub for $7.5 billion in June, 2018. GitHub, which is delivered through a software-as-a-service (SaaS) business model, was started in 2008 and was founded on Git, an open source code management system created by Linus Torvalds to make software builds faster."
     return (
         <div className="userInfo container">
             <div className="userInfo value">{user.intro}</div>
@@ -120,24 +117,13 @@ const UserInfoIntro = ({user}) => {
     );
 };
 
-const AdminButton = ({label}) => {
+const AdminButton = (props) => {
     return (
-        <div className="admin-button item">
-            {label}
+        <div className="admin-button item" onClick={props.func}>
+            {props.label}
         </div>
     )
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 export default Profile_info;

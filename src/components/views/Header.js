@@ -22,18 +22,32 @@ const Logo = props => (
     </div>
 )
 
-const Navigate = props => (
-    <ul className="header navigate list">
-        <li className="header navigate item" style={{border: "none"}}>Logout</li>
-        <li className="header navigate item">My Profile</li>
-        <li className="header navigate item">
-            <img src={icon_post} className="header navigate post_icon" alt="icon_post" />
-            <span>New Recipe</span>
-        </li>
-        <li className="header navigate item">Home</li>
+const Navigate = props => {
+    const goHome =() =>{
+        let path = `/home`;
+        window.location.href = path;
+    }
 
-    </ul>
-)
+    const goMyProfile =() =>{
+        const myUserId = localStorage.getItem('id');
+        let path = `/users/${myUserId}`;
+        window.location.href = path;
+    }
+
+    return (
+        <ul className="header navigate list">
+            <li className="header navigate item" style={{border: "none"}}>Logout</li>
+            <li className="header navigate item" onClick={() => goMyProfile()}>My Profile</li>
+            <li className="header navigate item">
+                <img src={icon_post} className="header navigate post_icon" alt="icon_post" />
+                <span>New Recipe</span>
+            </li>
+            <li className="header navigate item" onClick={() => goHome()}>Home</li>
+
+        </ul>
+    )
+}
+
 
 const Header = props => (
     <div className="header container">
