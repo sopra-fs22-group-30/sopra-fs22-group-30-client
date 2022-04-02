@@ -18,8 +18,8 @@ const Recipe = ({/* recipe */}) => {
     }*/
 
     return (
-        <div className="recipe container">
-            <h2 className = "recipe panel container card title">
+        <div className="home recipe container">
+            <h2 className = "home recipe panel container card title">
                 Title: Hotpot
             </h2>
         </div>
@@ -48,8 +48,8 @@ const Party = ({/* party */}) => {
     }
     */
     return (
-        <div className="party panel container">
-            <h2 className="party card title">
+        <div className="home party panel container">
+            <h2 className="home party card title">
                 Alice birthday party
             </h2>
         </div>
