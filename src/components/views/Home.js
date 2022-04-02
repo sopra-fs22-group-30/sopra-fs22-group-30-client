@@ -28,7 +28,8 @@ const Home = () => {
     // keep its value throughout render cycles.
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
-    const [users, setUsers] = useState(null);
+    const [recipes, setRecipes] = useState(null);
+    const [parties, setParties] = useState(null);
 
     const logout = () => {
         localStorage.removeItem('token');
@@ -43,18 +44,15 @@ const Home = () => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
-                // const response = await api.get('/users');
-
-                await new Promise(resolve => setTimeout(resolve, 1000));
-
-                const response = [];
-                // Get the returned users and update the state.
-                setUsers(response);
+                const recipesResponse = await api.get('/recipes');
+                const partiesResponse = await api.get('/parties');
+                setRecipes(recipesResponse.data);
+                setParties(partiesResponse.data);
 
             } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error(`Something went wrong while fetching the data: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
+                alert("Something went wrong while fetching the data! See the console for details.");
             }
         }
 
@@ -63,24 +61,24 @@ const Home = () => {
 
     let content = <Spinner/>;
 
-    if (users) {
-        content = (
-            <div className="home">
-                <ul className="home user-list">
-                    {/*{users.map(user => (*/}
-                    {/*    <Player user={user} key={user.id}/>*/}
-                    {/*))}*/}
-                    <h1>implement recipes and parties here</h1>
-                </ul>
-                {/*<Button*/}
-                {/*    width="100%"*/}
-                {/*    onClick={() => logout()}*/}
-                {/*>*/}
-                {/*    Logout*/}
-                {/*</Button>*/}
-            </div>
-        );
-    }
+
+    content = (
+        <div className="home">
+            <ul className="home user-list">
+                {/*{users.map(user => (*/}
+                {/*    <Player user={user} key={user.id}/>*/}
+                {/*))}*/}
+                <h1>implement recipes and parties here</h1>
+            </ul>
+            {/*<Button*/}
+            {/*    width="100%"*/}
+            {/*    onClick={() => logout()}*/}
+            {/*>*/}
+            {/*    Logout*/}
+            {/*</Button>*/}
+        </div>
+    );
+
 
     return (
         <BaseContainer className="home container">
