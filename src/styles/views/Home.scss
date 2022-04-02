@@ -15,6 +15,7 @@
     flex-direction: row;
     align-items: center;
     box-shadow: $dropShadow;
+
   }
   &.user-list {
     list-style: none;
@@ -46,6 +47,27 @@
     left: 0px;
     right: 598px;
     top: 0px;
+    //&.title{
+    //  position: static;
+    //  height: 28px;
+    //  left: 10px;
+    //  right: 10px;
+    //  top: 10px;
+    //  /* H5 - semibold 20 (28, 0.1px) */
+    //  font-family: 'Nunito';
+    //  font-style: normal;
+    //  font-weight: 600;
+    //  font-size: 20px;
+    //  line-height: 28px;
+    //  /* identical to box height, or 140% */
+    //  letter-spacing: 0.1px;
+    //  /* neutral/black */
+    //  color: #2B2B43;
+    //  flex: none;
+    //  order: 0;
+    //  flex-grow: 0;
+    //  margin: 10px 0px;
+    //}
   }
   &.name {
     font-weight: 300;
@@ -95,8 +117,10 @@
     margin: 20px 0px;
   }
   &.name {
-    font-weight: 300;
-    margin-left: 5px;
+    font-family: 'Montserrat', ui-serif;
+    font-weight: 700;
+    font-size: 2em;
+    margin-left: 5%;
   }
   &.id {
     margin-left: auto;

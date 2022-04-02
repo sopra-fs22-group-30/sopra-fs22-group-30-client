@@ -8,7 +8,9 @@ import "styles/views/Home.scss";
 const Home_Party = (props) => {
     return(
         <div className="party container">
-            <h2>Alice birthday party</h2>
+            <h2>
+                Alice birthday party
+            </h2>
         </div>
     )
 }
