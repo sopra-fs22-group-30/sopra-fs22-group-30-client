@@ -4,6 +4,7 @@ import HomeRouter from "components/routing/routers/HomeRouter";
 import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/Login";
 import Register from "../../views/Register";
+import Profile from "components/views/Profile";
 
 /**
  * Main router of your application.
@@ -15,30 +16,35 @@ import Register from "../../views/Register";
  * Documentation about routing in React: https://reacttraining.com/react-router/web/guides/quick-start
  */
 const AppRouter = () => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/home">
-          {/*<HomeGuard>*/}
-            <HomeRouter base="/home"/>
-          {/*</HomeGuard>*/}
-        </Route>
-        <Route exact path="/login">
-          <LoginGuard>
-            <Login/>
-          </LoginGuard>
-        </Route>
-        <Route exact path="/register">
-          {/*<LoginGuard>*/}
-            <Register/>
-          {/*</LoginGuard>*/}
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home"/>
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Switch>
+                {/*just for test /profile, need change it to /users/:id */}
+                <Route path="/profile">
+                    <Profile/>
+                </Route>
+
+                <Route path="/home">
+                    {/*<HomeGuard>*/}
+                    <HomeRouter base="/home"/>
+                    {/*</HomeGuard>*/}
+                </Route>
+                <Route exact path="/login">
+                    {/*<LoginGuard>*/}
+                        <Login/>
+                    {/*</LoginGuard>*/}
+                </Route>
+                <Route exact path="/register">
+                    {/*<LoginGuard>*/}
+                    <Register/>
+                    {/*</LoginGuard>*/}
+                </Route>
+                <Route exact path="/">
+                    <Redirect to="/home"/>
+                </Route>
+            </Switch>
+        </BrowserRouter>
+    );
 };
 
 /*

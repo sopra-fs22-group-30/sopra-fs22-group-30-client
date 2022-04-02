@@ -1,0 +1,56 @@
+@import 'styles/theme';
+
+.profile {
+  &.container{
+
+  }
+  &.column {
+    float: left;
+    background: $background;
+    padding: 1.5em;
+    border-radius: $borderRadius;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: $dropShadow;
+    width: 30vw;
+    &.left {
+      margin: 0 2vw 0 18vw;
+    }
+    &.right {
+      margin: 0 18vw 0 2vw;
+    }
+  }
+
+  .line
+  {
+    display:inline-block;
+    width:7vw;
+    margin: 0 1vw 0 1vw;
+    border-top:1.5px solid $textColor;
+    vertical-align:5px;
+  }
+
+  .userInfo {
+    &.container {
+      margin: 0.5em 0;
+      width: 20em;
+      padding: 10px;
+      border-radius: $borderRadius;
+      display: flex;
+      align-items: center;
+      background: lighten($background, 5);
+    }
+    &.label {
+      font-weight: 500;
+      color: $textColor;
+    }
+    &.value {
+      margin-left: auto;
+      margin-right: 10px;
+      font-family: $fontMono;
+      font-weight: 300;
+    }
+  }
+
+}
