@@ -67,6 +67,7 @@
       box-shadow: $recipeBoxShadow;
       border-radius: $recipeBorderRadius;
     }
+
     &.container {
       padding: 10px;
       border-radius: $borderRadius;
@@ -90,6 +91,7 @@
         &:hover {
           transform: translateY(-2px);
         }
+
         margin-left: 1em;
         width: 5em;
         padding: 6px;
@@ -105,6 +107,30 @@
         background-color: #EEEEEE;
         transition: all 0.3s ease;
       }
+
+    }
+  }
+
+  .edit {
+    &.box {
+      margin-top: 10px;
+      padding-top: 10px;
+      width: 25em;
+      background: #FFFFFF;
+      box-shadow: $recipeBoxShadow;
+      border-radius: $recipeBorderRadius;
+    }
+
+    &.field {
+
+
+    }
+
+    &.label {
+
+    }
+
+    &.input {
 
     }
   }

@@ -55,7 +55,6 @@ const Login = props => {
       localStorage.setItem('token', user.token);
       localStorage.setItem('id',user.id);
       localStorage.setItem('username',user.username);
-      localStorage.setItem('name',user.name);
 
       // Login successfully worked --> navigate to the route /home in the HomeRouter
       history.push(`/home`);

@@ -1,6 +1,6 @@
 import "styles/views/Profile.scss";
 import profile_photo from 'profile_photo.svg';
-import "styles/views/Profile.scss";
+
 
 const Photo = () => {
     return (

@@ -5,6 +5,7 @@ import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/Login";
 import Register from "../../views/Register";
 import Profile from "components/views/Profile";
+import ProfileEdit from "../../views/Profile_edit";
 
 /**
  * Main router of your application.
@@ -20,9 +21,13 @@ const AppRouter = () => {
         <BrowserRouter>
             <Switch>
                 {/*just for test /profile, need change it to /users/:id */}
-                <Route path="/profile">
+                <Route exact path="/profile">
                     <Profile/>
                 </Route>
+
+                {/*<Route exact path="/profile/edit">*/}
+                {/*    <ProfileEdit/>*/}
+                {/*</Route>*/}
 
                 <Route path="/home">
                     {/*<HomeGuard>*/}
