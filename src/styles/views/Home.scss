@@ -10,10 +10,9 @@
 .home {
   &.container {
     background: $background;
-    padding: 1.5em;
     border-radius: $borderRadius;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     box-shadow: $dropShadow;
   }
@@ -33,14 +32,20 @@
 }
 
 .recipe {
-  &.container {
-    margin: 0.5em 0;
-    width: 20em;
-    padding: 10px;
-    border-radius: $borderRadius;
-    display: flex;
-    align-items: center;
+  &.panel {
+    position: absolute;
+    height: 473px;
+    left: 98px;
+    right: 401px;
+    top: 122px;
     background: lighten($background, 5);
+  }
+  &.container {
+    position: absolute;
+    height: 276px;
+    left: 0px;
+    right: 598px;
+    top: 0px;
   }
   &.name {
     font-weight: 300;
@@ -55,14 +60,39 @@
 }
 
 .party {
-  &.container {
-    margin: 0.5em 0;
-    width: 20em;
-    padding: 10px;
-    border-radius: $borderRadius;
+  &.panel {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: absolute;
+    width: 280px;
+    height: 584px;
+    left: 1047px;
+    top: 122px;
     background: lighten($background, 5);
+  }
+  &.container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: static;
+    width: 270px;
+    height: 71px;
+    left: 0px;
+    top: 68px;
+
+    background: rgba(14, 165, 233, 0.1);
+    border-radius: 4px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 20px 0px;
   }
   &.name {
     font-weight: 300;

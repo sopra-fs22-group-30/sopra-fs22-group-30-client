@@ -80,11 +80,12 @@ const Home = () => {
     // in this case, the effect hook is only run once, the first time the component is mounted
     // this can be achieved by leaving the second argument an empty array.
     // for more information on the effect hook, please see https://reactjs.org/docs/hooks-effect.html
+    /*
     useEffect(() => {
-        /*
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
+
                 const recipesResponse = await api.get('/recipes');
                 const partiesResponse = await api.get('/parties');
                 setRecipes(recipesResponse.data);
@@ -97,18 +98,25 @@ const Home = () => {
             }
         }
         fetchData();
-        */
+
     }, []);
+    */
 
     let recipePanel = <Spinner/>;
     let partyPanel = <Spinner/>;
 
+
+
     recipePanel = (
         <div className="recipe panel">
             <ul className="recipe list">
-                {recipes.map(recipe => (
+                <Recipe/>
+                {/*
+                recipes.map(recipe => (
                     <Recipe recipe={recipe} key={recipe.id}/>
-                ))}
+                ))
+                */}
+
             </ul>
         </div>
     );
@@ -116,28 +124,28 @@ const Home = () => {
     partyPanel = (
         <div className="party panel">
             <ul className="party list">
-                {parties.map(party => (
+                <Party/>
+                {/*
+                parties.map(party => (
                     <Party party={party} key={party.id}/>
-                ))}
+                ))
+                */}
             </ul>
         </div>
     );
 
 
     return (
-        <BaseContainer className="home container">
-            <div>
-                <h2>Home page</h2>
-            </div>
-            <div className="recipe container">
+        <div className="home container">
+            <div className="recipe panel">
                 <h2>Recipes</h2>
-                {/*recipePanel*/}
+                {recipePanel}
             </div>
-            <div className="party container">
+            <div className="party panel">
                 <h2>Parties</h2>
-                {/*partyPanel*/}
+                {partyPanel}
             </div>
-        </BaseContainer>
+        </div>
     );
 }
 
