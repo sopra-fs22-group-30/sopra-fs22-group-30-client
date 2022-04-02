@@ -5,9 +5,7 @@ import {Button} from 'components/ui/Button';
 import {Link, useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
-import "styles/views/Home.scss";
-import Home_Recipe from "./Home_recipe";
-import Home_Party from "./Home_party";
+
 
 
 
@@ -49,9 +47,9 @@ const Party = ({/* party */}) => {
     */
     return (
         <div className="home party panel container">
-            <h2 className="home party card title">
-                Alice birthday party
-            </h2>
+            {/*<h2 className="home party card title">*/}
+            {/*    Alice birthday party*/}
+            {/*</h2>*/}
         </div>
         /*
         <div className="party container" key={party.id}>
