@@ -7,60 +7,55 @@ import convertDateToSwissDateFormat from "components/date/ToSwissDateFormat";
 import convertDateToJavaDateFormat from "components/date/ToJavaDateFormat";
 import "styles/views/Profile.scss";
 
-// const EditFormField = props => {
-//     return (
-//         <div className="edit field">
-//             <label className="edit label">
-//                 {props.label}
-//             </label>
-//             <input
-//                 className="edit input"
-//                 placeholder={props.placeholder}
-//                 value={props.value}
-//                 onChange={e => props.onChange(e.target.value)}
-//             />
-//         </div>
-//     );
-// };
-//
-// const EditBox = (props) => {
-//     return (
-//         <div className="profile edit box">
-//             <EditFormField
-//                 label="Username"
-//                 value={username}
-//                 placeholder="enter your username..."
-//                 onChange={un => setUsername(un)}
-//             />
-//             <EditFormField
-//                 label="Gender"
-//                 value={gender}
-//                 placeholder="enter your username..."
-//                 onChange={un => setUsername(un)}
-//             />
-//
-//             <EditFormField
-//                 label="Birthday"
-//                 value={birthdayInput}
-//                 placeholder="dd.MM.yyyy (optional)"
-//                 onChange={n => setBirthdayInput(n)}
-//             />
-//             {/* if the Date input by the user is not valid,
-//                     this <p/> tag will appear and prompt the user. */}
-//             {   !isValid
-//                 &&
-//                 <p className="profile edit wrongFormat"> Invalid Date Format!</p>
-//             }
-//
-//         </div>
-//     )
-// }
+const EditFormField = props => {
+    return (
+        <div className="profile edit field">
+            <label className="profile edit label">
+                {props.label}
+            </label>
+            <input
+                className="profile edit input"
+                placeholder={props.placeholder}
+                value={props.value}
+                onChange={e => props.onChange(e.target.value)}
+            />
+        </div>
+    );
+};
+
+const EditBox = (props) => {
+
+    // fake user id 1
+    localStorage.setItem("id","1");
+
+    const [userId, setUserId] = useState(localStorage.getItem("id"));
+    const [username, setUsername] = useState(null);
+
+    return (
+        <div className="profile edit box">
+            <EditFormField
+                label="Username"
+                value={username}
+                placeholder="enter your username..."
+                onChange={un => setUsername(un)}
+            />
+            <EditFormField
+                label="Useridtest"
+                value={userId}
+                placeholder="enter your userId..."
+                onChange={un => setUserId(un)}
+            />
+        </div>
+
+
+    )
+}
 
 const ProfileEdit = props => {
     return (
-        <div>
-            yes
-        </div>
+            <BaseContainer>
+                <EditBox/>
+            </BaseContainer>
         )
 };
 

@@ -25,9 +25,9 @@ const AppRouter = () => {
                     <Profile/>
                 </Route>
 
-                {/*<Route exact path="/profile/edit">*/}
-                {/*    <ProfileEdit/>*/}
-                {/*</Route>*/}
+                <Route exact path="/profile/edit">
+                    <ProfileEdit/>
+                </Route>
 
                 <Route path="/home">
                     {/*<HomeGuard>*/}
