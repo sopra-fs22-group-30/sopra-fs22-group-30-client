@@ -17,7 +17,7 @@ const Recipe = ({/* recipe */}) => {
     }*/
 
     return (
-        <div className="home recipe panel container">
+        <div className="home container">
             <h2 className = "home recipe panel container card title">
                 Title: Hotpot
             </h2>
