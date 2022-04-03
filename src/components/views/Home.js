@@ -137,7 +137,7 @@ const Home = () => {
     );
 
     partyPanel = (
-         <ul className="home party panel">
+         <ul className="home right party panel">
              <Party/>
              {
             /*
@@ -151,7 +151,7 @@ const Home = () => {
 
 
     return (
-        <div className="home container">
+        <div className="home">
             <div className="home left">
                 <h2>Recipes</h2>
                 {recipePanel}

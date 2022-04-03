@@ -8,7 +8,7 @@
  */
 
 
-.home {
+.home{
   &.left {
     position: absolute;
     height: 584px;
@@ -16,6 +16,7 @@
     right: 401px;
     top: 122px;
     background: lighten($background, 5);
+
     &.recipe panel{
       position: absolute;
       height: 582px;
@@ -51,38 +52,47 @@
           color: #2B2B43;
         }
       }
-
-      &.h2 {
-        position: static;
-        height: 28px;
-        left: 10px;
-        right: 10px;
-        top: 10px;
-        font-family: 'Nunito', ui-serif;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 28px;
-        letter-spacing: 0.1px;
-        color: #2B2B43;
-      }
     }
+    &.h2 {
+       position: absolute;
+       height: 28px;
+       left: 10px;
+       right: 10px;
+       top: 10px;
+       font-family: 'Nunito', ui-serif;
+       font-style: normal;
+       font-weight: 600;
+       font-size: 20px;
+       line-height: 28px;
+       letter-spacing: 0.1px;
+       color: #2B2B43;
+     }
   }
 
-  &right {
-    &.party {
-      &.panel {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0px;
-        position: absolute;
-        width: 280px;
-        height: 584px;
-        left: 1047px;
-        top: 122px;
-        background: lighten($background, 5);
-      }
+
+
+  &.right {
+    padding: 0px;
+    position: absolute;
+    width: 280px;
+    height: 584px;
+    left: 1047px;
+    top: 122px;
+    background: lighten($background, 5);
+
+
+
+    &.party panel{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0px;
+      position: absolute;
+      width: 280px;
+      height: 584px;
+      left: 1047px;
+      top: 122px;
+      background: lighten($background, 5);
 
       &.container {
         display: flex;
@@ -100,7 +110,7 @@
         border-radius: 4px;
       }
 
-      &.card title {
+      &.card{
         position: static;
         width: 255px;
         height: 16px;
