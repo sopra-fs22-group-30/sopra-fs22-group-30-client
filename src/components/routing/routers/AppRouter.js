@@ -21,13 +21,13 @@ const AppRouter = () => {
         <BrowserRouter>
             <Switch>
                 {/*just for test /profile, need change it to /users/:id */}
-                <Route exact path="/profile">
+                <Route path="/users/:id">
                     <Profile/>
                 </Route>
 
-                {/*<Route exact path="/profile/edit">*/}
-                {/*    <ProfileEdit/>*/}
-                {/*</Route>*/}
+                <Route exact path="/profile/edit">
+                    <ProfileEdit/>
+                </Route>
 
                 <Route path="/home">
                     {/*<HomeGuard>*/}

@@ -111,27 +111,82 @@
     }
   }
 
-  .edit {
+  &.edit {
     &.box {
-      margin-top: 10px;
-      padding-top: 10px;
-      width: 25em;
-      background: #FFFFFF;
-      box-shadow: $recipeBoxShadow;
-      border-radius: $recipeBorderRadius;
+      margin-top: 2em;
+      min-height: 300px;
+      /* we include the center mixin defined in _theme.scss and save three duplicate lines :) */
+      @include center;
+      flex-direction: column;
+    }
+    &.form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 60%;
+      max-width: 30em;
+      font-size: 16px;
+      font-weight: 300;
+      padding-left: 37px;
+      padding-right: 37px;
+      border-radius: 0.75em;
+      background-color: white;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      box-shadow: $dropShadow;
     }
 
     &.field {
-
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
     }
 
     &.label {
-
+      color: $textColor;
+      margin-bottom: 10px;
+      font-weight: 300;
     }
 
     &.input {
+      text-align: left;
+      vertical-align: top;
+      height: 35px;
+      padding-left: 5px;
+      margin-left: -4px;
+      border: none;
+      border-radius: 0.75em;
+      margin-bottom: 20px;
+      background: $inputColor;
+      color: $textColor;
+      &.intro {
+        padding-top: 0;
+        height: 100px;
+      }
+    }
 
+    &.wrongFormat{
+      height: 10px;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      font-style: italic;
+      color: darkred;
+      font-size: 13px;
+
+    }
+
+    &.button-container {
+      display: flex;
+      justify-content: center;
+      padding:0.8em;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      text-transform: uppercase;
+    }
+
+    &.go-back-button-container {
+      display: flex;
+      justify-content: center;
     }
   }
 

@@ -9,6 +9,7 @@ import regMatch from "components/date/regMatch";
 const convertDateToJavaDateFormat = (str) => {
 
     const res = regMatch(str);
+
     if (str === "") {
         return null;
     }
