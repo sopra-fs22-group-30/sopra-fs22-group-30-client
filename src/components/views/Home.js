@@ -5,6 +5,7 @@ import {Button} from 'components/ui/Button';
 import {Link, useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
+import "styles/views/Home.scss";
 
 
 
@@ -138,6 +139,9 @@ const Home = () => {
 
     partyPanel = (
          <ul className="home right party panel">
+             <Party/>
+             <Party/>
+             <Party/>
              <Party/>
              {
             /*

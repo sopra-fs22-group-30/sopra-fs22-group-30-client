@@ -20,9 +20,8 @@
     &.recipe panel{
       position: absolute;
       height: 582px;
-      left: 98px;
-      right: 401px;
-      top: 170px;
+      left: 0px;
+      top: 80px;
 
       &.container {
         position: absolute;
@@ -30,7 +29,7 @@
         left: 0px;
         right: 598px;
         top: 0px;
-        background: #FFFFFF;
+        background: #fdaaaa;
         border: 1px solid #EDEEF2;
         box-sizing: border-box;
         border-radius: 16px;
