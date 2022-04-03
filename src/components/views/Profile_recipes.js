@@ -1,5 +1,8 @@
 import "styles/views/Profile.scss";
 import profile_photo from 'profile_photo.svg';
+import {useHistory} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {api, handleError} from "../../helpers/api";
 
 
 const Photo = () => {
@@ -8,9 +11,9 @@ const Photo = () => {
     )
 }
 
-const Username = () => {
+const Username = ({user}) => {
     return (
-        <h2>fakeUsername</h2>
+        <h2>{user.username}</h2>
     )
 }
 
@@ -52,10 +55,42 @@ const UserRecipes = (props) => {
 
 
 const Profile_recipes = (props) => {
+    const history = useHistory();
+    const [user, setUsers] = useState({
+            id: "",
+            username: "",
+            gender: null,
+            creationDate: "",
+            birthday: "",
+            intro: "",
+        }
+    );
+    const path = window.location.pathname;
+    const userID = path.substring(path.lastIndexOf('/') + 1);
+
+
+    useEffect(() => {
+        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
+        async function fetchData() {
+            try {
+                //const response = await api.get('/users/'+match.params.id);
+                const response = await api.get('/users/' + userID);
+                setUsers(response.data);
+
+            } catch (error) {
+                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("Something went wrong while fetching the users! See the console for details.");
+            }
+        }
+
+        fetchData();
+    }, []);
+
     return (
         <div className="profile column left">
             <Photo/>
-            <Username/>
+            <Username user={user}/>
             <MyLikesButton/>
             <h3><span className="line"></span> My Recipes <span className="line"></span></h3>
             <UserRecipes/>
