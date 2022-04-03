@@ -9,25 +9,31 @@
 
 
 .home{
-  &.left {
-    position: absolute;
-    height: 584px;
-    left: 98px;
-    right: 401px;
-    top: 122px;
-    background: lighten($background, 5);
 
-    &.recipe panel{
-      position: relative;
-      height: 502px;
-      left: 0px;
-      top: 80px;
+  &.left {
+    padding:10px;
+    width: 1000px;
+    position: absolute;
+    height: 600px;
+    left: 30px;
+    top: 100px;
+    background: lighten($background, 5);
+    position:absolute;
+
+    &.recipe panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 200px 200px 200px;
+      grid-gap: 10px;
+      height: 600px;
+      left: 0;
+      top: 30px;
       background-color: #2ad278;
 
       &.container {
         position: absolute;
-        height: 276px;
-        width: 200px;
+        height: 100px;
+        width: 100px;
         left: 0;
         top: 0;
         background-color: #f34242;
@@ -42,73 +48,71 @@
           right: 32px;
           top: 0px;
         }
+      }
 
-        &.h2 {
-          font-family: 'Nunito', ui-serif;
-          font-style: normal;
-          font-weight: 700;
-          font-size: 18px;
-          line-height: 24px;
-          color: #2B2B43;
-        }
+      &.h2 {
+        font-family: 'Nunito', ui-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 24px;
+        color: #01574b;
       }
     }
-    &.h2 {
+    .h2 {
        position: absolute;
        height: 28px;
-       left: 10px;
+       left: 0px;
        right: 10px;
-       top: 10px;
+       top: 0px;
        font-family: 'Nunito', ui-serif;
        font-style: normal;
        font-weight: 600;
        font-size: 20px;
        line-height: 28px;
        letter-spacing: 0.1px;
-       color: #2B2B43;
+       color: #006b56;
      }
   }
 
 
 
   &.right {
-    padding: 0px;
+    padding:15px;
+    width: 350px;
+    height: 600px;
+    right: 0px;
+    top: 100px;
     position: absolute;
-    width: 280px;
-    height: 584px;
-    left: 1047px;
-    top: 122px;
     background: lighten($background, 5);
 
-
-
-    &.party panel{
+    &.party panel {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       padding: 0px;
       position: absolute;
-      width: 280px;
-      height: 584px;
-      left: 1047px;
-      top: 122px;
+      width: 340px;
+      height: 600px;
+      right: 0px;
+      top: 100px;
       background: lighten($background, 5);
+    }
+    &.container {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 0px;
 
-      &.container {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        padding: 0px;
+      position: static;
+      width: 270px;
+      height: 71px;
+      right: 0px;
+      top: 48px;
 
-        position: static;
-        width: 270px;
-        height: 71px;
-        left: 0px;
-        top: 48px;
-
-        background: rgba(14, 165, 233, 0.1);
-        border-radius: 4px;
-      }
+      background: rgba(14, 165, 233, 0.1);
+      border-radius: 4px;
+    }
 
       &.card{
         position: static;
@@ -133,7 +137,7 @@
       }
 
 
-      &.h2 {
+      .h2 {
         position: static;
         height: 28px;
         left: 0px;
@@ -147,8 +151,8 @@
 
         letter-spacing: 0.1px;
 
-        color: #2B2B43;
+        color: #01574b;
       }
-    }
+
   }
 }
