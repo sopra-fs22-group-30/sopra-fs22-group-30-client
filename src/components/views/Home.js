@@ -126,7 +126,7 @@ const Home = () => {
 
 
     recipePanel = (
-        <div className="home recipe panel">
+        <div className="home left recipe panel">
             <Recipe/>
             {/*
             recipes.map(recipe => (
@@ -137,31 +137,29 @@ const Home = () => {
     );
 
     partyPanel = (
-        <div className="home party panel">
-            <Party/>
-            {/*
-            parties.map(party => (
+         <ul className="home party panel">
+             <Party/>
+             {
+            /*
+             parties.map(party => (
                 <Party party={party} key={party.id}/>
             ))
-            */}
-        </div>
+            */
+            }
+        </ul>
     );
 
 
     return (
         <div className="home container">
-            <h2>Recipes</h2>}
-            {recipePanel}
-            <h2>Parties</h2>
-            {partyPanel}
-            {/*<div className="home recipe panel">*/}
-            {/*    <h2>Recipes</h2>*/}
-            {/*    {recipePanel}*/}
-            {/*</div>*/}
-            {/*<div className="home party panel">*/}
-            {/*    <h2>Parties</h2>*/}
-            {/*    {partyPanel}*/}
-            {/*</div>*/}
+            <div className="home left">
+                <h2>Recipes</h2>
+                {recipePanel}
+            </div>
+            <div className="home right">
+                <h2>Parties</h2>
+                {partyPanel}
+            </div>
         </div>
     );
 }
