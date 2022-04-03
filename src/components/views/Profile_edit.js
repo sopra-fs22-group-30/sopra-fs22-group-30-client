@@ -25,6 +25,37 @@ const EditFormField = props => {
     );
 };
 
+const RadioField = props => {
+    return (
+        <div className="profile edit field">
+            <label className={`profile edit label`}>
+                {props.label}
+            </label>
+            <div onChange={e => props.onChangeValue(e.target.value)}>
+                <label>Male</label>
+                <input
+                    className={`profile edit input ${props.className}`}
+                    type="radio"
+                    value="Male"
+                />
+                <label>Female</label>
+                <input
+                    className={`profile edit input ${props.className}`}
+                    type="radio"
+                    value="Female"
+                />
+                <label>Others</label>
+                <input
+                    className={`profile edit input ${props.className}`}
+                    type="radio"
+                    value="Others"
+                />
+            </div>
+
+        </div>
+    )
+}
+
 
 const EditBox = (props) => {
 
@@ -38,6 +69,9 @@ const EditBox = (props) => {
     const checkDateFormat = () => {
         setIsValid(false);
         const wrongMessage = "wrong date format";
+        // convert birthday to Java Date Format, then add it to requestBody
+        console.log("before set birthday:",birthday);
+
         if (convertDateToJavaDateFormat(birthday) === wrongMessage) {
             // if not valid, do nothing
             setIsValid(false);
@@ -52,9 +86,10 @@ const EditBox = (props) => {
 
     const doSubmit = async () => {
         try {
-            // convert birthday to Java Date Format, then add it to requestBody
-            setBirthday(convertDateToJavaDateFormat(birthday));
             // we need id to identity a user
+            setBirthday(convertDateToJavaDateFormat(birthday));
+
+
             const requestBody = JSON.stringify({id: userId, username, birthday, gender, intro});
             await api.put(`/users/${userId}`, requestBody);
 
@@ -98,16 +133,17 @@ const EditBox = (props) => {
                     placeholder="enter your username..."
                     onChange={un => setUsername(un)}
                 />
-                <EditFormField
+
+                <RadioField
                     label="Gender"
-                    value={gender}
-                    placeholder="enter your gender..."
-                    onChange={un => setGender(un)}
+                    onChangeValue={un => setGender(un)}
                 />
+
+
                 <EditFormField
                     label="Birthday"
                     value={birthday}
-                    placeholder="enter your birthday..."
+                    placeholder="dd.MM.yyyy"
                     onChange={un => setBirthday(un)}
                 />
                 {/* if the Date input by the user is not valid, this <p/> tag will appear and prompt the user. */}
