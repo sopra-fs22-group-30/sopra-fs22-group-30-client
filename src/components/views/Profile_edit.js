@@ -2,28 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Button} from 'components/ui/Button';
 import BaseContainer from "components/ui/BaseContainer";
-import PropTypes from "prop-types";
-import convertDateToSwissDateFormat from "components/date/ToSwissDateFormat";
 import convertDateToJavaDateFormat from "components/date/ToJavaDateFormat";
 import "styles/views/Profile.scss";
-
-
-const EditFormField = props => {
-    return (
-        <div className="profile edit field">
-            <label className={`profile edit label`}>
-                {props.label}
-            </label>
-            <input
-                className={`profile edit input ${props.className}`}
-                type={props.type}
-                placeholder={props.placeholder}
-                value={props.value}
-                onChange={e => props.onChange(e.target.value)}
-            />
-        </div>
-    );
-};
+import EditFormField from "components/FormField/EditFormField";
+import GenderRadioFormField from "components/FormField/GenderRadioFormField";
+import UserIntroFormField from "components/FormField/UserIntroFormField";
 
 
 const EditBox = (props) => {
@@ -38,6 +21,9 @@ const EditBox = (props) => {
     const checkDateFormat = () => {
         setIsValid(false);
         const wrongMessage = "wrong date format";
+        // convert birthday to Java Date Format, then add it to requestBody
+        console.log("before set birthday:",birthday);
+
         if (convertDateToJavaDateFormat(birthday) === wrongMessage) {
             // if not valid, do nothing
             setIsValid(false);
@@ -52,9 +38,10 @@ const EditBox = (props) => {
 
     const doSubmit = async () => {
         try {
-            // convert birthday to Java Date Format, then add it to requestBody
-            setBirthday(convertDateToJavaDateFormat(birthday));
             // we need id to identity a user
+            setBirthday(convertDateToJavaDateFormat(birthday));
+
+
             const requestBody = JSON.stringify({id: userId, username, birthday, gender, intro});
             await api.put(`/users/${userId}`, requestBody);
 
@@ -66,6 +53,11 @@ const EditBox = (props) => {
             alert(`Something went wrong during the edit: \n${handleError(error)}`);
         }
     };
+
+    const doCancel = () => {
+        let path = `/users/${userId}`;
+        window.location.href = path;
+    }
 
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
@@ -96,18 +88,21 @@ const EditBox = (props) => {
                     label="Username"
                     value={username}
                     placeholder="enter your username..."
+                    className="profile edit field"
                     onChange={un => setUsername(un)}
                 />
-                <EditFormField
-                    label="Gender"
+
+                <GenderRadioFormField
+                    className="profile edit radio"
                     value={gender}
-                    placeholder="enter your gender..."
                     onChange={un => setGender(un)}
                 />
+
                 <EditFormField
+                    className="profile edit field"
                     label="Birthday"
                     value={birthday}
-                    placeholder="enter your birthday..."
+                    placeholder="dd.MM.yyyy"
                     onChange={un => setBirthday(un)}
                 />
                 {/* if the Date input by the user is not valid, this <p/> tag will appear and prompt the user. */}
@@ -115,12 +110,10 @@ const EditBox = (props) => {
                     &&
                     <p className="profile edit wrongFormat"> Invalid Date Format!</p>
                 }
-                <EditFormField
-                    type="text"
+                <UserIntroFormField
                     className="intro"
                     label="Intro"
                     value={intro}
-                    placeholder="Say something about yourself..."
                     onChange={un => setIntro(un)}
                 />
 
@@ -131,7 +124,12 @@ const EditBox = (props) => {
                 >
                     Upload
                 </Button>
-
+                <Button className="profile edit button-container cancel"
+                        width="100%"
+                        onClick={() => doCancel()}
+                >
+                    Cancel
+                </Button>
             </div>
 
         </div>
@@ -144,7 +142,6 @@ const ProfileEdit = props => {
     return (
         <BaseContainer>
             <EditBox/>
-
         </BaseContainer>
     )
 };

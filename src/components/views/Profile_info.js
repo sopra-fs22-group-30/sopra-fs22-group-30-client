@@ -109,11 +109,14 @@ const UserInfoBirthday = ({user}) => {
 };
 
 const UserInfoIntro = ({user}) => {
+    let defaultIntro = "Say something..."
+    if (user.intro) {
+        defaultIntro = user.intro;
+    }
     return (
         <div className="userInfo container">
-            <div className="userInfo value">{user.intro}</div>
+            <div className="userInfo value intro">{defaultIntro}</div>
         </div>
-
     );
 };
 

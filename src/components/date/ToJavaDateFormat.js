@@ -8,11 +8,12 @@ import regMatch from "components/date/regMatch";
 
 const convertDateToJavaDateFormat = (str) => {
 
-    const res = regMatch(str);
-
-    if (str === "") {
+    if (str === null || str.match(/(^\s*$)/)) {
         return null;
     }
+    const res = regMatch(str);
+    console.log("res:",res)
+
     if (res) {
         return str;
     } else {
