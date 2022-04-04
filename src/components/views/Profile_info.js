@@ -57,7 +57,10 @@ const Profile_info = ({match}) => {
 
             {/*EDIT & BACK button*/}
             <div className="admin-button container">
-                <AdminButton label="EDIT" func={() => goEdit()}/>
+                {localStorage.getItem('id') === path.substring(path.lastIndexOf('/') + 1)
+                    &&
+                    <AdminButton label="EDIT" func={() => goEdit()}/>
+                }
                 <AdminButton label="BACK" func={() => goBack()}/>
             </div>
 

@@ -32,13 +32,17 @@ const ProfileRecipeButton = ({label}) => {
 }
 
 const Recipe = (props) => {
+    const path = window.location.pathname;
     return (
         <div className="recipe container">
             <div className="recipe recipe-name">Fake User Recipe</div>
-            <div className="recipe button container">
-                <ProfileRecipeButton label="EDIT"/>
-                <ProfileRecipeButton label="DELETE"/>
-            </div>
+            {localStorage.getItem('id') === path.substring(path.lastIndexOf('/') + 1)
+                &&
+                <div className="recipe button container">
+                    <ProfileRecipeButton label="EDIT"/>
+                    <ProfileRecipeButton label="DELETE"/>
+                </div>
+            }
         </div>
     )
 }
