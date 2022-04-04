@@ -9,150 +9,166 @@
 
 
 .home{
-
-  &.left {
-    padding:10px;
-    width: 1000px;
-    position: absolute;
-    height: 600px;
-    left: 30px;
-    top: 100px;
-    background: lighten($background, 5);
-    position:absolute;
-
-    &.recipe panel {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 200px 200px 200px;
-      grid-gap: 10px;
-      height: 600px;
-      left: 0;
-      top: 30px;
-      background-color: #2ad278;
-
-      &.container {
-        position: absolute;
-        height: 100px;
-        width: 100px;
-        left: 0;
-        top: 0;
-        background-color: #f34242;
-        border: 1px solid #EDEEF2;
-        box-sizing: border-box;
-        border-radius: 16px;
-
-        &.card title {
-          position: absolute;
-          height: 24px;
-          left: 0px;
-          right: 32px;
-          top: 0px;
-        }
-      }
-
-      &.h2 {
-        font-family: 'Nunito', ui-serif;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 24px;
-        color: #01574b;
-      }
-    }
-    .h2 {
-       position: absolute;
-       height: 28px;
-       left: 0px;
-       right: 10px;
-       top: 0px;
-       font-family: 'Nunito', ui-serif;
-       font-style: normal;
-       font-weight: 600;
-       font-size: 20px;
-       line-height: 28px;
-       letter-spacing: 0.1px;
-       color: #006b56;
-     }
+  &.container {
+    display: block;
+    margin: 0 auto;
+    width: 110em;
+    height: auto;
+    background-color:$accentDark;;
   }
+  &.panel {
+    float: left;
+    border-radius: 1em;
+    margin:0em;
+    height: auto;
+    width: 50em;
+    padding: 0em;
 
+    background-color: $accentDark;
 
+    &.left {
+      width:81em;
+      //margin: 0em 2em 0.5em auto;
+    }
 
-  &.right {
-    padding:15px;
-    width: 350px;
-    height: 600px;
-    right: 0px;
-    top: 100px;
-    position: absolute;
-    background: lighten($background, 5);
-
-    &.party panel {
+    &.right{
+      width: 20em;
+      height: auto;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      padding: 0px;
-      position: absolute;
-      width: 340px;
-      height: 600px;
-      right: 0px;
-      top: 100px;
-      background: lighten($background, 5);
+      float:left;
+      margin: 0 auto 1em 1em;
     }
-    &.container {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      padding: 0px;
+  }
 
-      position: static;
-      width: 270px;
-      height: 71px;
-      right: 0px;
-      top: 48px;
+  &.recipes_container {
+    display: grid;
+    grid-template-columns: repeat(3, 450px);
+    grid-template-rows: repeat(3, 480px);
+    grid-column-gap: 25px;
+    grid-row-gap: 30px;
+    background-color: $accentDark;
+    z-index: 0;
+  }
 
-      background: rgba(14, 165, 233, 0.1);
-      border-radius: 4px;
-    }
-
-      &.card{
-        position: static;
-        width: 255px;
-        height: 16px;
-        left: 6px;
-        top: 22px;
-
-        font-family: 'Inter', ui-serif;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 12px;
-        line-height: 16px;
-        /* identical to box height, or 133% */
-
-        display: flex;
-        align-items: center;
-
-        /* lightBlue/700 */
-
-        color: #0369A1;
-      }
-
-
-      .h2 {
-        position: static;
-        height: 28px;
-        left: 0px;
-        right: 215px;
-        top: 0px;
-        font-family: 'Nunito';
-        font-style: normal;
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 28px;
-
-        letter-spacing: 0.1px;
-
-        color: #01574b;
-      }
+  &.recipe{
+    border-radius: 1em;
+    background-color: $accentDark;
+    border: 3px solid #EDEEF2;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    z-index: 0;
 
   }
+
+  &.recipe_photo {
+    background-color: #fce04f;
+    border-radius: 1em;
+    position: absolute;
+    top:0;
+    bottom:0;
+    width:100%;
+    height:100%;
+    z-index: 1;
+  }
+  h2 {
+    font-family: 'Nunito', ui-serif;
+    color: #252424;
+    letter-spacing: 0.1px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 24px;
+    background:inherit;
+  }
+  &.info_mask{
+    position: absolute;
+    height:50%;
+    width: 100%;
+    bottom:0;
+    background-color: $accentDark;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    z-index: 2;
+  }
+  &.recipes_info{
+    font-family: 'Nunito', ui-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #252424;
+
+    letter-spacing: 0.1px;
+  }
+
+
+  &.party{
+    margin-bottom: 1em;
+    width: 25em;
+    height:6em;
+    padding: 10px;
+    border-radius: 0.25em;
+    float:left;
+    background-color: rgb(191, 231, 248);
+    cursor: pointer;
+    //display: flex;
+    //flex-direction: column;
+
+    h2 {
+      color: #064059;
+      font-family: 'Inter', math;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 18px;
+      line-height: 5px;
+      background:inherit;
+    }
+    h3 {
+      color: #0d6d96;
+      font-family: 'Inter', math;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 10px;
+      background:inherit;
+    }
+  }
+
+  &.new{
+    margin-top: 2em;
+    float: left;
+    display: block;
+    border-right: 0.3px solid rgba(54,54,54,0.5);
+    padding: 0;
+    vertical-align:middle;
+    cursor: pointer;
+  }
+  &.post_icon {
+    float: left;
+    display: block;
+    margin-right: 10px;
+  }
+
+
+
+
+  &.title {
+    font-family: 'Nunito', ui-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 24px;
+    color: #484848;
+  }
+
+
+  //&.line{
+  //  display: inline-block;
+  //  width: 5em;
+  //  margin: 0 0.6em 0 0.6em;
+  //  border-top: 1.5px solid $textColor;
+  //  vertical-align: 5px;
+  //}
 }

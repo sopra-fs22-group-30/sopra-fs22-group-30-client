@@ -6,6 +6,8 @@ import {Link, useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Home.scss";
+import profile_photo from "../../profile_photo.svg";
+import icon_post from "../../icon_post.svg";
 
 
 
@@ -17,10 +19,23 @@ const Recipe = ({/* recipe */}) => {
     }*/
 
     return (
-        <div className="home left recipe panel container">
-            <h2 className = "home left recipe panel container card title">
-                Title: Hotpot
-            </h2>
+        <div className="home recipe">
+            <div className="home info_mask">
+                <h2>
+                    April Fool's Recipe
+                </h2>
+                <div className = "home recipes_info">
+                    {/*<clockImage/>*/}
+                    <img src={icon_post} className="home post_icon" alt="icon_post" />
+                    <h3 className="home timeConsumed&Cost">
+                        30min chf30
+                        {/*timeConsumed*/}
+                    </h3>
+                </div>
+                {/*<tag/>*/}
+                <img src={icon_post} className="home post_icon" alt="icon_post" />
+            </div>
+            <Photo/>
         </div>
     /*
         <div className="player container" key={recipe.id}>
@@ -47,8 +62,11 @@ const Party = ({/* party */}) => {
     }
     */
     return (
-        <div className="home party panel container">
-            <h2 className="home party card title">
+        <div className="home party">
+            <h3>
+                01.04.2022 18:00
+            </h3>
+            <h2>
                 Alice birthday party
             </h2>
         </div>
@@ -70,7 +88,25 @@ Party.propTypes = {
     party: PropTypes.object
 };
 
+const Photo = () => {
+    return (
+        <img src={profile_photo} className="home recipe_photo" alt="profile_photo"/>
+    )
+}
 
+const clockImage = () => {
+    return (
+        // eslint-disable-next-line no-undef
+        <img src={clock} className="home clock" alt="clock"/>
+    )
+}
+
+const tag = () => {
+    return (
+        // eslint-disable-next-line no-undef
+        <img src={sushi} className="home tag" alt="clock"/>
+    )
+}
 
 const Home = () => {
     // use react-router-dom's hook to access the history
@@ -127,7 +163,8 @@ const Home = () => {
 
 
     recipePanel = (
-        <div className="home left recipe panel">
+        <div className="home recipes_container">
+            <Recipe/>
             <Recipe/>
             <Recipe/>
             <Recipe/>
@@ -140,10 +177,14 @@ const Home = () => {
     );
 
     partyPanel = (
-         <div className="home right party panel">
+         <div>
              <Party/>
              <Party/>
              <Party/>
+             <div className="home new">
+                 <img src={icon_post} className="home post_icon" alt="icon_post" />
+                 <span>New Party</span>
+             </div>
              {
             /*
              parties.map(party => (
@@ -156,13 +197,14 @@ const Home = () => {
 
 
     return (
-        <div className="home">
-            <div className="home left">
-                <h2>Recipes</h2>
+        <div className="home container">
+            <div className="home panel left">
+                <h2 className="home title">Recipes</h2>
                 {recipePanel}
             </div>
-            <div className="home right">
-                <h2>Parties</h2>
+            <span className="home line"></span>
+            <div className="home panel right">
+                <h2 className="home title">Parties</h2>
                 {partyPanel}
             </div>
         </div>
