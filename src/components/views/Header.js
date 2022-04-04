@@ -1,8 +1,7 @@
 import React from "react";
-import {ReactLogo} from "components/ui/ReactLogo";
-import PropTypes from "prop-types";
 import "styles/views/Header.scss";
 import icon_post from 'icon_post.svg';
+import {api, handleError} from "../../helpers/api";
 
 /**
  * This is an example of a Functional and stateless component (View) in React. Functional components are not classes and thus don't handle internal state changes.
@@ -30,13 +29,24 @@ const Navigate = props => {
 
     const goMyProfile =() =>{
         const myUserId = localStorage.getItem('id');
-        let path = `/users/${myUserId}`;
-        window.location.href = path;
+        window.location.href = `/users/${myUserId}`;
     }
+
+    const doLogout = async () => {
+        try {
+            const userId = localStorage.getItem("id");
+            await api.put(`/users/checking/${userId}`);
+            // remove all data in localStorage
+            localStorage.clear();
+            window.location.href = `/login`;
+        } catch (error) {
+            alert(`Something went wrong during the login: \n${handleError(error)}`);
+        }
+    };
 
     return (
         <ul className="header navigate list">
-            <li className="header navigate item" style={{border: "none"}}>Logout</li>
+            <li className="header navigate item" onClick={() => doLogout()} style={{border: "none"}}>Logout</li>
             <li className="header navigate item" onClick={() => goMyProfile()}>My Profile</li>
             <li className="header navigate item">
                 <img src={icon_post} className="header navigate post_icon" alt="icon_post" />

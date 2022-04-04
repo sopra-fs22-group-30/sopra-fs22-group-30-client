@@ -22,27 +22,31 @@ const AppRouter = () => {
             <Switch>
                 {/*just for test /profile, need change it to /users/:id */}
                 <Route path="/users/:id">
-                    <Profile/>
+                    <HomeGuard>
+                        <Profile/>
+                    </HomeGuard>
                 </Route>
 
                 <Route exact path="/profile/edit">
-                    <ProfileEdit/>
+                    <HomeGuard>
+                        <ProfileEdit/>
+                    </HomeGuard>
                 </Route>
 
                 <Route path="/home">
-                    {/*<HomeGuard>*/}
-                    <HomeRouter base="/home"/>
-                    {/*</HomeGuard>*/}
+                    <HomeGuard>
+                        <HomeRouter base="/home"/>
+                    </HomeGuard>
                 </Route>
                 <Route exact path="/login">
-                    {/*<LoginGuard>*/}
+                    <LoginGuard>
                         <Login/>
-                    {/*</LoginGuard>*/}
+                    </LoginGuard>
                 </Route>
                 <Route exact path="/register">
-                    {/*<LoginGuard>*/}
-                    <Register/>
-                    {/*</LoginGuard>*/}
+                    <LoginGuard>
+                        <Register/>
+                    </LoginGuard>
                 </Route>
                 <Route exact path="/">
                     <Redirect to="/home"/>
