@@ -109,19 +109,15 @@ const UserInfoBirthday = ({user}) => {
 };
 
 const UserInfoIntro = ({user}) => {
-    if(user.intro==null){
-        return(
-            <div className="userInfo container">
-                <div className="userInfo value">Hello!This is my profile...</div>
-            </div>
-        )
-    }else{
+    let defaultIntro = "Say something..."
+    if (user.intro) {
+        defaultIntro = user.intro;
+    }
     return (
         <div className="userInfo container">
-            <div className="userInfo value">{user.intro}</div>
+            <div className="userInfo value intro">{defaultIntro}</div>
         </div>
     );
-    }
 };
 
 const AdminButton = (props) => {

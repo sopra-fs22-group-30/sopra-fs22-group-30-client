@@ -55,6 +55,10 @@
       margin-right: 10px;
       font-family: $fontMono;
       font-weight: 300;
+      &.intro {
+        margin-left: 0px;
+        margin-right: auto;
+      }
     }
   }
 
@@ -139,6 +143,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      margin: 1em 0 1em 0;
 
     }
 
@@ -148,22 +153,14 @@
       font-weight: 300;
     }
 
-    &.input {
-      text-align: left;
-      vertical-align: top;
-      height: 35px;
-      padding-left: 5px;
-      margin-left: -4px;
-      border: none;
-      border-radius: 0.75em;
-      margin-bottom: 20px;
-      background: $inputColor;
-      color: $textColor;
-      &.intro {
-        padding-top: 0;
-        height: 100px;
-      }
+    &.radio {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0em 0em 0em 0.1em;
     }
+
+
 
     &.wrongFormat{
       height: 10px;
@@ -179,9 +176,13 @@
       display: flex;
       justify-content: center;
       padding:0.8em;
-      margin-top: 1em;
-      margin-bottom: 1em;
+      margin-top: 2em;
       text-transform: uppercase;
+      &.cancel {
+        margin-top: 1em;
+        margin-bottom: 2em;
+        background-color: #b9b9b9;
+      }
     }
 
     &.go-back-button-container {

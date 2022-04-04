@@ -2,59 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Button} from 'components/ui/Button';
 import BaseContainer from "components/ui/BaseContainer";
-import PropTypes from "prop-types";
-import convertDateToSwissDateFormat from "components/date/ToSwissDateFormat";
 import convertDateToJavaDateFormat from "components/date/ToJavaDateFormat";
 import "styles/views/Profile.scss";
-
-
-const EditFormField = props => {
-    return (
-        <div className="profile edit field">
-            <label className={`profile edit label`}>
-                {props.label}
-            </label>
-            <input
-                className={`profile edit input ${props.className}`}
-                type={props.type}
-                placeholder={props.placeholder}
-                value={props.value}
-                onChange={e => props.onChange(e.target.value)}
-            />
-        </div>
-    );
-};
-
-const RadioField = props => {
-    return (
-        <div className="profile edit field">
-            <label className={`profile edit label`}>
-                {props.label}
-            </label>
-            <div onChange={e => props.onChangeValue(e.target.value)}>
-                <label>Male</label>
-                <input
-                    className={`profile edit input ${props.className}`}
-                    type="radio"
-                    value="Male"
-                />
-                <label>Female</label>
-                <input
-                    className={`profile edit input ${props.className}`}
-                    type="radio"
-                    value="Female"
-                />
-                <label>Others</label>
-                <input
-                    className={`profile edit input ${props.className}`}
-                    type="radio"
-                    value="Others"
-                />
-            </div>
-
-        </div>
-    )
-}
+import EditFormField from "components/FormField/EditFormField";
+import GenderRadioFormField from "components/FormField/GenderRadioFormField";
+import UserIntroFormField from "components/FormField/UserIntroFormField";
 
 
 const EditBox = (props) => {
@@ -102,6 +54,11 @@ const EditBox = (props) => {
         }
     };
 
+    const doCancel = () => {
+        let path = `/users/${userId}`;
+        window.location.href = path;
+    }
+
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
@@ -131,16 +88,18 @@ const EditBox = (props) => {
                     label="Username"
                     value={username}
                     placeholder="enter your username..."
+                    className="profile edit field"
                     onChange={un => setUsername(un)}
                 />
 
-                <RadioField
-                    label="Gender"
-                    onChangeValue={un => setGender(un)}
+                <GenderRadioFormField
+                    className="profile edit radio"
+                    value={gender}
+                    onChange={un => setGender(un)}
                 />
 
-
                 <EditFormField
+                    className="profile edit field"
                     label="Birthday"
                     value={birthday}
                     placeholder="dd.MM.yyyy"
@@ -151,12 +110,10 @@ const EditBox = (props) => {
                     &&
                     <p className="profile edit wrongFormat"> Invalid Date Format!</p>
                 }
-                <EditFormField
-                    type="text"
+                <UserIntroFormField
                     className="intro"
                     label="Intro"
                     value={intro}
-                    placeholder="Say something about yourself..."
                     onChange={un => setIntro(un)}
                 />
 
@@ -167,7 +124,12 @@ const EditBox = (props) => {
                 >
                     Upload
                 </Button>
-
+                <Button className="profile edit button-container cancel"
+                        width="100%"
+                        onClick={() => doCancel()}
+                >
+                    Cancel
+                </Button>
             </div>
 
         </div>
@@ -180,7 +142,6 @@ const ProfileEdit = props => {
     return (
         <BaseContainer>
             <EditBox/>
-
         </BaseContainer>
     )
 };
