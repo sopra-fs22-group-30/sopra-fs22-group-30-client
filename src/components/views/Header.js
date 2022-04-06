@@ -32,6 +32,10 @@ const Navigate = props => {
         window.location.href = `/users/${myUserId}`;
     }
 
+    const goRecipeCreation =() =>{
+        window.location.href = `/recipes/creation`;
+    }
+
     const doLogout = async () => {
         try {
             const userId = localStorage.getItem("id");
@@ -48,7 +52,7 @@ const Navigate = props => {
         <ul className="header navigate list">
             <li className="header navigate item" onClick={() => doLogout()} style={{border: "none"}}>Logout</li>
             <li className="header navigate item" onClick={() => goMyProfile()}>My Profile</li>
-            <li className="header navigate item">
+            <li className="header navigate item" onClick={() => goRecipeCreation()}>
                 <img src={icon_post} className="header navigate post_icon" alt="icon_post" />
                 <span>New Recipe</span>
             </li>
