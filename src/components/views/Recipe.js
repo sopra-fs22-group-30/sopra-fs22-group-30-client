@@ -13,6 +13,15 @@ const Item = styled(Paper)(({ theme }) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
 }));
+const Item1 = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    height:500,
+}));
+
 const RecipePhoto = () =>{
     return (
         <img src={food} className="food" alt="food"/>
@@ -20,9 +29,9 @@ const RecipePhoto = () =>{
 }
 const Recipe= () => {
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ height:100,flexGrow: 1 }}>
             <Grid container spacing={2}>
-                <Grid item xs={8} zeroMinWidth>
+                <Grid item xs={8}>
                     <Item>
                         <div>
                             <RecipePhoto/>
@@ -32,7 +41,8 @@ const Recipe= () => {
                         </div>
 
                         <div>
-                            <Grid container spacing={4} justifyContent="flex-end">
+                            <Grid container spacing={2} justifyContent="flex-end">
+                                <Item>Author:Group30</Item>
                                 <Item>cuisine:Sushi</Item>
                                 <Item>time:30-40min</Item>
                                 <Item>price:chf 32</Item>
@@ -40,19 +50,19 @@ const Recipe= () => {
                             </Grid>
                             <h3 align="left">steps:
                             1....</h3>
-
                         </div>
+
                     </Item>
                 </Grid>
-                <Grid item xs>
-                    <Item>
+                <Grid item xs >
+                    <Item1>
                         <h2>Ingredient</h2>
                         <div>
                             <li>Rice 50g</li>
                             <li>Seaweed 30g</li>
                             <li>salmon 40g</li>
                         </div>
-                    </Item>
+                    </Item1>
                 </Grid>
             </Grid>
         </Box>
