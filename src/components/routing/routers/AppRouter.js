@@ -7,6 +7,7 @@ import Register from "../../views/Register";
 import Profile from "components/views/Profile";
 import ProfileEdit from "../../views/Profile_edit";
 import RecipeCreation from "../../views/Recipe_creation";
+import Recipe from "../../views/Recipe";
 
 /**
  * Main router of your application.
@@ -34,6 +35,11 @@ const AppRouter = () => {
                         <ProfileEdit/>
                     </HomeGuard>
                 </Route>
+
+                <Route exact path="/recipes">
+                    <Recipe/>
+                </Route>
+
 
                 <Route exact path="/recipes/creation">
                     <HomeGuard>
