@@ -1,19 +1,19 @@
 import TextField from "@mui/material/TextField";
 import React from "react";
 
-const UserIntroFormField = props => {
+const TextFormField = props => {
     return (
         <TextField
             id="standard-multiline-static"
-            label="Self-intro"
-            placeholder="Say something..."
+            label={props.label}
+            placeholder={props.placeholder}
             className={props.className}
             multiline
-            rows={3}
+            rows={props.row}
             onChange={e => props.onChange(e.target.value)}
             value={props.value}
         />
     )
 };
 
-export default UserIntroFormField;
+export default TextFormField;

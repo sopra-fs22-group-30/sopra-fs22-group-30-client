@@ -28,6 +28,7 @@ const AppRouter = () => {
                     </HomeGuard>
                 </Route>
 
+
                 <Route exact path="/profile/edit">
                     <HomeGuard>
                         <ProfileEdit/>

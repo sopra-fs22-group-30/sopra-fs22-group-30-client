@@ -6,7 +6,7 @@ import convertDateToJavaDateFormat from "components/date/ToJavaDateFormat";
 import "styles/views/Profile.scss";
 import EditFormField from "components/FormField/EditFormField";
 import GenderRadioFormField from "components/FormField/GenderRadioFormField";
-import UserIntroFormField from "components/FormField/UserIntroFormField";
+import TextFormField from "components/FormField/TextFormField";
 
 
 const EditBox = (props) => {
@@ -110,9 +110,11 @@ const EditBox = (props) => {
                     &&
                     <p className="profile edit wrongFormat"> Invalid Date Format!</p>
                 }
-                <UserIntroFormField
+                <TextFormField
                     className="intro"
-                    label="Intro"
+                    label="Self-intro"
+                    placeholder="Say Something"
+                    row={3}
                     value={intro}
                     onChange={un => setIntro(un)}
                 />
