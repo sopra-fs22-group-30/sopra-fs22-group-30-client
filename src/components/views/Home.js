@@ -8,6 +8,8 @@ import PropTypes from "prop-types";
 import "styles/views/Home.scss";
 import profile_photo from "../../profile_photo.svg";
 import icon_post from "../../icon_post.svg";
+import clock from "../../clock.svg";
+import cuisine from "../../cuisine_tag.svg";
 
 
 
@@ -25,15 +27,12 @@ const Recipe = ({/* recipe */}) => {
                     April Fool's Recipe
                 </h2>
                 <div className = "home recipes_info">
-                    {/*<clockImage/>*/}
-                    <img src={icon_post} className="home post_icon" alt="icon_post" />
                     <h3 className="home timeConsumed&Cost">
-                        30min chf30
+                        <Clock_tag/> 30min chf30
                         {/*timeConsumed*/}
                     </h3>
                 </div>
-                {/*<tag/>*/}
-                <img src={icon_post} className="home post_icon" alt="icon_post" />
+                <Cuisine_tag/>
             </div>
             <Photo/>
         </div>
@@ -94,17 +93,15 @@ const Photo = () => {
     )
 }
 
-const clockImage = () => {
+const Clock_tag = () => {
     return (
-        // eslint-disable-next-line no-undef
         <img src={clock} className="home clock" alt="clock"/>
     )
 }
 
-const tag = () => {
+const Cuisine_tag = () => {
     return (
-        // eslint-disable-next-line no-undef
-        <img src={sushi} className="home tag" alt="clock"/>
+            <img src={cuisine} className="home cuisine_tag" alt="clock"/>
     )
 }
 
