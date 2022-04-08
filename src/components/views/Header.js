@@ -38,8 +38,8 @@ const Navigate = props => {
 
     const doLogout = async () => {
         try {
-            const userId = localStorage.getItem("id");
-            await api.put(`/users/checking/${userId}`);
+            // const userId = localStorage.getItem("id");
+            // await api.put(`/users/checking/${userId}`);
             // remove all data in localStorage
             localStorage.clear();
             window.location.href = `/login`;
