@@ -1,8 +1,27 @@
+@import 'styles/theme';
+
 .recipe {
   &.creation {
+    &.column {
+      float: left;
+      padding: 1.5em;
+      border-radius: $borderRadius;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 20em;
+
+      &.left {
+        margin: 0 1em 1em auto;
+      }
+      &.middle {
+        margin: 0 0 0 0;
+      }
+      &.right {
+        margin: 0 auto 1em 1em;
+      }
+    }
     &.box{
-      width: 500px;
-      margin: 20px;
     }
   }
 }

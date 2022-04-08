@@ -9,6 +9,7 @@ import ProfileEdit from "../../views/Profile_edit";
 import RecipeCreation from "../../views/Recipe_creation";
 import Recipe from "../../views/Recipe";
 
+
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -28,7 +29,6 @@ const AppRouter = () => {
                         <Profile/>
                     </HomeGuard>
                 </Route>
-
 
                 <Route exact path="/profile/edit">
                     <HomeGuard>
