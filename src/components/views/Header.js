@@ -33,7 +33,7 @@ const Navigate = props => {
     }
 
     const goRecipeCreation =() =>{
-        window.location.href = `/recipes/creation`;
+        window.location.href = `/recipes-creation`;
     }
 
     const doLogout = async () => {

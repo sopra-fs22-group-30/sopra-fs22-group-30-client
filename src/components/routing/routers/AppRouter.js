@@ -40,8 +40,7 @@ const AppRouter = () => {
                     <Recipe/>
                 </Route>
 
-
-                <Route exact path="/recipes/creation">
+                <Route exact path="/recipes-creation">
                     <HomeGuard>
                         <RecipeCreation/>
                     </HomeGuard>

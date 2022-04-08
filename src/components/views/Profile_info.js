@@ -99,7 +99,6 @@ const UserInfoCreation = ({user}) => {
     );
 };
 
-let defaultBirthday = "(optional)";
 const UserInfoBirthday = ({user}) => {
 
     return (

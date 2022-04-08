@@ -16,7 +16,7 @@ const BasicSlider = props => {
             size={props.size}
             defaultValue={props.defaultValue}
             aria-label="Small"
-            valueLabelDisplay="on" // auto | on
+            valueLabelDisplay="auto" // auto | on
             label={props.label}
             min={props.min}
             max={props.max}
