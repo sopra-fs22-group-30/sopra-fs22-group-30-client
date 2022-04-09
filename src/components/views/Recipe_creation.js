@@ -14,19 +14,19 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-const fakePostData = {
-    "authorId": 1,
-    "recipeName": "TestRecipeName",
-    "cuisine": "Chinese",
-    "cost": 30,
-    "portion": 1,
-    "timeConsumed": 30,
-    "ingredients": [
-        {name: "ingredient_1", amount: 1},
-        {name: "ingredient_2", amount: 2}
-    ],
-    "content": "testContent",
-}
+// const fakePostData = {
+//     "authorId": 1,
+//     "recipeName": "TestRecipeName",
+//     "cuisine": "Chinese",
+//     "cost": 30,
+//     "portion": 1,
+//     "timeConsumed": 30,
+//     "ingredients": [
+//         {name: "ingredient_1", amount: 1},
+//         {name: "ingredient_2", amount: 2}
+//     ],
+//     "content": "testContent",
+// }
 
 
 const RecipeCreation = (props) => {
@@ -46,6 +46,11 @@ const RecipeCreation = (props) => {
     }
 
     const doSubmit = async () => {
+        // we just need non-empty ingredients( name !== "" && amount > 0 )
+        let filteredIngredients = ingredients.filter((ingredient) =>
+            (ingredient.name !== "" && ingredient.amount > 0));
+        setIngredients(filteredIngredients);
+
         try {
             const requestBody = JSON.stringify({
                 authorId,
@@ -54,20 +59,13 @@ const RecipeCreation = (props) => {
                 timeConsumed,
                 cost,
                 portion,
-                ingredients,
+                ingredients:filteredIngredients,
                 content
             });
-            console.log(requestBody);
-            // await api.post(`/recipes`, requestBody);
 
-            // submit successfully worked --> navigate to this recipe
-
-            // TODO !!!
-            // Post 之后返回一个 后端生成的 recipeId 给我
-            // const recipeId = await api.post(`/recipes`, recipeRequestBody);
-            // 加上 recipeId 再 post 一次 ingredients
-            // eg. [{recipeId:1, name: "test1", amount: 10}, {recipeId:1, name: "test2", amount: 20}]
-            //  await api.post(`/ingredients`, ingredientsRequestBody);
+            const response = await api.post('/recipes', requestBody);
+            const recipeId = response.data.recipeId
+            window.location.href = `/recipes/${recipeId}`;
 
         } catch (error) {
             alert(`Something went wrong during the edit: \n${handleError(error)}`);
@@ -249,7 +247,13 @@ const RecipeCreation = (props) => {
                 <h3><span className="line"></span> &nbsp;&nbsp; Picture &nbsp;&nbsp; <span className="line"></span></h3>
                 <div className="upload-pic"></div>
                 <Button className="profile edit button-container"
-                        disabled={!recipeName || !cuisine || !timeConsumed || !cost || !content || !ingredients}
+                        disabled={!recipeName
+                            || !cuisine
+                            || !timeConsumed
+                            || !cost
+                            || !content
+                            || ingredients.filter((ingredient) =>
+                                (ingredient.name !== "" && ingredient.amount > 0)).length === 0}
                         width="100%"
                         onClick={() => doSubmit()}
                 >
