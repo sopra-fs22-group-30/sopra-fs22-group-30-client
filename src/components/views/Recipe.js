@@ -71,11 +71,10 @@ const Recipe= () => {
         async function fetchData() {
             try {
                 const response = await api.get('/recipes/' + recipeID);
-
                 setRecipes(response.data);
-                const response2= await api.get('/users/'+ recipeID);
+
+                const response2= await api.get('/users/'+recipe.authorId);
                 setUsers(response2.data);
-                
                 setIngredients(response.data.ingredients);
 
             } catch (error) {
@@ -84,9 +83,24 @@ const Recipe= () => {
                 alert("Something went wrong while fetching the users! See the console for details.");
             }
         }
-
+        fetchData();
+    }, [])
+    const authorID=recipe.authorId;
+    useEffect(() => {
+        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
+        async function fetchData() {
+            try {
+                const response2= await api.get('/users/'+authorID);
+                setUsers(response2.data);
+            } catch (error) {
+                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("Something went wrong while fetching the users! See the console for details.");
+            }
+        }
         fetchData();
     }, []);
+
     /*const IngredientsNameByRecipes=ingredients.map(({name})=>name);
     const IngredientsAmountByRecipes=ingredients.map(({amount})=>amount);
     <div>{IngredientsNameByRecipes && IngredientsNameByRecipes.map(item=><li key={{item}}>{item}</li>)}<div>*/
@@ -107,7 +121,7 @@ const Recipe= () => {
 
                         <div>
                             <Grid container spacing={2} justifyContent="flex-end">
-                                <Item><FaceIcon/> Created by {user.username}</Item>
+                                <Item><FaceIcon/> Created by {user.username}{recipe.authorId}</Item>
                                 <Item><AccessAlarmsIcon/> Time:{recipe.timeConsumed} minutes</Item>
                                 <Item><PaidIcon/> Price:chf {recipe.cost}</Item>
                                 <Item><GroupIcon/> Portion:{recipe.portion}</Item>
