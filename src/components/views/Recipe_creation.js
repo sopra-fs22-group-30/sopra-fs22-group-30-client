@@ -14,21 +14,6 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-// const fakePostData = {
-//     "authorId": 1,
-//     "recipeName": "TestRecipeName",
-//     "cuisine": "Chinese",
-//     "cost": 30,
-//     "portion": 1,
-//     "timeConsumed": 30,
-//     "ingredients": [
-//         {name: "ingredient_1", amount: 1},
-//         {name: "ingredient_2", amount: 2}
-//     ],
-//     "content": "testContent",
-// }
-
-
 const RecipeCreation = (props) => {
     const authorId = localStorage.getItem("id");
     const [recipeName, setRecipeName] = useState(null);
