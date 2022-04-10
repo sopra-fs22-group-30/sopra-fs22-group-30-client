@@ -57,6 +57,11 @@ const Recipe= () => {
        [{name: "", amount: 0}]
     );
 
+    const [user,setUsers]=useState({
+        id:"",
+        username:"",}
+    );
+
 
     const path = window.location.pathname;
     const recipeID = path.substring(path.lastIndexOf('/') + 1);
@@ -66,7 +71,11 @@ const Recipe= () => {
         async function fetchData() {
             try {
                 const response = await api.get('/recipes/' + recipeID);
+
                 setRecipes(response.data);
+                const response2= await api.get('/users/'+ recipeID);
+                setUsers(response2.data);
+                
                 setIngredients(response.data.ingredients);
 
             } catch (error) {
@@ -98,7 +107,7 @@ const Recipe= () => {
 
                         <div>
                             <Grid container spacing={2} justifyContent="flex-end">
-                                <Item><FaceIcon/> Created by {recipe.authorId}</Item>
+                                <Item><FaceIcon/> Created by {user.username}</Item>
                                 <Item><AccessAlarmsIcon/> Time:{recipe.timeConsumed} minutes</Item>
                                 <Item><PaidIcon/> Price:chf {recipe.cost}</Item>
                                 <Item><GroupIcon/> Portion:{recipe.portion}</Item>
