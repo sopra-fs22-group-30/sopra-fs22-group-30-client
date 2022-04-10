@@ -11,6 +11,7 @@ class User {
     this.birthday = null;
     this.creationDate = null;
     this.gender = null;
+    this.recipes = null;
     Object.assign(this, data);
   }
 }

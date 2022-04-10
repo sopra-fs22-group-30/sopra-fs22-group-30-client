@@ -36,7 +36,7 @@ const AppRouter = () => {
                     </HomeGuard>
                 </Route>
 
-                <Route exact path="/recipes">
+                <Route path="/recipes/:id">
                     <Recipe/>
                 </Route>
 
