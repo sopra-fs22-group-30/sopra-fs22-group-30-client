@@ -24,17 +24,16 @@ const MyLikesButton = (props) => {
     )
 }
 
-const ProfileRecipeButton = ({label}) => {
+const ProfileRecipeButton = (props) => {
     return (
-        <div className="recipe button item" >
-            {label}
+        <div id={props.id}
+             className="profile recipe button item"
+             onClick={props.onClick}
+        >
+            {props.label}
         </div>
     )
 }
-
-
-
-
 
 
 const Profile_recipes = (props) => {
@@ -48,10 +47,7 @@ const Profile_recipes = (props) => {
             intro: "",
         }
     );
-    const [recipes,setRecipes]=useState([{
-        recipeId:"",
-        recipeName:""
-    }]);
+    const [recipes,setRecipes]=useState([]);
     const path = window.location.pathname;
     const userID = path.substring(path.lastIndexOf('/') + 1);
 
@@ -75,53 +71,56 @@ const Profile_recipes = (props) => {
         fetchData();
     }, []);
 
-    //const RecipeList=recipes.map(({recipeName})=>recipeName);
-    //const RecipeIdList=recipes.map(({recipeId})=>recipeId);
-    let recipeList=recipes.map(function (element){
-        return`${element.recipeName}${element.recipeId}`;
-    })
+    function handleOnClickRecipeName(e) {
+        const recipeId = parseInt(e.target.id.split("-")[2]);
+        window.location.href = `/recipes/${recipeId}`;
+    }
+
+    function handleOnClickRecipeEdit(e) {
+        const recipeId = parseInt(e.target.id.split("-")[2]);
+        window.location.href = `/recipes-edit/${recipeId}`;
+    }
+
+    function handleOnClickRecipeDelete(e) {
+        // TODO
+        // Handle Delete here
+    }
+
     const Recipe = (props) => {
-        const ShowRecipeList = (recipeArray=[])=>{
-            recipeArray.map(recipe=>`${recipe.recipeId} ${recipe.recipeName}]`).join("\n");
-        };
-        const path = window.location.pathname;
-
         return (
-            <div className="recipe container" >
-                <div className="recipe recipe-name">
-                    <ul>
-                        {recipeList && recipeList.map(item=>
-                            <li key={item} align="flex-end">
-                                <div className="recipe button container" align="flex-end">
-                                    <Stack direction="row" justifyContent="flex-end">
-                                        <item><div className="recipe title" >{item}</div></item>
-                                        <item><ProfileRecipeButton label="EDIT"/></item>
-                                        <item><ProfileRecipeButton label="DELETE"/></item>
-                                    </Stack>
-                                </div>
-                            </li>)}
-                    </ul>
+            <div className="profile recipe container">
+                <div id={"recipe-name-" + props.id} className="profile recipe recipe-name" onClick={handleOnClickRecipeName}>
+                    {props.recipeName}
                 </div>
-                {localStorage.getItem('id') === path.substring(path.lastIndexOf('/') + 1)}
+                <div className="profile recipe button container">
+                    <ProfileRecipeButton id={"recipe-edit-" + props.id}
+                                         label="EDIT"
+                                         onClick={handleOnClickRecipeEdit}
+                    />
+                    <ProfileRecipeButton id={"recipe-delete-" + props.id} label="DELETE"/>
+                </div>
             </div>
         )
     }
 
-    const UserRecipes = (props) => {
-        return (
-            <div className="recipe box">
-                <Recipe/>
-            </div>
 
-        )
-    }
     return (
         <div className="profile column left">
             <Photo/>
             <Username user={user}/>
             <MyLikesButton/>
             <h3><span className="line"></span> My Recipes <span className="line"></span></h3>
-            <UserRecipes/>
+            <div className="profile recipe box">
+                {recipes && recipes.map((recipe,index) => {
+                    return (
+                        <Recipe
+                            id={recipe.recipeId}
+                            key={recipe.recipeId}
+                            recipeName={recipe.recipeName}
+                        />
+                    )
+                })}
+            </div>
         </div>
     )
 

@@ -14,17 +14,52 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-const RecipeCreation = (props) => {
+const RecipeCreationOrEdit = ({isCreation}) => {
     const authorId = localStorage.getItem("id");
-    const [recipeName, setRecipeName] = useState(null);
-    const [cuisine, setCuisine] = useState(null);
+    const [recipeName, setRecipeName] = useState("");
+    const [cuisine, setCuisine] = useState("");
     const [timeConsumed, setTimeConsumed] = useState(50);
     const [cost, setCost] = useState(50);
-    const [content, setContent] = useState(null);
+    const [content, setContent] = useState("");
     const [portion, setPortion] = useState(1);
     const [ingredients, setIngredients] = useState(
         [{name: "", amount: 0}]
     );
+
+    const [recipeId,setRecipeId] = useState(null);
+
+    const [oldRecipe, setOldRecipe] = useState(null)
+
+    useEffect(() => {
+        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
+        async function fetchData() {
+            try {
+                if(!isCreation){
+                    const path = window.location.pathname;
+                    const recipeId = path.substring(path.lastIndexOf('/')+1)
+                    setRecipeId(recipeId);
+                    const response = await api.get(`/recipes/${recipeId}`);
+                    const myRecipe = response.data;
+                    setRecipeName(myRecipe.recipeName);
+                    setCuisine(myRecipe.cuisine);
+                    setTimeConsumed(myRecipe.timeConsumed);
+                    setCost(myRecipe.cost);
+                    setContent(myRecipe.content);
+                    setPortion(myRecipe.portion);
+                    setIngredients(myRecipe.ingredients);
+                }
+
+            } catch (error) {
+                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("Something went wrong while fetching the recipes! See the console for details.");
+            }
+        }
+        fetchData();
+    }, []);
+
+
+
 
     const doCancel = () => {
         window.location.href = `/home`;
@@ -48,9 +83,13 @@ const RecipeCreation = (props) => {
                 content
             });
 
-            const response = await api.post('/recipes', requestBody);
-            const recipeId = response.data.recipeId
-            window.location.href = `/recipes/${recipeId}`;
+            if(recipeId){
+                await api.put(`/users/${authorId}/recipes/${recipeId}`, requestBody);
+                window.location.href = `/recipes/${recipeId}`;
+            }else{
+                const response = await api.post('/recipes', requestBody);
+                window.location.href = `/recipes/${response.data.recipeId}`;
+            }
 
         } catch (error) {
             alert(`Something went wrong during the edit: \n${handleError(error)}`);
@@ -256,4 +295,4 @@ const RecipeCreation = (props) => {
     )
 }
 
-export default RecipeCreation;
+export default RecipeCreationOrEdit ;

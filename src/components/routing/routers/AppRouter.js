@@ -6,8 +6,8 @@ import Login from "components/views/Login";
 import Register from "../../views/Register";
 import Profile from "components/views/Profile";
 import ProfileEdit from "../../views/Profile_edit";
-import RecipeCreation from "../../views/Recipe_creation";
 import Recipe from "../../views/Recipe";
+import RecipeCreationOrEdit from "../../views/Recipe_creation_or_edit";
 
 
 /**
@@ -42,7 +42,13 @@ const AppRouter = () => {
 
                 <Route exact path="/recipes-creation">
                     <HomeGuard>
-                        <RecipeCreation/>
+                        <RecipeCreationOrEdit isCreation = {true}/>
+                    </HomeGuard>
+                </Route>
+
+                <Route path="/recipes-edit/:recipeId">
+                    <HomeGuard>
+                        <RecipeCreationOrEdit isCreation = {false}/>
                     </HomeGuard>
                 </Route>
 
