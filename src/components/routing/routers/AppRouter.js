@@ -8,6 +8,7 @@ import Profile from "components/views/Profile";
 import ProfileEdit from "../../views/Profile_edit";
 import Recipe from "../../views/Recipe";
 import RecipeCreationOrEdit from "../../views/Recipe_creation_or_edit";
+import PartyCreation from "../../views/Party_creation";
 
 
 /**
@@ -49,6 +50,12 @@ const AppRouter = () => {
                 <Route path="/recipes-edit/:recipeId">
                     <HomeGuard>
                         <RecipeCreationOrEdit isCreation = {false}/>
+                    </HomeGuard>
+                </Route>
+
+                <Route exact path="/parties-creation">
+                    <HomeGuard>
+                        <PartyCreation/>
                     </HomeGuard>
                 </Route>
 
