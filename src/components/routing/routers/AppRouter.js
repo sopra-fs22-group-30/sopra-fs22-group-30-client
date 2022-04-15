@@ -9,6 +9,7 @@ import ProfileEdit from "../../views/Profile_edit";
 import Recipe from "../../views/Recipe";
 import RecipeCreationOrEdit from "../../views/Recipe_creation_or_edit";
 import PartyCreation from "../../views/Party_creation";
+import MyLikes from "../../views/MyLikes";
 
 
 /**
@@ -39,6 +40,10 @@ const AppRouter = () => {
 
                 <Route path="/recipes/:id">
                     <Recipe/>
+                </Route>
+
+                <Route exact path="/users/:id/likes">
+                    <MyLikes/>
                 </Route>
 
                 <Route exact path="/recipes-creation">

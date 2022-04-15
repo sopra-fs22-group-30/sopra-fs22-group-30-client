@@ -17,7 +17,7 @@ import food from "../../food.jpg";
 
 const Rec = ({recipe}) => {
     const redirectToProfile = (recipe) => {
-        window.location.href = `/recipes/${recipe.recipeIdd}`;
+        window.location.href = `/recipes/${recipe.recipeId}`;
     }
     return (
         <Link className="home recipe" to={`recipes/${recipe.recipeId}`} props={recipe} onClick={() => redirectToProfile.bind(this, recipe)}>

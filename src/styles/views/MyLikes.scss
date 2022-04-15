@@ -1,0 +1,108 @@
+@import 'src/styles/_theme';
+
+.myLikes {
+
+  &.container {
+    display: block;
+    margin: 0 2em 0 3em;
+    width: 70em;
+    height: auto;
+    background-color: $accentDark;
+    min-width: 1500px;
+    min-height: 768px;
+    align-items: center;
+    object-fit: cover;
+  }
+
+  &.panel {
+    float: left;
+    border-radius: 1em;
+    margin: 0em;
+    height: auto;
+    padding: 0em;
+    background-color: $accentDark;
+  }
+
+  &.recipes_container {
+    display: grid;
+    grid-template-columns: repeat(4, 15em);
+    grid-template-rows: repeat(3, 11em);
+    grid-column-gap: 1.3em;
+    grid-row-gap: 0.8em;
+    background-color: $accentDark;
+    z-index: 0;
+
+  }
+
+  &.recipe {
+    border-radius: 1.1em;
+    background-color: $accentDark;
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    z-index: 0;
+  }
+
+  &.recipe_photo {
+    display: block;
+    background-color: #fce04f;
+    border-radius: 1.1em;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 90%;
+    z-index: 1;
+  }
+
+  &.info_mask {
+    position: absolute;
+    padding: 0em;
+    height: 39%;
+    width: 99%;
+    bottom: 0;
+    left: 0;
+    background-color: $accentDark;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border: 2px solid #EDEEF2;
+    z-index: 2;
+
+    h2 {
+      font-family: 'Nunito', ui-serif;
+      //position: absolute;
+      top: 0;
+      margin-left: 0.5em;
+      color: #252424;
+      letter-spacing: 0.01em;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1em;
+      line-height: 0em;
+      background: inherit;
+    }
+
+    &.recipes_info {
+      margin-left: 1em;
+      font-family: 'Nunito', ui-serif;
+      position: relative;
+      font-style: italic;
+      font-weight: initial;
+      font-size: 0.5em;
+      line-height: 0em;
+      color: #868585;
+      border: 0;
+      background: 0;
+    }
+
+  }
+
+  &.cuisine_tag{
+    position: absolute;
+    width:13%;
+    bottom:0.5em;
+    left:0.5em;
+  }
+
+}
