@@ -12,8 +12,11 @@ import {api, handleError} from "../../helpers/api";
 import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
 import PaidIcon from '@mui/icons-material/Paid';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
-import FaceIcon from '@mui/icons-material/Face';
 import GroupIcon from '@mui/icons-material/Group';
+import "styles/views/Party.scss"
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import Stack from "@mui/material/Stack";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -66,6 +69,7 @@ const Recipe= () => {
     const path = window.location.pathname;
     const recipeID = path.substring(path.lastIndexOf('/') + 1);
 
+
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
@@ -101,45 +105,56 @@ const Recipe= () => {
         fetchData1();
     }, []);
 
-    /*const IngredientsNameByRecipes=ingredients.map(({name})=>name);
-    const IngredientsAmountByRecipes=ingredients.map(({amount})=>amount);
-    <div>{IngredientsNameByRecipes && IngredientsNameByRecipes.map(item=><li key={{item}}>{item}</li>)}<div>*/
-    function IngredientsByRecipe(item){
-        return[item.name,item.amount,"g "].join("\n");
-    };
+    function handleOnClickAuthorProfile(e) {
+        window.location.href = `/users/${authorID}`;
+    }
+
+
+    const Ingredient = (props) => {
+        return (
+            <div className="profile recipe container">
+                <div>
+                    {props.name}  {props.amount}g
+                </div>
+            </div>
+        )
+    }
+
     return (
-        <Box sx={{ height:100,flexGrow: 1 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={8}>
-                    <Item>
-                        <div>
-                            <RecipePhoto/>
-                        </div>
-                        <div>
-                            <h1 align="left">{recipe.recipeName}</h1>
-                        </div>
+        <div className="party detail box">
+            <div className="party detail left column">
+                <RecipePhoto/>
+                <div>
+                    <h1 align="left">{recipe.recipeName} Created by <span onClick={handleOnClickAuthorProfile}>{user.username}</span></h1>
+                </div>
 
-                        <div>
-                            <Grid container spacing={2} justifyContent="flex-end">
-                                <Item><FaceIcon/> Created by {user.username}</Item>
-                                <Item><AccessAlarmsIcon/> Time:{recipe.timeConsumed} minutes</Item>
-                                <Item><PaidIcon/> Price:chf {recipe.cost}</Item>
-                                <Item><GroupIcon/> Portion:{recipe.portion}</Item>
-                                <Item><FoodBankIcon/> Cuisine:{recipe.cuisine}</Item>
-                            </Grid>
-                            <h3 align="left">{recipe.content}</h3>
-                        </div>
+                <div>
+                    <Grid container spacing={2} justifyContent="flex-end">
+                        <Item><AccessAlarmsIcon/> Time:{recipe.timeConsumed} minutes</Item>
+                        <Item><PaidIcon/> Price:chf {recipe.cost}</Item>
+                        <Item><GroupIcon/> Portion:{recipe.portion}</Item>
+                        <Item><FoodBankIcon/> Cuisine:{recipe.cuisine}</Item>
+                    </Grid>
+                    <h3 align="left">{recipe.content}</h3>
+                </div>
 
-                    </Item>
-                </Grid>
-                <Grid item xs >
-                    <Item1>
-                        <h2>Ingredient</h2>
-                        <div> {ingredients.map(IngredientsByRecipe)}</div>
-                    </Item1>
-                </Grid>
-            </Grid>
-        </Box>
+
+            </div>
+            <div className="party detail right column">
+                    <div>
+                        <h2 align='center'>Ingredients</h2>
+                            <div>
+                                {ingredients && ingredients.map((ingredient,index) => {
+                                    return (<Ingredient
+                                        key={ingredient.name}
+                                        name={ingredient.name}
+                                        amount={ingredient.amount}
+                                    />)
+                                })}
+                            </div>
+                    </div>
+            </div>
+        </div>
     );
 }
 
