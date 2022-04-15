@@ -82,8 +82,18 @@ const Profile_recipes = (props) => {
     }
 
     function handleOnClickRecipeDelete(e) {
-        // TODO
-        // Handle Delete here
+        const authorId = localStorage.getItem("id");
+        const recipeId = parseInt(e.target.id.split("-")[2]);
+
+        const RecipeDelete=async ()=>{
+            const requestBody = JSON.stringify({
+                authorId,
+                recipeId,
+            });
+            await api.delete(`/users/${authorId}/recipes/${recipeId}`, requestBody);
+            window.location.href = `/users/${authorId}`;
+        }
+        RecipeDelete();
     }
 
     const Recipe = (props) => {
@@ -97,7 +107,9 @@ const Profile_recipes = (props) => {
                                          label="EDIT"
                                          onClick={handleOnClickRecipeEdit}
                     />
-                    <ProfileRecipeButton id={"recipe-delete-" + props.id} label="DELETE"/>
+                    <ProfileRecipeButton id={"recipe-delete-" + props.id}
+                                         label="DELETE"
+                                         onClick={handleOnClickRecipeDelete}/>
                 </div>
             </div>
         )
