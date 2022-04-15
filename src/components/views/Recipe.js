@@ -17,6 +17,8 @@ import "styles/views/Party.scss"
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Stack from "@mui/material/Stack";
+import {Button} from "../ui/Button";
+import User from "../../models/User";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -57,7 +59,7 @@ const Recipe= () => {
     );
 
     const [ingredients, setIngredients] = useState(
-       [{name: "", amount: 0}]
+        [{name: "", amount: 0}]
     );
 
     const [user,setUsers]=useState({
@@ -120,9 +122,26 @@ const Recipe= () => {
         )
     }
 
+    const [likes, setLikes] = useState(null);
+    const doLike = async () => {
+        const userId = localStorage.getItem("id");
+        const path = window.location.pathname;
+        const recipeID = path.substring(path.lastIndexOf('/') + 1);
+
+        try {
+            const response = await api.post(`/users/${userId}/recipes/${recipeID}/likes`);
+            setLikes(response.data);
+        } catch (error) {
+            alert(`Something went wrong during the login: \n${handleError(error)}`);
+        }
+    };
+
     return (
         <div className="party detail box">
             <div className="party detail left column">
+                <Button onClick={() => doLike()}>
+                    like
+                </Button>
                 <RecipePhoto/>
                 <div>
                     <h1 align="left">{recipe.recipeName} Created by <span onClick={handleOnClickAuthorProfile}>{user.username}</span></h1>
@@ -141,18 +160,18 @@ const Recipe= () => {
 
             </div>
             <div className="party detail right column">
+                <div>
+                    <h2 align='center'>Ingredients</h2>
                     <div>
-                        <h2 align='center'>Ingredients</h2>
-                            <div>
-                                {ingredients && ingredients.map((ingredient,index) => {
-                                    return (<Ingredient
-                                        key={ingredient.name}
-                                        name={ingredient.name}
-                                        amount={ingredient.amount}
-                                    />)
-                                })}
-                            </div>
+                        {ingredients && ingredients.map((ingredient,index) => {
+                            return (<Ingredient
+                                key={ingredient.name}
+                                name={ingredient.name}
+                                amount={ingredient.amount}
+                            />)
+                        })}
                     </div>
+                </div>
             </div>
         </div>
     );
