@@ -94,6 +94,10 @@ const Cuisine_tag = () => {
     )
 }
 
+const goPartyCreation = () => {
+    window.location.href = `/parties-creation`;
+}
+
 const Home = () => {
     const history = useHistory();
 
@@ -147,7 +151,7 @@ const Home = () => {
                 <Party/>
                 <Party/>
                 <Party/>
-                <div className="home new">
+                <div className="home new" onClick={goPartyCreation}>
                     <img src={icon_post} className="home post_icon" alt="icon_post"/>
                     <span>New Party</span>
                 </div>
