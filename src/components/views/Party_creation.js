@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import React from "react";
 import "styles/views/Recipe.scss";
 import EditFormField from "../FormField/EditFormField";
@@ -9,6 +9,7 @@ import {Autocomplete, Input, TextField} from "@mui/material";
 import UserLikedRecipeOptions from "../FormField/UserLikesRecipeOptions";
 import UserInvitation from "../FormField/UserInvitation";
 import UsernameOptions from "../FormField/UsernameOptions";
+import convertDateToJavaDateFormat from "../date/ToJavaDateFormat";
 
 const fakeDate = {
     "partyName": "testPartyName",
@@ -29,6 +30,23 @@ const PartyCreation = () => {
     const [recipeUsedId, setRecipeUsedId] = useState(0);
     const [partyAttendantsList, setPartyAttendantsList] = useState([]);
 
+    const [isValid, setIsValid] = useState(true);
+
+    const checkDateFormat = () => {
+        setIsValid(false);
+        const wrongMessage = "wrong date format";
+        // convert birthday to Java Date Format, then add it to requestBody
+
+        if (convertDateToJavaDateFormat(time) === wrongMessage) {
+            // if not valid, do nothing
+            setIsValid(false);
+        } else {
+            // if valid, execute doSubmit()
+            setIsValid(true);
+            doSubmit();
+        }
+    }
+
     const doSubmit = async () => {
         // we just need non-empty ingredients( name !== "" && amount > 0 )
 
@@ -42,11 +60,8 @@ const PartyCreation = () => {
                 recipeUsedId,
                 partyAttendantsList
             });
-            console.log(requestBody);
-
-            // const response = await api.post('/parties', requestBody);
-            // console.log(response.data);
-            // window.location.href = `/parties/${response.data.partyId}`;
+            const response = await api.post('/parties', requestBody);
+            window.location.href = `/parties/${response.data.partyId}`;
 
         } catch (error) {
             alert(`Something went wrong during the edit: \n${handleError(error)}`);
@@ -74,16 +89,23 @@ const PartyCreation = () => {
                 <EditFormField
                     label="Time of your party"
                     value={time}
-                    placeholder="when?"
+                    placeholder="dd.MM.yyyy"
                     className="recipe creation container"
                     onChange={un => setTime(un)}
                 />
+                {!isValid
+                    &&
+                    <div className="recipe creation container">
+                        <p className="profile edit wrongFormat party"> Invalid Date Format!</p>
+                    </div>
+                }
                 <Autocomplete
                     className="recipe creation container"
                     onChange={(event, newValue) => {
                         setRecipeUsedId(newValue.recipeId);
                     }}
-                    options={UserLikedRecipeOptions}
+                    options={UserLikedRecipeOptions()}
+                    getOptionLabel={(option) => option.recipeName}
                     renderInput={(params) => <TextField {...params} label="Choose a recipe from your Likes"/>}
                 />
                 <TextFormField
@@ -111,7 +133,15 @@ const PartyCreation = () => {
                 <div className="upload-pic"></div>
                 <Button className="profile edit button-container"
                         width="100%"
-                        onClick={doSubmit}
+                        disabled={
+                            !partyName
+                            || !partyIntro
+                            || !place
+                            || !time
+                            || !recipeUsedId
+                            || !partyAttendantsList
+                        }
+                        onClick={checkDateFormat}
                 >
                     Let's Party!
                 </Button>

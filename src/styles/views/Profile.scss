@@ -170,7 +170,11 @@
       font-style: italic;
       color: darkred;
       font-size: 13px;
+      &.party{
+        height: 20px;
+        margin: 0 0 0 2px;
 
+      }
     }
 
     &.button-container {

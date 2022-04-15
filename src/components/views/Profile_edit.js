@@ -35,12 +35,10 @@ const EditBox = (props) => {
         }
     }
 
-
     const doSubmit = async () => {
         try {
             // we need id to identity a user
             setBirthday(convertDateToJavaDateFormat(birthday));
-
 
             const requestBody = JSON.stringify({id: userId, username, birthday, gender, intro});
             await api.put(`/users/${userId}`, requestBody);

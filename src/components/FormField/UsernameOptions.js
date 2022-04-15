@@ -8,15 +8,16 @@ const UsernameOptions = () => {
         async function fetchData() {
             try {
                 const response = await api.get('/users');
-                const myUsernames = response.data.map((user) => user.username)
-                setUsernames(myUsernames);
+                const usersWithOutMe = response.data.filter((user) =>
+                    (user.id !== Number(localStorage.getItem("id") )))
+                const otherUsernames = usersWithOutMe.map((usersWithOutMe) => usersWithOutMe.username)
+                setUsernames(otherUsernames);
             } catch (error) {
                 alert("Something went wrong while fetching the usernames!");
             }
         }
         fetchData();
     }, []);
-    console.log(usernames);
     return (
         usernames
     )
