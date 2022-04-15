@@ -88,7 +88,7 @@ const Recipe= () => {
     const authorID=recipe.authorId;
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
-        async function fetchData() {
+        async function fetchData1() {
             try {
                 const response2= await api.get('/users/'+authorID);
                 setUsers(response2.data);
@@ -98,7 +98,7 @@ const Recipe= () => {
                 alert("Something went wrong while fetching the users! See the console for details.");
             }
         }
-        fetchData();
+        fetchData1();
     }, []);
 
     /*const IngredientsNameByRecipes=ingredients.map(({name})=>name);
@@ -121,7 +121,7 @@ const Recipe= () => {
 
                         <div>
                             <Grid container spacing={2} justifyContent="flex-end">
-                                <Item><FaceIcon/> Created by {user.username}{recipe.authorId}</Item>
+                                <Item><FaceIcon/> Created by {user.username}</Item>
                                 <Item><AccessAlarmsIcon/> Time:{recipe.timeConsumed} minutes</Item>
                                 <Item><PaidIcon/> Price:chf {recipe.cost}</Item>
                                 <Item><GroupIcon/> Portion:{recipe.portion}</Item>

@@ -1,0 +1,140 @@
+@import 'styles/theme';
+
+.party {
+  &.detail {
+
+    &.container {
+      margin: 7px 0;
+      width: 95%;
+    }
+
+    &.column {
+      float: left;
+      padding: 1.5em;
+      border-radius: $borderRadius;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin: 0.5em 1em;
+      min-height: 600px;
+      &.left{
+        min-width: 65%;
+      }
+      &.right{
+        min-width: 25%;
+      }
+    }
+
+    &.box {
+      margin: 0 auto;
+      width: 1300px;
+    }
+
+    .line {
+      display: inline-block;
+      width: 5em;
+      margin: 0 0.6em 0 0.6em;
+      border-top: 1.5px solid $textColor;
+      vertical-align: 5px;
+    }
+
+    .slider-title {
+      display: flex;
+      height: 3em;
+      margin: -0.5em 0;
+    }
+
+    .slider-icon {
+      width: 15%;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .slider-label {
+      vertical-align: middle;
+      width: 200px;
+    }
+
+    .slider-value {
+      height: 1.5em;
+      margin-left: auto;
+      margin-right: 1px;
+      border-radius: $borderRadius;
+      font-weight: 300;
+      color: white;
+      padding: 0 10px 0 10px;
+      background-color: $textColor;
+      vertical-align: middle;
+    }
+
+    .ingredient-form {
+      width: 100%;
+    }
+
+    .ingredient-header {
+      display: flex;
+      margin-bottom: 5px;
+      width: 100%;
+      height: 50px;
+    }
+
+    .ingredient-header-item {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      vertical-align: middle;
+      height: 30px;
+      border-radius: $borderRadius;
+      font-weight: 450;
+      padding: 1px 5px 1px 5px;
+
+      &.name {
+        margin-left: 12px;
+        margin-right: auto;
+        width: 150px;
+
+        &.child {
+          color: black;
+          background-color: transparent;
+          border: none;
+        }
+      }
+
+      &.amount {
+        margin-left: auto;
+        margin-right: 5px;
+        width: 100px;
+
+        &.child {
+          color: black;
+          background-color: transparent;
+          border: none;
+        }
+
+      }
+
+      &.delete-icon {
+        border: none;
+        width: 30px;
+        height: 30px;
+        margin-left: auto;
+        margin-right: 12px;
+
+        &.child {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .ingredient-add-icon{
+      width: 30px;
+      height: 30px;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+
+    .upload-pic{
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      width: 100%;
+      height: 300px;
+    }
+  }
+}
