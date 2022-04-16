@@ -15,7 +15,7 @@ import food from "../../food.jpg";
 
 
 
-const Rec = ({recipe}) => {
+const Recipe = ({recipe}) => {
     const redirectToProfile = (recipe) => {
         window.location.href = `/recipes/${recipe.recipeId}`;
     }
@@ -39,36 +39,28 @@ const Rec = ({recipe}) => {
 
 };
 
-Rec.propTypes = {
+Recipe.propTypes = {
     recipe: PropTypes.object
 };
 
-const Party = ({/* party */}) => {
-    /*
+const Party = ({party}) => {
+
     const redirectToProfile = (party) => {
         window.location.href = `/parties/${party.id}`;
     }
-    */
     return (
-        <div className="home party">
-            <h3>
-                01.04.2022 18:00
-            </h3>
-            <h2>
-                Alice birthday party
-            </h2>
-        </div>
-        /*
         <div className="party container" key={party.id}>
             <Link className="party name" to={`parties/${party.id}`} props={party} onClick={() => redirectToProfile.bind(this, party)}>
-                {party.name}
+                <h3>
+                    {party.time}
+                </h3>
+                <h2>
+                    {party.name}
+                </h2>
             </Link>
             <div className="party id">id: {party.id}</div>
         </div>
-
-         */
     )
-
 
 };
 
@@ -104,24 +96,17 @@ const Home = () => {
 
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [recipes, setRecipes] = useState(null);
-    //const [parties, setParties] = useState();
-
-
-
-    // for more information on the effect hook, please see https://reactjs.org/docs/hooks-effect.html
-
+    const [parties, setParties] = useState(null);
 
 
     useEffect(() => {
         async function fetchData(){
             try {
-                console.log("1");
                 const recipesResponse = await api.get('/recipes');
                 const partiesResponse = await api.get('/parties');
                 setRecipes(recipesResponse.data);
-                console.log(1);
-                console.log(recipesResponse);
-                console.log(recipes);
+                setParties(partiesResponse.data);
+
 
             } catch (error) {
                 console.error(`Something went wrong while fetching the data: \n${handleError(error)}`);
@@ -140,28 +125,23 @@ const Home = () => {
         recipePanel = (
             <div className="home recipes_container">
                 {recipes.map(recipe => (
-                    <Rec recipe={recipe} key={recipe.recipeName}/>
+                    <Recipe recipe={recipe} key={recipe.recipeName}/>
                 ))}
             </div>
         );
     }
-    if(recipes) {
+    if(parties) {
         partyPanel = (
             <div>
-                <Party/>
-                <Party/>
-                <Party/>
+                <div>
+                    {parties.map(party => (
+                         <Party party={party} key={party.partyId}/>
+                    ))}
+                </div>
                 <div className="home new" onClick={goPartyCreation}>
                     <img src={icon_post} className="home post_icon" alt="icon_post"/>
                     <span>New Party</span>
                 </div>
-                {
-                    /*
-                     parties.map(party => (
-                        <Party party={party} key={party.id}/>
-                    ))
-                    */
-                }
             </div>
         );
     }
@@ -177,7 +157,9 @@ const Home = () => {
             <span className="home line"></span>
             <div className="home panel right">
                 <h2 className="home title">Parties</h2>
-                {partyPanel}
+                <div>
+                    {partyPanel}
+                </div>
             </div>
         </div>
     );
