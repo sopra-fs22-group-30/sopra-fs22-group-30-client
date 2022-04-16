@@ -20,7 +20,9 @@ const Username = ({user}) => {
 
 const MyLikesButton = (props) => {
     return (
-        <div className="myLikes-button">My Likes</div>
+        <div className="myLikes-button"
+             onClick={props.onClick}
+        >My Likes</div>
     )
 }
 
@@ -96,6 +98,11 @@ const Profile_recipes = (props) => {
         RecipeDelete();
     }
 
+    function redirectToMyLikes (e) {
+        const userId = localStorage.getItem("id");
+        window.location.href = `/users/likes/${userId}`;
+    }
+
     const Recipe = (props) => {
         return (
             <div className="profile recipe container">
@@ -120,7 +127,9 @@ const Profile_recipes = (props) => {
         <div className="profile column left">
             <Photo/>
             <Username user={user}/>
-            <MyLikesButton/>
+            <MyLikesButton
+                onClick={redirectToMyLikes}
+            />
             <h3><span className="line"></span> My Recipes <span className="line"></span></h3>
             <div className="profile recipe box">
                 {recipes && recipes.map((recipe,index) => {

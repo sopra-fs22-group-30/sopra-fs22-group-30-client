@@ -10,6 +10,7 @@ import icon_post from "../../icon_post.svg";
 import clock from "../../clock.svg";
 import cuisine from "../../cuisine_tag.svg";
 import food from "../../food.jpg";
+import UserLikedRecipeOptions from "../FormField/UserLikesRecipeOptions";
 
 const Photo = () => {
     return (
@@ -35,14 +36,15 @@ const Recipe = ({recipe}) => {
     }
 
     return (
-        <link  className="myLikes recipe" to={`recipes/${recipe.recipeId}`} props={recipe} onClick={() => redirectToDetailPage.bind(this, recipe)}>
+        <link className="myLikes recipe" to={`recipes/${recipe.recipeId}`} props={recipe}
+              onClick={() => redirectToDetailPage.bind(this, recipe)}>
             <div className="myLikes info_mask">
                 <h2>
                     {recipe.recipeName}
                 </h2>
-                <div className = "myLikes info_mask recipes_info">
+                <div className="myLikes info_mask recipes_info">
                     <h3 className="myLikes timeConsumed&Cost">
-                        <Clock_tag/>  {recipe.timeConsumed}mins chf {recipe.cost}
+                        <Clock_tag/> {recipe.timeConsumed}mins chf {recipe.cost}
                     </h3>
                 </div>
                 <Cuisine_tag/>
@@ -50,24 +52,26 @@ const Recipe = ({recipe}) => {
             <Photo/>
         </link>
     )
-}
+};
 
-Recipe.prototype = {
-    recipe: PropTypes.object
-}
+// Recipe.propTypes = {
+//     recipe: PropTypes.object
+// };
 
 const MyLikes = () => {
-    const history = useHistory();
+    // const history = useHistory();
     const [recipes, setRecipes] = useState(null);
+
     useEffect(() => {
         async function fetchData(){
             try {
-                const recipesResponse = await api.get('/recipes');
-                setRecipes(recipesResponse.data);
+                const userId = localStorage.getItem("id");
+                const recipesResponse = await api.get(`/users/${userId}`);
+                setRecipes(recipesResponse.data.likeList);
+
+                console.log(recipes)
             } catch (error) {
-                console.error(`Something went wrong while fetching the data: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the data! See the console for details.");
+                alert("Something went wrong while fetching the data!");
             }
         }
         fetchData();
@@ -75,9 +79,12 @@ const MyLikes = () => {
 
     let recipePanel = <Spinner/>;
 
+    // recipes = UserLikedRecipeOptions()
+    console.log(recipes)
+
     if(recipes) {
         recipePanel = (
-            <div className="home recipes_container">
+            <div className="myLikes recipes_container">
                 {recipes.map(recipe => (
                     <Recipe recipe={recipe} key={recipe.recipeName}/>
                 ))}
@@ -87,12 +94,12 @@ const MyLikes = () => {
 
     return (
         <div className="myLikes container">
-            <h2 className="home title">Recipes</h2>
+            <h2 className="myLikes title">Recipes</h2>
             <div>
                 {recipePanel}
             </div>
         </div>
-    )
+    );
 }
 
 export default MyLikes;

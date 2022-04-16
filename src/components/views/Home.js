@@ -106,8 +106,6 @@ const Home = () => {
                 const partiesResponse = await api.get('/parties');
                 setRecipes(recipesResponse.data);
                 setParties(partiesResponse.data);
-
-
             } catch (error) {
                 console.error(`Something went wrong while fetching the data: \n${handleError(error)}`);
                 console.error("Details:", error);

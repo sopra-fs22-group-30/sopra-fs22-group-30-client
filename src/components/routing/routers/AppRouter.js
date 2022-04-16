@@ -9,10 +9,8 @@ import ProfileEdit from "../../views/Profile_edit";
 import Recipe from "../../views/Recipe";
 import RecipeCreationOrEdit from "../../views/Recipe_creation_or_edit";
 import PartyCreation from "../../views/Party_creation";
-
 import Party from "../../views/Party";
-
-import MyLikes from "../../views/MyLikes";
+import MyLikes from "components/views/MyLikes";
 
 /**
  * Main router of your application.
@@ -28,7 +26,7 @@ const AppRouter = () => {
         <BrowserRouter>
             <Switch>
                 {/*just for test /profile, need change it to /users/:id */}
-                <Route path="/users/:id">
+                <Route exact path="/users/:id">
                     <HomeGuard>
                         <Profile/>
                     </HomeGuard>
@@ -44,7 +42,7 @@ const AppRouter = () => {
                     <Recipe/>
                 </Route>
 
-                <Route exact path="/users/:id/likes">
+                <Route exact path="/users/likes/:id">
                     <MyLikes/>
                 </Route>
 
