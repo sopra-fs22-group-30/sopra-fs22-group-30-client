@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import "styles/views/Profile.scss";
 import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
+import {styled} from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import food from 'food.jpg';
@@ -19,42 +19,45 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Stack from "@mui/material/Stack";
 import {Button} from "../ui/Button";
 import User from "../../models/User";
+import {Spinner} from "../ui/Spinner";
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 
 
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
 }));
-const Item1 = styled(Paper)(({ theme }) => ({
+const Item1 = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    height:500,
+    height: 500,
 }));
 
-const RecipePhoto = () =>{
+const RecipePhoto = () => {
     return (
         <img src={food} className="food" alt="food"/>
     )
 }
 
-const Recipe= () => {
+const Recipe = () => {
 
     const [recipe, setRecipes] = useState({
             recipeId: "",
             recipeName: "",
-            authorId:"",
-            cost:"",
-            timeConsumed:"",
-            content:"",
-            portion:"",
-            ingredients:"",
-            cuisine:"",
+            authorId: "",
+            cost: "",
+            timeConsumed: "",
+            content: "",
+            portion: "",
+            ingredients: "",
+            cuisine: "",
         }
     );
 
@@ -62,11 +65,13 @@ const Recipe= () => {
         [{name: "", amount: 0}]
     );
 
-    const [user,setUsers]=useState({
-        id:"",
-        username:"",}
+    const [user, setUsers] = useState({
+            id: "",
+            username: "",
+        }
     );
 
+    const [likes, setLikes] = useState(null);
 
     const path = window.location.pathname;
     const recipeID = path.substring(path.lastIndexOf('/') + 1);
@@ -79,7 +84,7 @@ const Recipe= () => {
                 const response = await api.get('/recipes/' + recipeID);
                 setRecipes(response.data);
 
-                const response2= await api.get('/users/'+recipe.authorId);
+                const response2 = await api.get('/users/' + recipe.authorId);
                 setUsers(response2.data);
                 setIngredients(response.data.ingredients);
 
@@ -89,14 +94,15 @@ const Recipe= () => {
                 alert("Something went wrong while fetching the users! See the console for details.");
             }
         }
+
         fetchData();
     }, [])
-    const authorID=recipe.authorId;
+    const authorID = recipe.authorId;
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData1() {
             try {
-                const response2= await api.get('/users/'+authorID);
+                const response2 = await api.get('/users/' + authorID);
                 setUsers(response2.data);
             } catch (error) {
                 console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
@@ -104,25 +110,58 @@ const Recipe= () => {
                 alert("Something went wrong while fetching the users! See the console for details.");
             }
         }
+
         fetchData1();
     }, []);
+
+    useEffect(() => {
+        async function fetchData2() {
+            try {
+                const userId = localStorage.getItem("id");
+                const response3 = await api.get(`/users/${userId}/recipes/${recipeID}/likes`);
+                setLikes(response3.data);
+                console.log(likes);
+            } catch (error) {
+                alert("Something went wrong while fetching the users! See the console for details.");
+            }
+        }
+        fetchData2();
+    },[]);
 
     function handleOnClickAuthorProfile(e) {
         window.location.href = `/users/${authorID}`;
     }
 
+    let likeButton
+
+    console.log(likes);
+
+    if (likes === true) {
+        likeButton = (
+            <FavoriteOutlinedIcon
+                onClick={() => doLike()}
+            >
+            </FavoriteOutlinedIcon>
+        )
+    } else {
+        likeButton = (
+            <FavoriteBorderOutlinedIcon
+                onClick={() => doLike()}
+            >
+            </FavoriteBorderOutlinedIcon>
+        )
+    }
 
     const Ingredient = (props) => {
         return (
             <div className="profile recipe container">
                 <div>
-                    {props.name}  {props.amount}g
+                    {props.name} {props.amount}g
                 </div>
             </div>
         )
     }
 
-    const [likes, setLikes] = useState(null);
     const doLike = async () => {
         const userId = localStorage.getItem("id");
         const path = window.location.pathname;
@@ -139,12 +178,13 @@ const Recipe= () => {
     return (
         <div className="party detail box">
             <div className="party detail left column">
-                <Button onClick={() => doLike()}>
-                    like
-                </Button>
+                <div>
+                    {likeButton}
+                </div>
                 <RecipePhoto/>
                 <div>
-                    <h1 align="left">{recipe.recipeName} Created by <span onClick={handleOnClickAuthorProfile}>{user.username}</span></h1>
+                    <h1 align="left">{recipe.recipeName} Created by <span
+                        onClick={handleOnClickAuthorProfile}>{user.username}</span></h1>
                 </div>
 
                 <div>
@@ -163,7 +203,7 @@ const Recipe= () => {
                 <div>
                     <h2 align='center'>Ingredients</h2>
                     <div>
-                        {ingredients && ingredients.map((ingredient,index) => {
+                        {ingredients && ingredients.map((ingredient, index) => {
                             return (<Ingredient
                                 key={ingredient.name}
                                 name={ingredient.name}

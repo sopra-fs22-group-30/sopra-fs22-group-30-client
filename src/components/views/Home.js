@@ -106,6 +106,7 @@ const Home = () => {
                 const partiesResponse = await api.get('/parties');
                 setRecipes(recipesResponse.data);
                 setParties(partiesResponse.data);
+                console.log(recipes)
             } catch (error) {
                 console.error(`Something went wrong while fetching the data: \n${handleError(error)}`);
                 console.error("Details:", error);
@@ -118,6 +119,8 @@ const Home = () => {
 
     let recipePanel = <Spinner/>;
     let partyPanel = <Spinner/>;
+
+    console.log(recipes)
 
     if(recipes) {
         recipePanel = (

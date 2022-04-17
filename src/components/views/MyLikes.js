@@ -30,36 +30,8 @@ const Cuisine_tag = () => {
     )
 }
 
-const Recipe = ({recipe}) => {
-    const redirectToDetailPage = (recipe) => {
-        window.location.href = `/recipes/${recipe.recipeId}`;
-    }
-
-    return (
-        <link className="myLikes recipe" to={`recipes/${recipe.recipeId}`} props={recipe}
-              onClick={() => redirectToDetailPage.bind(this, recipe)}>
-            <div className="myLikes info_mask">
-                <h2>
-                    {recipe.recipeName}
-                </h2>
-                <div className="myLikes info_mask recipes_info">
-                    <h3 className="myLikes timeConsumed&Cost">
-                        <Clock_tag/> {recipe.timeConsumed}mins chf {recipe.cost}
-                    </h3>
-                </div>
-                <Cuisine_tag/>
-            </div>
-            <Photo/>
-        </link>
-    )
-};
-
-// Recipe.propTypes = {
-//     recipe: PropTypes.object
-// };
-
 const MyLikes = () => {
-    // const history = useHistory();
+    const history = useHistory();
     const [recipes, setRecipes] = useState(null);
 
     useEffect(() => {
@@ -67,7 +39,17 @@ const MyLikes = () => {
             try {
                 const userId = localStorage.getItem("id");
                 const recipesResponse = await api.get(`/users/${userId}`);
-                setRecipes(recipesResponse.data.likeList);
+
+                // const recipes = recipesResponse.data.likeList.map(({recipeName,recipeId,timeConsumed,cost}) =>
+                //     JSON.parse(JSON.stringify({
+                //         recipeName,
+                //         recipeId,
+                //         timeConsumed,
+                //         cost
+                //     })))
+                // setRecipes(recipes);
+
+                setRecipes(recipesResponse.data.likeList)
 
                 console.log(recipes)
             } catch (error) {
@@ -76,6 +58,34 @@ const MyLikes = () => {
         }
         fetchData();
     },[]);
+
+    const Recipe = ({recipe}) => {
+        const redirectToDetailPage = (recipe) => {
+            window.location.href = `/recipes/${recipe.recipeId}`;
+        }
+
+        return (
+            <link className="myLikes recipe" to={`recipes/${recipe.recipeId}`} props={recipe}
+                  onClick={() => redirectToDetailPage.bind(this, recipe)}>
+                <div className="myLikes info_mask">
+                    <h2>
+                        {recipe.recipeName}
+                    </h2>
+                    <div className="myLikes info_mask recipes_info">
+                        <h3 className="myLikes timeConsumed&Cost">
+                            <Clock_tag/> {recipe.timeConsumed}mins chf {recipe.cost}
+                        </h3>
+                    </div>
+                    <Cuisine_tag/>
+                </div>
+                <Photo/>
+            </link>
+        )
+    };
+
+    Recipe.propTypes = {
+        recipe: PropTypes.object
+    };
 
     let recipePanel = <Spinner/>;
 
