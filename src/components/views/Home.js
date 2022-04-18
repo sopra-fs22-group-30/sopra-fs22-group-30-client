@@ -11,7 +11,10 @@ import icon_post from "../../icon_post.svg";
 import clock from "../../clock.svg";
 import cuisine from "../../cuisine_tag.svg";
 import food from "../../food.jpg";
-
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTime';
+import PaidIcon from '@mui/icons-material/Paid';
+import GroupsIcon from '@mui/icons-material/Groups';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 
 
@@ -26,8 +29,10 @@ const Recipe = ({recipe}) => {
                     {recipe.recipeName}
                 </h2>
                 <div className = "home info_mask recipes_info">
-                    <h3 className="home timeConsumed&Cost">
-                        <Clock_tag/>  {recipe.timeConsumed}mins chf {recipe.cost}
+                    <h3 className="home data">
+                        <AccessTimeFilledIcon className="home icons"/>: {recipe.timeConsumed} mins&nbsp;&nbsp;&nbsp;
+                        <PaidIcon className="home icons"/>: {recipe.cost} chf&nbsp;&nbsp;&nbsp;
+                        <GroupsIcon className="home icons"/>: {recipe.portion} ppl
                     </h3>
                 </div>
                 <Cuisine_tag/>
@@ -44,22 +49,28 @@ Recipe.propTypes = {
 };
 
 const Party = ({party}) => {
-
     const redirectToProfile = (party) => {
         window.location.href = `/parties/${party.id}`;
     }
     return (
-        <div className="party container" key={party.id}>
-            <Link className="party name" to={`parties/${party.id}`} props={party} onClick={() => redirectToProfile.bind(this, party)}>
-                <h3>
-                    {party.time}
-                </h3>
+        <Link  to={`parties/${party.id}`} props={party} onClick={() => redirectToProfile.bind(this, party)}>
+            <div className="home party">
                 <h2>
-                    {party.name}
+                    {party.partyName}
                 </h2>
-            </Link>
-            <div className="party id">id: {party.id}</div>
-        </div>
+                <div className="home party info">
+                    <div className>
+                        <AccessTimeFilledIcon className="home icons"/> Time:{party.time}
+                    </div>
+                    <div className>
+                        <LocationOnIcon className="home icons"/> Place:{party.place}
+                    </div>
+                    <div className>
+                        <GroupsIcon className="home icons"/> Number of Attendants: {party.partyAttendantsNum+1} ppl
+                    </div>
+                </div>
+            </div>
+        </Link>
     )
 
 };
@@ -74,11 +85,6 @@ const Photo = () => {
     )
 }
 
-const Clock_tag = () => {
-    return (
-        <img src={clock} className="home clock" alt="clock"/>
-    )
-}
 
 const Cuisine_tag = () => {
     return (
@@ -106,7 +112,6 @@ const Home = () => {
                 const partiesResponse = await api.get('/parties');
                 setRecipes(recipesResponse.data);
                 setParties(partiesResponse.data);
-                console.log(recipes)
             } catch (error) {
                 console.error(`Something went wrong while fetching the data: \n${handleError(error)}`);
                 console.error("Details:", error);
@@ -120,7 +125,6 @@ const Home = () => {
     let recipePanel = <Spinner/>;
     let partyPanel = <Spinner/>;
 
-    console.log(recipes)
 
     if(recipes) {
         recipePanel = (
@@ -141,7 +145,7 @@ const Home = () => {
                 </div>
                 <div className="home new" onClick={goPartyCreation}>
                     <img src={icon_post} className="home post_icon" alt="icon_post"/>
-                    <span>New Party</span>
+                    <div>New Party</div>
                 </div>
             </div>
         );
@@ -155,7 +159,6 @@ const Home = () => {
                     {recipePanel}
                 </div>
             </div>
-            <span className="home line"></span>
             <div className="home panel right">
                 <h2 className="home title">Parties</h2>
                 <div>
