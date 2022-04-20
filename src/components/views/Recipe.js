@@ -66,7 +66,6 @@ const Recipe = () => {
     );
 
     const [user, setUsers] = useState({
-            id: "",
             username: "",
         }
     );
@@ -83,10 +82,12 @@ const Recipe = () => {
             try {
                 const response = await api.get('/recipes/' + recipeID);
                 setRecipes(response.data);
-
-                const response2 = await api.get('/users/' + recipe.authorId);
-                setUsers(response2.data);
                 setIngredients(response.data.ingredients);
+
+                const authorID=response.data.authorId
+                const response2 = await api.get('/users/' + authorID);
+                setUsers(response2.data);
+
 
             } catch (error) {
                 console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
@@ -97,22 +98,7 @@ const Recipe = () => {
 
         fetchData();
     }, [])
-    const authorID = recipe.authorId;
-    useEffect(() => {
-        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
-        async function fetchData1() {
-            try {
-                const response2 = await api.get('/users/' + authorID);
-                setUsers(response2.data);
-            } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
-            }
-        }
 
-        fetchData1();
-    }, []);
 
     useEffect(() => {
         async function fetchData2() {
@@ -128,6 +114,7 @@ const Recipe = () => {
         fetchData2();
     },[]);
 
+    const authorID = recipe.authorId;
     function handleOnClickAuthorProfile(e) {
         window.location.href = `/users/${authorID}`;
     }
@@ -189,10 +176,22 @@ const Recipe = () => {
 
                 <div>
                     <Grid container spacing={2} justifyContent="flex-end">
-                        <Item><AccessAlarmsIcon/> Time:{recipe.timeConsumed} minutes</Item>
-                        <Item><PaidIcon/> Price:chf {recipe.cost}</Item>
-                        <Item><GroupIcon/> Portion:{recipe.portion}</Item>
-                        <Item><FoodBankIcon/> Cuisine:{recipe.cuisine}</Item>
+                        <Item style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                        }}><AccessAlarmsIcon/> Time:{recipe.timeConsumed} minutes</Item>
+                        <Item style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                        }}><PaidIcon/> Price:chf {recipe.cost}</Item>
+                        <Item style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                        }}><GroupIcon/> Portion:{recipe.portion}</Item>
+                        <Item style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                        }}><FoodBankIcon/> Cuisine:{recipe.cuisine}</Item>
                     </Grid>
                     <h3 align="left">{recipe.content}</h3>
                 </div>
