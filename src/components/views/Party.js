@@ -9,7 +9,10 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Stack from "@mui/material/Stack";
 import {api, handleError} from "../../helpers/api";
-import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -17,6 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    height:150,
 }));
 const Item1 = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -24,7 +28,7 @@ const Item1 = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    height:250,
+    height:450,
 }));
 
 const PartyPhoto = () =>{
@@ -75,13 +79,22 @@ const Party = ()=>{
 
         fetchData();
     }, [])
+    const hostID=party.partyHostId;
+    const recipeID=party.recipeUsedId;
+    function handleOnClickHostProfile(e) {
+        window.location.href = `/users/${hostID}`;
+    }
+
+    function handleOnClickRecipe(e) {
+        window.location.href = `/recipes/${recipeID}`;
+    }
 
     return (
         <div className="party detail box">
             <div className="party detail left column">
                 <PartyPhoto/>
                 <div>
-                    <h1 align="left">{party.partyName} created by {user.username}</h1>
+                    <h1 align="left">{party.partyName} created by <span onClick={handleOnClickHostProfile}>{user.username}</span></h1>
                 </div>
 
                 <div >
@@ -94,8 +107,11 @@ const Party = ()=>{
                     <h3 align="left">{party.partyIntro}</h3>
                     <h3 align="left">Attendants
                         <div>
-                            {party.partyAttendantsList.join('/n')}
+                            {party.partyAttendantsList.map((item,index)=>(
+                                <li>{item}</li>
+                            ))}
                         </div>
+
                     </h3>
                 </div>
 
@@ -104,8 +120,32 @@ const Party = ()=>{
             <div className="party detail right column">
                 <Box sx={{ width: '100%' }}>
                     <Stack spacing={6}>
-                        <Item1><h2>Recipe:{recipe.recipeName}</h2></Item1>
-                        <Item1><h2>Ingredients:{party.ingredients.join('\n')}</h2></Item1>
+                        <Item>
+                            <div>
+                                <h2><div>Recipe</div></h2>
+                                <h3><div><span onClick={handleOnClickRecipe}>{recipe.recipeName}</span></div></h3>
+                            </div>
+
+                        </Item>
+
+                        <Item1>
+                            <h2>
+                                Ingredients
+                            </h2>
+                            <div align="left">
+                                {
+                                    party.ingredients.map((item,index)=>(
+                                        <FormGroup>
+                                       <div key={index} >
+                                           <span><FormControlLabel align="left" control={<Checkbox/>}label={item} /></span>
+                                       </div>
+                                        </FormGroup>
+                                    ))
+                                }
+                            </div>
+
+                        </Item1>
+
                     </Stack>
                 </Box>
 

@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import "styles/views/Profile.scss";
-import Box from '@mui/material/Box';
 import {styled} from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -14,15 +13,14 @@ import PaidIcon from '@mui/icons-material/Paid';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
 import GroupIcon from '@mui/icons-material/Group';
 import "styles/views/Party.scss"
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Stack from "@mui/material/Stack";
-import {Button} from "../ui/Button";
-import User from "../../models/User";
-import {Spinner} from "../ui/Spinner";
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -31,14 +29,7 @@ const Item = styled(Paper)(({theme}) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
 }));
-const Item1 = styled(Paper)(({theme}) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    height: 500,
-}));
+
 
 const RecipePhoto = () => {
     return (
@@ -149,6 +140,36 @@ const Recipe = () => {
         )
     }
 
+    const IngredientTable = (props) => {
+
+        return (
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 200}} size="small" aria-label="a dense table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell align="right">Amount(g)</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {ingredients.map((item,index) => (
+                            <TableRow
+                                key={index}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {item.name}
+                                </TableCell>
+                                <TableCell align="right">{item.amount}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+
+        )
+    }
+
     const doLike = async () => {
         const userId = localStorage.getItem("id");
         const path = window.location.pathname;
@@ -202,13 +223,7 @@ const Recipe = () => {
                 <div>
                     <h2 align='center'>Ingredients</h2>
                     <div>
-                        {ingredients && ingredients.map((ingredient, index) => {
-                            return (<Ingredient
-                                key={ingredient.name}
-                                name={ingredient.name}
-                                amount={ingredient.amount}
-                            />)
-                        })}
+                        <IngredientTable/>
                     </div>
                 </div>
             </div>
