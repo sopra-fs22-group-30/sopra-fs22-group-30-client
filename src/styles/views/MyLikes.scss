@@ -16,16 +16,15 @@
 
   &.panel {
     float: left;
-    border-radius: 1em;
-    margin: 0em;
+    margin: 0;
     height: auto;
-    padding: 0em;
+    padding: 0;
     background-color: $accentDark;
   }
 
   &.recipes_container {
     display: grid;
-    grid-template-columns: repeat(4, 15em);
+    grid-template-columns: repeat(3, 15em);
     grid-template-rows: repeat(3, 11em);
     grid-column-gap: 1.3em;
     grid-row-gap: 0.8em;
@@ -58,7 +57,7 @@
 
   &.info_mask {
     position: absolute;
-    padding: 0em;
+    padding: 0;
     height: 39%;
     width: 99%;
     bottom: 0;

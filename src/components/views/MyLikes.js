@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
-import {Button} from 'components/ui/Button';
 import {Link, useHistory} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
@@ -10,7 +9,9 @@ import icon_post from "../../icon_post.svg";
 import clock from "../../clock.svg";
 import cuisine from "../../cuisine_tag.svg";
 import food from "../../food.jpg";
-import UserLikedRecipeOptions from "../FormField/UserLikesRecipeOptions";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTime";
+import PaidIcon from "@mui/icons-material/Paid";
+import GroupsIcon from "@mui/icons-material/Groups";
 
 const Photo = () => {
     return (
@@ -18,20 +19,35 @@ const Photo = () => {
     )
 }
 
-const Clock_tag = () => {
-    return (
-        <img src={clock} className="myLikes clock" alt="clock"/>
-    )
-}
+const Recipe = ({recipe}) => {
+    const redirectToDetailPage = (recipe) => {
+        window.location.href = `/recipes/${recipe.recipeId}`;
+    }
 
-const Cuisine_tag = () => {
     return (
-        <img src={cuisine} className="myLikes cuisine_tag" alt="clock"/>
+        <Link className="home recipe" to={`/recipes/${recipe.recipeId}`} props={recipe} onClick={() => redirectToDetailPage.bind(this, recipe)}>
+            <div className="home info_mask">
+                <h2>
+                    {recipe.recipeName}
+                </h2>
+                <div className = "home info_mask recipes_info">
+                    <h3 className="myLikes data">
+                        <AccessTimeFilledIcon className="myLikes icons"/>: {recipe.timeConsumed} mins&nbsp;&nbsp;&nbsp;
+                        <PaidIcon className="myLikes icons"/>: {recipe.cost} chf&nbsp;&nbsp;&nbsp;
+                        <GroupsIcon className="myLikes icons"/>: {recipe.portion} ppl
+                    </h3>
+                </div>
+            </div>
+            <Photo/>
+        </Link>
     )
-}
+};
+
+Recipe.propTypes = {
+    recipe: PropTypes.object
+};
 
 const MyLikes = () => {
-    const history = useHistory();
     const [recipes, setRecipes] = useState(null);
 
     useEffect(() => {
@@ -40,16 +56,7 @@ const MyLikes = () => {
                 const userId = localStorage.getItem("id");
                 const recipesResponse = await api.get(`/users/${userId}`);
 
-                // const recipes = recipesResponse.data.likeList.map(({recipeName,recipeId,timeConsumed,cost}) =>
-                //     JSON.parse(JSON.stringify({
-                //         recipeName,
-                //         recipeId,
-                //         timeConsumed,
-                //         cost
-                //     })))
-                // setRecipes(recipes);
-
-                setRecipes(recipesResponse.data.likeList)
+                await setRecipes(recipesResponse.data.likeList)
 
                 console.log(recipes)
             } catch (error) {
@@ -58,34 +65,6 @@ const MyLikes = () => {
         }
         fetchData();
     },[]);
-
-    const Recipe = ({recipe}) => {
-        const redirectToDetailPage = (recipe) => {
-            window.location.href = `/recipes/${recipe.recipeId}`;
-        }
-
-        return (
-            <link className="myLikes recipe" to={`recipes/${recipe.recipeId}`} props={recipe}
-                  onClick={() => redirectToDetailPage.bind(this, recipe)}>
-                <div className="myLikes info_mask">
-                    <h2>
-                        {recipe.recipeName}
-                    </h2>
-                    <div className="myLikes info_mask recipes_info">
-                        <h3 className="myLikes timeConsumed&Cost">
-                            <Clock_tag/> {recipe.timeConsumed}mins chf {recipe.cost}
-                        </h3>
-                    </div>
-                    <Cuisine_tag/>
-                </div>
-                <Photo/>
-            </link>
-        )
-    };
-
-    Recipe.propTypes = {
-        recipe: PropTypes.object
-    };
 
     let recipePanel = <Spinner/>;
 
@@ -104,7 +83,7 @@ const MyLikes = () => {
 
     return (
         <div className="myLikes container">
-            <h2 className="myLikes title">Recipes</h2>
+            <h2 className="myLikes title">My Liked Recipes</h2>
             <div>
                 {recipePanel}
             </div>
