@@ -21,6 +21,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import {pink, red} from "@mui/material/colors";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -117,6 +118,7 @@ const Recipe = () => {
     if (likes === true) {
         likeButton = (
             <FavoriteOutlinedIcon
+                sx={{ color: pink[500] }}
                 onClick={() => doLike()}
             >
             </FavoriteOutlinedIcon>
@@ -124,6 +126,7 @@ const Recipe = () => {
     } else {
         likeButton = (
             <FavoriteBorderOutlinedIcon
+                sx={{ color: pink[500] }}
                 onClick={() => doLike()}
             >
             </FavoriteBorderOutlinedIcon>
@@ -179,7 +182,7 @@ const Recipe = () => {
             const response = await api.post(`/users/${userId}/recipes/${recipeID}/likes`);
             setLikes(response.data);
         } catch (error) {
-            alert(`Something went wrong during the login: \n${handleError(error)}`);
+            alert(`Something went wrong during do like: \n${handleError(error)}`);
         }
     };
 

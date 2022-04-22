@@ -24,9 +24,9 @@
 
   &.recipes_container {
     display: grid;
-    grid-template-columns: repeat(3, 15em);
+    grid-template-columns: repeat(4, 15em);
     grid-template-rows: repeat(3, 11em);
-    grid-column-gap: 1.3em;
+    grid-column-gap: 3.3em;
     grid-row-gap: 0.8em;
     background-color: $accentDark;
     z-index: 0;
@@ -102,6 +102,12 @@
     width:13%;
     bottom:0.5em;
     left:0.5em;
+  }
+
+  &.icons {
+    width: 0.5em;
+    //margin: 0 1em 0em 0em;
+    vertical-align: middle;
   }
 
 }
