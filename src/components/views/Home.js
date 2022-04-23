@@ -52,10 +52,10 @@ Recipe.propTypes = {
 
 const Party = ({party}) => {
     const redirectToProfile = (party) => {
-        window.location.href = `/parties/${party.id}`;
+        window.location.href = `/parties/${party.partyId}`;
     }
     return (
-        <Link  to={`parties/${party.id}`} props={party} onClick={() => redirectToProfile.bind(this, party)}>
+        <Link  to={`parties/${party.partyId}`} props={party} onClick={() => redirectToProfile.bind(this, party)}>
             <div className="home party">
                 <h2>
                     {party.partyName}
