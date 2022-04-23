@@ -11,24 +11,23 @@
 .home{
   &.container {
     display: block;
-    margin: 0 2em 0 3em;
-    width: 70em;
+    margin: 0 auto;
+    padding: 0 0 0 2em;
+    width: 62em;
     height: auto;
     background-color:$accentDark;
-    min-width: 1500px;
+    min-width: 1200px;
     min-height: 768px;
     align-items: center;
     object-fit: cover;
   }
   &.panel {
     float: left;
-    margin:0em;
     height: auto;
-    padding: 0em;
     background-color: $accentDark;
 
     &.left {
-      width:68%;
+      width:66%;
       height: auto;
       //margin: 0em 2em 0.5em auto;
 
@@ -45,11 +44,12 @@
   }
 
   &.recipes_container {
-    display: grid;
-    grid-template-columns: repeat(3, 15em);
-    grid-template-rows: repeat(3, 11em);
-    grid-column-gap: 1.2em;
-    grid-row-gap: 0.7em;
+    //display: grid;
+    //grid-template-columns: repeat(3, 15em);
+    //grid-template-rows: repeat(3, 11em);
+    //grid-column-gap: 1.2em;
+    //grid-row-gap: 0.7em;
+    padding: 0 4em 0 0;
     background-color: $accentDark;
     z-index: 0;
 
@@ -91,24 +91,29 @@
     z-index: 2;
     h2 {
       font-family: 'Nunito', ui-serif;
-      //position: absolute;
-      top:0;
-      margin-left: 0.5em;
+      position: relative;
+      top:-0.5em;
+      margin-left: 0.7em;
       color: #252424;
       letter-spacing: 0.01em;
       font-style: normal;
       font-weight: 500;
-      font-size: 1em;
-      line-height: 0em;
+      font-size: 0.8em;
+      line-height: 0.8em;
       background:inherit;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     &.recipes_info{
-      margin-left: 1em;
+      margin-left: 1.2em;
+      margin-top: -3.5em;
       font-family: 'Nunito', ui-serif;
       position: relative;
       //font-style:italic;
       font-weight: initial;
-      font-size: 0.5em;
+      font-size: 0.4em;
       line-height: 0em;
       color: #595959;
       border:0;
@@ -121,8 +126,8 @@
   &.cuisine_tag{
     position: absolute;
     width:13%;
-    bottom:0.4em;
-    left:0.5em;
+    top:0.5em;
+    left:1.5em;
   }
 
 
@@ -195,7 +200,7 @@
 
 
   &.icons {
-    width: 0.5em;
+    width: 0.4em;
     //margin: 0 1em 0em 0em;
     vertical-align: middle;
   }

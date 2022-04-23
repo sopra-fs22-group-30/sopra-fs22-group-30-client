@@ -15,6 +15,8 @@ import AccessTimeFilledIcon from '@mui/icons-material/AccessTime';
 import PaidIcon from '@mui/icons-material/Paid';
 import GroupsIcon from '@mui/icons-material/Groups';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
 
 
 
@@ -27,6 +29,7 @@ const Recipe = ({recipe}) => {
             <div className="home info_mask">
                 <h2>
                     {recipe.recipeName}
+                    {/*<Cuisine_tag/>*/}
                 </h2>
                 <div className = "home info_mask recipes_info">
                     <h3 className="home data">
@@ -35,7 +38,6 @@ const Recipe = ({recipe}) => {
                         <GroupsIcon className="home icons"/>: {recipe.portion} ppl
                     </h3>
                 </div>
-                <Cuisine_tag/>
             </div>
             <Photo/>
         </Link>
@@ -78,6 +80,9 @@ const Party = ({party}) => {
 Party.propTypes = {
     party: PropTypes.object
 };
+
+
+
 
 const Photo = () => {
     return (
@@ -128,11 +133,19 @@ const Home = () => {
 
     if(recipes) {
         recipePanel = (
-            <div className="home recipes_container">
+            <Box className="home recipes_container"
+                sx={{ display: 'grid',gridTemplateColumns: 'repeat(3, 1fr)',columnGap: 2,rowGap: 2}}
+                md={{ display: 'grid',gridTemplateColumns: 'repeat(3, 1fr)',columnGap: 2,rowGap: 2}}
+                xl={{ display: 'grid',gridTemplateColumns: 'repeat(3, 1fr)',columnGap: 2,rowGap: 2}}
+                  //spacing={{ xs: 2, md: 3 }}
+                  //columns={{ sm: 12, md: 12, lg:12, xl:12}}
+                >
                 {recipes.map(recipe => (
-                    <Recipe recipe={recipe} key={recipe.recipeName}/>
+                    <Grid item >
+                        <Recipe recipe={recipe} key={recipe.recipeName}/>
+                    </Grid>
                 ))}
-            </div>
+            </Box>
         );
     }
     if(parties) {
