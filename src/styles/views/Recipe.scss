@@ -33,6 +33,10 @@
       border-top: 1.5px solid $textColor;
       vertical-align: 5px;
     }
+    .display-image{
+      max-height: 200px;
+      max-width: 200px;
+    }
 
     .slider-title {
       display: flex;
