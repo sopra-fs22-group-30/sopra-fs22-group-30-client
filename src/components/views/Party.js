@@ -3,7 +3,7 @@ import "styles/views/Party.scss"
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import party from "party.jpg"
-import { styled } from '@mui/material/styles';
+import {styled} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -14,43 +14,44 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    height:150,
+    height: 150,
 }));
-const Item1 = styled(Paper)(({ theme }) => ({
+const Item1 = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    height:450,
+    height: 450,
 }));
 
-const PartyPhoto = () =>{
+const PartyPhoto = () => {
     return (
         <img src={party} className="party" alt="party"/>
     )
 }
 
-const Party = ()=>{
-    const [party,setParties]=useState({
-        partyId:"",
-        partyName:"",
-        partyHostId: "",
-        partyIntro: "",
-        place: "",
-        time: "",
-        recipeUsedId: "",
-        ingredients:[],
-        partyAttendantsList: [],}
+const Party = () => {
+    const [party, setParties] = useState({
+            partyId: "",
+            partyName: "",
+            partyHostId: "",
+            partyIntro: "",
+            place: "",
+            time: "",
+            recipeUsedId: "",
+            ingredients: [],
+            partyAttendantsList: [],
+        }
     )
-    const [recipe,setRecipes]=useState({recipeName:""});
-    const [user, setUsers]=useState({username:""});
+    const [recipe, setRecipes] = useState({recipeName: ""});
+    const [user, setUsers] = useState({username: ""});
     const path = window.location.pathname;
     const partyID = path.substring(path.lastIndexOf('/') + 1);
     const userID = localStorage.getItem('id');
@@ -63,11 +64,11 @@ const Party = ()=>{
                 const response = await api.get(`/users/${userID}/parties/${partyID}`);
                 setParties(response.data);
 
-                const recipeID=response.data.recipeUsedId;
+                const recipeID = response.data.recipeUsedId;
                 const response2 = await api.get('/recipes/' + recipeID);
                 setRecipes(response2.data);
 
-                const hostID=response.data.partyHostId;
+                const hostID = response.data.partyHostId;
                 const response3 = await api.get('/users/' + hostID);
                 setUsers(response3.data);
             } catch (error) {
@@ -79,8 +80,9 @@ const Party = ()=>{
 
         fetchData();
     }, [])
-    const hostID=party.partyHostId;
-    const recipeID=party.recipeUsedId;
+    const hostID = party.partyHostId;
+    const recipeID = party.recipeUsedId;
+
     function handleOnClickHostProfile(e) {
         window.location.href = `/users/${hostID}`;
     }
@@ -94,11 +96,12 @@ const Party = ()=>{
             <div className="party detail left column">
                 <PartyPhoto/>
                 <div>
-                    <h1 align="left">{party.partyName} created by <span onClick={handleOnClickHostProfile}>{user.username}</span></h1>
+                    <h1 align="left">{party.partyName} created by <span
+                        onClick={handleOnClickHostProfile}>{user.username}</span></h1>
                 </div>
 
-                <div >
-                    <div style={{display:'flex',alignItems:'center',flexWrap:'wrap'}}>
+                <div>
+                    <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}>
                         <AccessTimeIcon/> Time:{party.time}
                     </div>
                     <div>
@@ -107,7 +110,7 @@ const Party = ()=>{
                     <h3 align="left">{party.partyIntro}</h3>
                     <h3 align="left">Attendants
                         <div>
-                            {party.partyAttendantsList.map((item,index)=>(
+                            {party.partyAttendantsList.map((item, index) => (
                                 <li>{item}</li>
                             ))}
                         </div>
@@ -118,12 +121,16 @@ const Party = ()=>{
 
             </div>
             <div className="party detail right column">
-                <Box sx={{ width: '100%' }}>
+                <Box sx={{width: '100%'}}>
                     <Stack spacing={6}>
                         <Item>
                             <div>
-                                <h2><div>Recipe</div></h2>
-                                <h3><div><span onClick={handleOnClickRecipe}>{recipe.recipeName}</span></div></h3>
+                                <h2>
+                                    <div>Recipe</div>
+                                </h2>
+                                <h3>
+                                    <div><span onClick={handleOnClickRecipe}>{recipe.recipeName}</span></div>
+                                </h3>
                             </div>
 
                         </Item>
@@ -134,11 +141,12 @@ const Party = ()=>{
                             </h2>
                             <div align="left">
                                 {
-                                    party.ingredients.map((item,index)=>(
+                                    party.ingredients.map((item, index) => (
                                         <FormGroup>
-                                       <div key={index} >
-                                           <span><FormControlLabel align="left" control={<Checkbox/>}label={item} /></span>
-                                       </div>
+                                            <div key={index}>
+                                                <span><FormControlLabel align="left" control={<Checkbox/>}
+                                                                        label={item}/></span>
+                                            </div>
                                         </FormGroup>
                                     ))
                                 }
