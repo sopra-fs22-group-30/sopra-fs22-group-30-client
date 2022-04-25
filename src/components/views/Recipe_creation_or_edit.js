@@ -30,7 +30,9 @@ const RecipeCreationOrEdit = ({isCreation}) => {
 
     const [recipeId,setRecipeId] = useState(null);
 
-    const [oldRecipe, setOldRecipe] = useState(null)
+    const [oldRecipe, setOldRecipe] = useState(null);
+    const [image, setImage]=useState("");
+    const [loading,setLoading]=useState(false);
 
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
@@ -149,26 +151,33 @@ const RecipeCreationOrEdit = ({isCreation}) => {
             const formData = new FormData;
             formData.append("file",ImageSelected);
             formData.append("upload_preset","kkluslzq");
+            setLoading(true);
 
             Axios.post("https://api.cloudinary.com/v1_1/dgnzmridn/image/upload",formData
             ).then((response)=>{
                     //console.log(response)
-                    console.log(response.data['secure_url']);
+                    //console.log(response.data['secure_url']);
                     let newPictureLocation=response.data['secure_url'].toString();
                     setPictureLocation(newPictureLocation);
+                    setImage(newPictureLocation);
+                    setLoading(false);
+                    console.log({image});
                 }
             )
         }
         return (
-
             <div align="center">
                 <input type="file"
                        onChange={(event)=>{
                            setImageSelected(event.target.files[0]);
                        }
-                       }/>
+                }/>
                 <div><button onClick={UploadImage}>Upload</button></div>
-            </div>)
+                <br/>
+                <div>
+                {loading? (<b>Loading</b>): <img src={image} className="display-image"/>}</div>
+            </div>
+        )
 
     }
 
