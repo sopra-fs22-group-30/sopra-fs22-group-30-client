@@ -13,6 +13,7 @@ import PaidIcon from '@mui/icons-material/Paid';
 import GroupsIcon from '@mui/icons-material/Groups';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Axios from "axios";
 
 const RecipeCreationOrEdit = ({isCreation}) => {
     const authorId = localStorage.getItem("id");
@@ -25,6 +26,7 @@ const RecipeCreationOrEdit = ({isCreation}) => {
     const [ingredients, setIngredients] = useState(
         [{name: "", amount: 0}]
     );
+    const [pictureLocation,setPictureLocation]=useState("https://res.cloudinary.com/dgnzmridn/image/upload/v1650889351/xnqp6ymq1ro6rm82onbj.jpg");
 
     const [recipeId,setRecipeId] = useState(null);
 
@@ -47,6 +49,7 @@ const RecipeCreationOrEdit = ({isCreation}) => {
                     setContent(myRecipe.content);
                     setPortion(myRecipe.portion);
                     setIngredients(myRecipe.ingredients);
+                    setPictureLocation(myRecipe.pictureLocation);
                 }
 
             } catch (error) {
@@ -80,7 +83,8 @@ const RecipeCreationOrEdit = ({isCreation}) => {
                 cost,
                 portion,
                 ingredients:filteredIngredients,
-                content
+                content,
+                pictureLocation,
             });
 
             if(recipeId){
@@ -136,6 +140,36 @@ const RecipeCreationOrEdit = ({isCreation}) => {
         // concatenate a new ingredient {name: "", amount: 0}
         let newIngredients = ingredients.concat({name: "", amount: 0});
         setIngredients(newIngredients);
+
+    }
+
+    function Picture_Upload(){
+        const [ImageSelected, setImageSelected]=useState("");
+        const UploadImage=()=>{
+            const formData = new FormData;
+            formData.append("file",ImageSelected);
+            formData.append("upload_preset","kkluslzq");
+
+            Axios.post("https://api.cloudinary.com/v1_1/dgnzmridn/image/upload",formData
+            ).then((response)=>{
+                    //console.log(response)
+                    console.log(response.data['secure_url']);
+                    let newPictureLocation=response.data['secure_url'].toString();
+                    setPictureLocation(newPictureLocation);
+                }
+            )
+        }
+        return (
+
+            <div align="center">
+                <input type="file"
+                       onChange={(event)=>{
+                           setImageSelected(event.target.files[0]);
+                       }
+                       }/>
+                <div><button onClick={UploadImage}>Upload</button></div>
+            </div>)
+
     }
 
     return (
@@ -269,7 +303,9 @@ const RecipeCreationOrEdit = ({isCreation}) => {
             <div className="recipe creation column">
 
                 <h3><span className="line"></span> &nbsp;&nbsp; Picture &nbsp;&nbsp; <span className="line"></span></h3>
-                <div className="upload-pic"></div>
+                <div className="upload-pic">
+                    <Picture_Upload/>
+                </div>
                 <Button className="profile edit button-container"
                         disabled={!recipeName
                             || !cuisine

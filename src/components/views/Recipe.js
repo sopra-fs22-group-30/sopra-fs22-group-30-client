@@ -1,11 +1,9 @@
 import React, {useState} from "react";
-import ReactDOM from "react-dom";
 import "styles/views/Profile.scss";
 import {styled} from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import food from 'food.jpg';
-import {useHistory} from "react-router-dom";
 import {useEffect} from "react";
 import {api, handleError} from "../../helpers/api";
 import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
@@ -22,6 +20,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import {pink, red} from "@mui/material/colors";
+import {Image} from 'cloudinary-react';
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -50,6 +49,7 @@ const Recipe = () => {
             portion: "",
             ingredients: "",
             cuisine: "",
+            pictureLocation:"",
         }
     );
 
@@ -192,7 +192,9 @@ const Recipe = () => {
                 <div>
                     {likeButton}
                 </div>
-                <RecipePhoto/>
+                <div className="display-pic" align="center">
+                    <Image style={{height:300}}cloudName="dgnzmridn" publicId={recipe.pictureLocation}/>
+                </div>
                 <div>
                     <h1 align="left">{recipe.recipeName} Created by <span
                         onClick={handleOnClickAuthorProfile}>{user.username}</span></h1>

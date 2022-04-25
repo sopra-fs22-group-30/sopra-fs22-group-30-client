@@ -63,6 +63,10 @@
     display: block;
     cursor: pointer;
     z-index: 0;
+    .recipe_pic{
+      height:150px;
+      width:100%;
+    }
   }
 
   &.recipe_photo {

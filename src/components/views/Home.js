@@ -17,6 +17,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
+import {Image} from "cloudinary-react";
 
 
 
@@ -39,7 +40,11 @@ const Recipe = ({recipe}) => {
                     </h3>
                 </div>
             </div>
-            <Photo/>
+            <div class="home recipe recipe_pic">
+                <img src={recipe.pictureLocation}  className="home recipe_photo" alt="profile_photo"/>
+            </div>
+
+
         </Link>
     )
 
@@ -80,15 +85,6 @@ const Party = ({party}) => {
 Party.propTypes = {
     party: PropTypes.object
 };
-
-
-
-
-const Photo = () => {
-    return (
-        <img src={food} className="home recipe_photo" alt="profile_photo"/>
-    )
-}
 
 
 const Cuisine_tag = () => {
