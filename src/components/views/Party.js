@@ -142,12 +142,13 @@ const Party = () => {
                             <div align="left">
                                 {
                                     party.ingredients.map((item, index) => (
-                                        <FormGroup>
+                                        <div>
                                             <div key={index}>
-                                                <span><FormControlLabel align="left" control={<Checkbox/>}
-                                                                        label={item}/></span>
+                                                <span>{item.name}</span>
+                                                <span>{item.takerId}</span>
+
                                             </div>
-                                        </FormGroup>
+                                        </div>
                                     ))
                                 }
                             </div>
