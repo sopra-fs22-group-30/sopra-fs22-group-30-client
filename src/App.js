@@ -13,7 +13,7 @@ const App = () => {
     <div>
         {/*StompSessionProvider : Once a user open the App, he will be connected via WS*/}
         <StompSessionProvider
-            brokerURL={`${getWebsocketDomain()}/websocket`}
+            brokerURL={`${getWebsocketDomain()}/gs-guide-websocket`}
             debug={STOMP => console.log({STOMP})}
             onConnect={() => console.log({STOMP_CONNECT: 'TCP connection successfully established'})}
         >

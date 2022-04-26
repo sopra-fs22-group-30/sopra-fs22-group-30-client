@@ -13,6 +13,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import {useStompClient, useSubscription} from 'react-stomp-hooks';
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -55,6 +56,8 @@ const Party = () => {
     const path = window.location.pathname;
     const partyID = path.substring(path.lastIndexOf('/') + 1);
     const userID = localStorage.getItem('id');
+    const stompClient = useStompClient();
+    const [partyFetchSwitch, setPartyFetchSwitch] = useState(false);
 
 
     useEffect(() => {
@@ -79,7 +82,36 @@ const Party = () => {
         }
 
         fetchData();
-    }, [])
+        // trigger
+    }, [partyFetchSwitch])
+
+    useSubscription(`/checklist/outgoing/${partyID}`, () => {
+        // trigger the user fetching switch
+        setPartyFetchSwitch(!partyFetchSwitch);
+    });
+
+    console.log(partyFetchSwitch);
+    console.log(party.ingredients);
+
+    function takeResponsibility(e) {
+        const ingredientId = e.target.id;
+        console.log("ingredientId:",ingredientId);
+        console.log("takerId:",userID);
+
+        stompClient.publish({
+            destination: `/app/checklist/incoming/${partyID}`,
+            body: JSON.stringify({
+                    ingredientId,
+                    takerId: userID
+                }
+            )
+        });
+        // trigger
+        setPartyFetchSwitch(!partyFetchSwitch);
+
+    }
+
+
     const hostID = party.partyHostId;
     const recipeID = party.recipeUsedId;
 
@@ -90,6 +122,7 @@ const Party = () => {
     function handleOnClickRecipe(e) {
         window.location.href = `/recipes/${recipeID}`;
     }
+
 
     return (
         <div className="party detail box">
@@ -142,10 +175,11 @@ const Party = () => {
                             <div align="left">
                                 {
                                     party.ingredients.map((item, index) => (
-                                        <div>
-                                            <div key={index}>
+                                        <div key={index} id={item.ingredientId} onClick={takeResponsibility}>
+                                            <div>
                                                 <span>{item.name}</span>
                                                 <span>{item.amount}</span>
+                                                <span>{item.takerId}</span>
                                             </div>
                                         </div>
                                     ))
