@@ -145,8 +145,7 @@ const Party = () => {
                                         <div>
                                             <div key={index}>
                                                 <span>{item.name}</span>
-                                                <span>{item.takerId}</span>
-
+                                                <span>{item.amount}</span>
                                             </div>
                                         </div>
                                     ))
