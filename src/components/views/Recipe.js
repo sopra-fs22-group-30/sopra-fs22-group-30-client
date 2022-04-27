@@ -76,7 +76,6 @@ const Recipe = () => {
                 setRecipes(response.data);
                 setIngredients(response.data.ingredients);
 
-
                 const authorID=response.data.authorId
                 const response2 = await api.get('/users/' + authorID);
                 setUsers(response2.data);
