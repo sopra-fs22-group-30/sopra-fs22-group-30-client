@@ -20,7 +20,6 @@ import Box from '@mui/material/Box'
 import {Image} from "cloudinary-react";
 
 
-
 const Recipe = ({recipe}) => {
     const redirectToProfile = (recipe) => {
         window.location.href = `/recipes/${recipe.recipeId}`;
@@ -57,6 +56,7 @@ Recipe.propTypes = {
 
 const Party = ({party}) => {
     const redirectToProfile = (party) => {
+
         window.location.href = `/parties/${party.partyId}`;
     }
     return (

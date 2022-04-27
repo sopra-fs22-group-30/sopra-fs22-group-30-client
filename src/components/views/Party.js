@@ -85,8 +85,9 @@ const Party = () => {
         // trigger
     }, [partyFetchSwitch])
 
-    useSubscription(`/checklist/outgoing/${partyID}`, () => {
+    useSubscription(`/checklist/${partyID}/fetch`, (message) => {
         // trigger the user fetching switch
+        console.log(message);
         setPartyFetchSwitch(!partyFetchSwitch);
     });
 
@@ -99,17 +100,17 @@ const Party = () => {
         console.log("takerId:",userID);
 
         stompClient.publish({
-            destination: `/app/checklist/incoming/${partyID}`,
+            destination: `/app/checklist/${partyID}/fetch`,
             body: JSON.stringify({
-                    ingredientId,
-                    takerId: userID
+                    "ingredientId":ingredientId,
+                    "takerId": userID
                 }
             )
         });
         // trigger
         setPartyFetchSwitch(!partyFetchSwitch);
-
     }
+
 
 
     const hostID = party.partyHostId;
@@ -175,8 +176,8 @@ const Party = () => {
                             <div align="left">
                                 {
                                     party.ingredients.map((item, index) => (
-                                        <div key={index} id={item.ingredientId} onClick={takeResponsibility}>
-                                            <div>
+                                        <div >
+                                            <div key={index} id={item.ingredientId} onClick={takeResponsibility}>
                                                 <span>{item.name}</span>
                                                 <span>{item.amount}</span>
                                                 <span>{item.takerId}</span>
