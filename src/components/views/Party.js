@@ -9,6 +9,10 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Stack from "@mui/material/Stack";
 import {api, handleError} from "../../helpers/api";
+import TextsmsIcon from '@mui/icons-material/Textsms';
+import GroupIcon from '@mui/icons-material/Group';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import FoodBankIcon from '@mui/icons-material/FoodBank';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -39,7 +43,7 @@ const PartyPhoto = () => {
 }
 
 const Party = () => {
-    const [party, setParties] = useState({
+    const [party, setParty] = useState({
             partyId: "",
             partyName: "",
             partyHostId: "",
@@ -58,6 +62,7 @@ const Party = () => {
     const userID = localStorage.getItem('id');
     const stompClient = useStompClient();
     const [partyFetchSwitch, setPartyFetchSwitch] = useState(false);
+    // const [test,setTest] = useState(null)
 
 
     useEffect(() => {
@@ -65,7 +70,28 @@ const Party = () => {
         async function fetchData() {
             try {
                 const response = await api.get(`/users/${userID}/parties/${partyID}`);
-                setParties(response.data);
+
+                // // since we only get takerId from back-end, we need to add taker name via api.get()
+                // const ingredientAddUsername = response.data.ingredients.map(async (ingredient) => {
+                //     let takerName = null;
+                //     if(ingredient.takerId !== null){
+                //         const responseUser = await api.get(`/users/${ingredient.takerId}`);
+                //         takerName = responseUser.data.username;
+                //     }
+                //     console.log(takerName);
+                //     return (
+                //         JSON.stringify({
+                //             ingredientId: ingredient.ingredientId,
+                //             recipeId: ingredient.recipeId,
+                //             name: ingredient.name,
+                //             partyId: ingredient.partyId,
+                //             takerId: ingredient.takerId,
+                //             takerName,
+                //         })
+                //     )
+                // })
+                // setTest(ingredientAddUsername);
+                setParty(response.data);
 
                 const recipeID = response.data.recipeUsedId;
                 const response2 = await api.get('/recipes/' + recipeID);
@@ -96,13 +122,13 @@ const Party = () => {
 
     function takeResponsibility(e) {
         const ingredientId = e.target.id;
-        console.log("ingredientId:",ingredientId);
-        console.log("takerId:",userID);
+        console.log("ingredientId:", ingredientId);
+        console.log("takerId:", userID);
 
         stompClient.publish({
             destination: `/app/checklist/${partyID}/fetch`,
             body: JSON.stringify({
-                    "ingredientId":ingredientId,
+                    "ingredientId": ingredientId,
                     "takerId": userID
                 }
             )
@@ -110,7 +136,6 @@ const Party = () => {
         // trigger
         setPartyFetchSwitch(!partyFetchSwitch);
     }
-
 
 
     const hostID = party.partyHostId;
@@ -127,43 +152,75 @@ const Party = () => {
 
     return (
         <div className="party detail box">
-            <div className="party detail left column">
+            <div className="party detail column left ">
                 <PartyPhoto/>
-                <div>
-                    <h1 align="left">{party.partyName} created by <span
-                        onClick={handleOnClickHostProfile}>{user.username}</span></h1>
+                <div className="party detail party-title">
+                    <div className="party detail party-name">{party.partyName}</div>
+                    <div className="party detail party-author"
+                         onClick={handleOnClickHostProfile}
+                    >
+                        host: {user.username}</div>
                 </div>
 
                 <div>
-                    <div style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}>
-                        <AccessTimeIcon/> Time:{party.time}
+                    <div className="party detail info-container">
+                        <div className="party detail info-label">
+                            <AccessTimeIcon className="party detail info-icon"/>
+                            Time:
+                        </div>
+                        <div className="party detail info-value">{party.time}</div>
                     </div>
-                    <div>
-                        <LocationOnIcon/> Location:{party.place}
+
+                    <div className="party detail info-container">
+                        <div className="party detail info-label">
+                            <LocationOnIcon className="party detail info-icon"/>
+                            Location:
+                        </div>
+                        <div className="party detail info-value">{party.place}</div>
                     </div>
-                    <h3 align="left">{party.partyIntro}</h3>
-                    <h3 align="left">Attendants
-                        <div>
+
+                    <div className="party detail info-container">
+                        <div className="party detail info-label">
+                            <TextsmsIcon className="party detail info-icon"/>
+                            Party Intro:
+                        </div>
+                        <div className="party detail info-value text">{party.partyIntro}</div>
+                    </div>
+
+                    <div className="party detail info-container">
+                        <div className="party detail info-label">
+                            <GroupIcon className="party detail info-icon"/>
+                            Attendants:
+                        </div>
+                        <div className="party detail info-value text">
                             {party.partyAttendantsList.map((item, index) => (
-                                <li>{item}</li>
+                                <div className="party detail attendant-container">
+                                    <AccountCircleIcon className="party detail info-icon"/>
+                                    {item}
+                                </div>
                             ))}
                         </div>
-
-                    </h3>
+                    </div>
                 </div>
-
-
             </div>
-            <div className="party detail right column">
+
+            <div className="party detail column right">
                 <Box sx={{width: '100%'}}>
                     <Stack spacing={6}>
                         <Item>
                             <div>
                                 <h2>
-                                    <div>Recipe</div>
+                                    <div>Used Recipe</div>
                                 </h2>
                                 <h3>
-                                    <div><span onClick={handleOnClickRecipe}>{recipe.recipeName}</span></div>
+                                    <div onClick={handleOnClickRecipe}
+                                         className="party detail info-container"
+                                    >
+                                        <div className="party detail info-label recipe">
+                                            <FoodBankIcon className="party detail info-icon"/>
+                                            {recipe.recipeName}
+                                        </div>
+                                    </div>
                                 </h3>
                             </div>
 
@@ -173,15 +230,32 @@ const Party = () => {
                             <h2>
                                 Ingredients
                             </h2>
+                            <div className="party detail ingredient-note">
+                                *Click on this checklist and bring ingredients for this party :)
+                            </div>
                             <div align="left">
                                 {
                                     party.ingredients.map((item, index) => (
-                                        <div >
-                                            <div key={index} id={item.ingredientId} onClick={takeResponsibility}>
-                                                <span>{item.name}</span>
-                                                <span>{item.amount}</span>
-                                                <span>{item.takerId}</span>
+                                        <div key={index} className="party detail info-container ingredient">
+                                            <div className="party detail ingredient-label">
+                                                <span className="party detail ingredient-name">{item.name}:</span>
+                                                <span className="party detail ingredient-amount">{item.amount}g</span>
                                             </div>
+                                            {item.takerId ?
+                                                <div
+                                                    className="party detail ingredient-taker"
+                                                    id={item.ingredientId}
+                                                    onClick={takeResponsibility}
+                                                >{item.takerId}
+                                                </div>
+                                                :
+                                                <div
+                                                    className="party detail ingredient-taker null"
+                                                    id={item.ingredientId}
+                                                    onClick={takeResponsibility}
+                                                >Bring it!
+                                                </div>
+                                            }
                                         </div>
                                     ))
                                 }
