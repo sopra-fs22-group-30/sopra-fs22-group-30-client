@@ -76,6 +76,7 @@ const Recipe = () => {
                 setRecipes(response.data);
                 setIngredients(response.data.ingredients);
 
+
                 const authorID=response.data.authorId
                 const response2 = await api.get('/users/' + authorID);
                 setUsers(response2.data);
@@ -192,8 +193,10 @@ const Recipe = () => {
                 <div>
                     {likeButton}
                 </div>
-                <div className="display-pic" align="center">
-                    <Image style={{height:300}}cloudName="dgnzmridn" publicId={recipe.pictureLocation}/>
+                <div className="display-pic">
+
+                    <Image style={{maxHeight:300,maxWidth:700}}cloudName="dgnzmridn" publicId={recipe.pictureLocation}/>
+
                 </div>
                 <div>
                     <h1 align="left">{recipe.recipeName} Created by <span
