@@ -71,27 +71,8 @@ const Party = () => {
             try {
                 const response = await api.get(`/users/${userID}/parties/${partyID}`);
 
-                // // since we only get takerId from back-end, we need to add taker name via api.get()
-                // const ingredientAddUsername = response.data.ingredients.map(async (ingredient) => {
-                //     let takerName = null;
-                //     if(ingredient.takerId !== null){
-                //         const responseUser = await api.get(`/users/${ingredient.takerId}`);
-                //         takerName = responseUser.data.username;
-                //     }
-                //     console.log(takerName);
-                //     return (
-                //         JSON.stringify({
-                //             ingredientId: ingredient.ingredientId,
-                //             recipeId: ingredient.recipeId,
-                //             name: ingredient.name,
-                //             partyId: ingredient.partyId,
-                //             takerId: ingredient.takerId,
-                //             takerName,
-                //         })
-                //     )
-                // })
-                // setTest(ingredientAddUsername);
                 setParty(response.data);
+                console.log(response.data);
 
                 const recipeID = response.data.recipeUsedId;
                 const response2 = await api.get('/recipes/' + recipeID);
@@ -246,7 +227,7 @@ const Party = () => {
                                                     className="party detail ingredient-taker"
                                                     id={item.ingredientId}
                                                     onClick={takeResponsibility}
-                                                >{item.takerId}
+                                                >{item.takerName}
                                                 </div>
                                                 :
                                                 <div
