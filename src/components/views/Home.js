@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
-import {Button} from 'components/ui/Button';
 import {Link, useHistory} from 'react-router-dom';
-import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Home.scss";
-import profile_photo from "../../profile_photo.svg";
 import icon_post from "../../icon_post.svg";
 import clock from "../../clock.svg";
 import cuisine from "../../cuisine_tag.svg";
@@ -104,13 +101,14 @@ const Home = () => {
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [recipes, setRecipes] = useState(null);
     const [parties, setParties] = useState(null);
-
+    const userID = localStorage.getItem('id');
 
     useEffect(() => {
         async function fetchData(){
             try {
                 const recipesResponse = await api.get('/recipes');
-                const partiesResponse = await api.get('/parties');
+                const partiesResponse = await api.get(`/users/parties/${userID}`);
+                //const partiesResponse = await api.get(`/parties`);
                 setRecipes(recipesResponse.data);
                 setParties(partiesResponse.data);
             } catch (error) {
