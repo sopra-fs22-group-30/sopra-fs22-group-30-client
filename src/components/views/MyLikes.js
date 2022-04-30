@@ -12,12 +12,8 @@ import food from "../../food.jpg";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTime";
 import PaidIcon from "@mui/icons-material/Paid";
 import GroupsIcon from "@mui/icons-material/Groups";
-
-const Photo = () => {
-    return (
-        <img src={food} className="myLikes recipe_photo" alt="profile_photo"/>
-    )
-}
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 const Recipe = ({recipe}) => {
     const redirectToDetailPage = (recipe) => {
@@ -38,7 +34,9 @@ const Recipe = ({recipe}) => {
                     </h3>
                 </div>
             </div>
-            <Photo/>
+            <div className="home recipe recipe_pic">
+                <img src={recipe.pictureLocation} className="home recipe_photo" alt="profile_photo"/>
+            </div>
         </Link>
     )
 };
