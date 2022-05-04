@@ -1,5 +1,6 @@
-import {Redirect} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
 import PropTypes from "prop-types";
+import {api, handleError} from "../../../helpers/api";
 
 /**
  * routeProtectors interfaces can tell the router whether or not it should allow navigation to a requested route.
@@ -11,12 +12,29 @@ import PropTypes from "prop-types";
  * @param props
  */
 export const HomeGuard = props => {
-  if (localStorage.getItem("token")) {
-    return props.children;
-  }
-  return <Redirect to="/login"/>;
-};
+    const history = useHistory();
+
+    async function fetchUsers() {
+        try {
+            const response = await api.get('/users');
+            if (!response.data.length) {
+                await localStorage.clear();
+                window.location.href = `/register`;
+            }
+
+        } catch (error) {
+            alert("No users in DataBase, please click on Logout!")
+        }
+    };
+
+    fetchUsers();
+
+    if (localStorage.getItem("token")) { return props.children; }
+
+    return <Redirect to="/login"/>
+}
+
 
 HomeGuard.propTypes = {
-  children: PropTypes.node
+    children: PropTypes.node
 };

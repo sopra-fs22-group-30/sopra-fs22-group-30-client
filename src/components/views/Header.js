@@ -66,7 +66,9 @@ const Navigate = props => {
 const Header = props => (
     <div className="header container">
         <Logo/>
-        <Navigate/>
+        { localStorage.getItem("id")
+            && <Navigate/>
+        }
     </div>
 );
 

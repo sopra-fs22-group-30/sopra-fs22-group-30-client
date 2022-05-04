@@ -39,11 +39,15 @@ const AppRouter = () => {
                 </Route>
 
                 <Route path="/recipes/:id">
-                    <Recipe/>
+                    <HomeGuard>
+                        <Recipe/>
+                    </HomeGuard>
                 </Route>
 
                 <Route exact path="/users/likes/:id">
-                    <MyLikes/>
+                    <HomeGuard>
+                        <MyLikes/>
+                    </HomeGuard>
                 </Route>
 
                 <Route exact path="/recipes-creation">
@@ -59,7 +63,9 @@ const AppRouter = () => {
                 </Route>
 
                 <Route path="/parties/:id">
-                    <Party/>
+                    <HomeGuard>
+                        <Party/>
+                    </HomeGuard>
                 </Route>
 
                 <Route exact path="/parties-creation">
