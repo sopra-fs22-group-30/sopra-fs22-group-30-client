@@ -94,7 +94,7 @@
     border: 2px solid #EDEEF2;
     z-index: 2;
     h2 {
-      font-family: 'Nunito', ui-serif;
+      font-family: 'Nunito', ui-serif, sans-serif;
       position: relative;
       top:-0.5em;
       margin-left: 0.7em;
@@ -113,7 +113,7 @@
     &.recipes_info{
       margin-left: 1.2em;
       margin-top: -3.5em;
-      font-family: 'Nunito', ui-serif;
+      font-family: 'Nunito', ui-serif, sans-serif;
       position: relative;
       //font-style:italic;
       font-weight: initial;
@@ -154,7 +154,7 @@
 
     h2 {
       color: #064059;
-      font-family: 'Inter', math;
+      font-family: 'Inter', math, sans-serif;
       font-style: normal;
       font-weight: 800;
       font-size: 1em;
@@ -163,7 +163,7 @@
     &.info {
       border-style: hidden;
       color: #064059;
-      font-family: 'Inter', math;
+      font-family: 'Inter', math, sans-serif;
       font-style: normal;
       font-weight: 400;
       font-size: 14px;
@@ -194,7 +194,7 @@
 
 
   &.title {
-    font-family: 'Nunito', ui-serif;
+    font-family: 'Nunito', ui-serif, sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 25px;

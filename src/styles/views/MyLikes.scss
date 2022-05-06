@@ -69,7 +69,7 @@
     z-index: 2;
 
     h2 {
-      font-family: 'Nunito', ui-serif;
+      font-family: 'Nunito', ui-serif, sans-serif;
       //position: absolute;
       top: 0;
       margin-left: 0.5em;
@@ -84,7 +84,7 @@
 
     &.recipes_info {
       margin-left: 1em;
-      font-family: 'Nunito', ui-serif;
+      font-family: 'Nunito', ui-serif, sans-serif;
       position: relative;
       font-style: italic;
       font-weight: initial;

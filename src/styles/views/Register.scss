@@ -55,13 +55,13 @@
     justify-content: center;
     //margin-top: 2em;
     height:40px;
-    top: calc(50% - 40px/2 + 125px);
+    top: calc(50% - 40px / 2 + 125px);
     margin-bottom: 10px;
   }
   a:link,a:visited{
     color:#5A9D79;
     text-decoration: none;
-    font-family: 'Nunito';
+    font-family: 'Nunito', sans-serif;
     font-weight: 400;
   }
 }
