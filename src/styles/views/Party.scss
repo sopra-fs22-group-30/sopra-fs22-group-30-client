@@ -69,6 +69,10 @@
         word-break: break-word;
       }
     }
+    &.button-container {
+      padding-top: 1em;
+      float:right;
+    }
 
     &.attendant-container {
       margin-left: 2em;
