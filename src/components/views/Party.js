@@ -130,6 +130,10 @@ const Party = () => {
         window.location.href = `/recipes/${recipeID}`;
     }
 
+    const goEdit = () => {
+        window.location.href = `/parties-edit/${partyID}`;
+    }
+
 
     return (
         <div className="party detail box">
@@ -246,6 +250,16 @@ const Party = () => {
 
                     </Stack>
                 </Box>
+
+                <div className="admin-button container">
+                    <button className="admin-button item"> DISMISS </button>
+
+                    { Number(localStorage.getItem('id')) === hostID
+                        &&
+                        <button className="admin-button item" onClick={goEdit}> EDIT </button>
+                    }
+
+                </div>
 
             </div>
 

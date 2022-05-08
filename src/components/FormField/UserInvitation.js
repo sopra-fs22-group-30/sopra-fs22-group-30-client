@@ -175,15 +175,22 @@ export default function UserInvitation(props) {
     } = useAutocomplete({
         id: 'customized-hook-demo',
         multiple: true,
+        value: props.value,
         options: props.options,
         onChange: props.onChange,
+        isCreation: props.isCreation
     });
 
 
     return (
         <Root>
             <div {...getRootProps()}>
-                <Label {...getInputLabelProps()}>Invite Your Friends Here!</Label>
+                <Label {...getInputLabelProps()}>
+                    {props.isCreation ?
+                        "Invite Your Friends Here!" : "Add or Kick Your Friends:"
+                    }
+
+                </Label>
                 <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
                     {value.map((option, index) => (
                         <StyledTag label={option} {...getTagProps({index})} />

@@ -8,9 +8,9 @@ import Profile from "components/views/Profile";
 import ProfileEdit from "../../views/Profile_edit";
 import Recipe from "../../views/Recipe";
 import RecipeCreationOrEdit from "../../views/Recipe_creation_or_edit";
-import PartyCreation from "../../views/Party_creation";
 import Party from "../../views/Party";
 import MyLikes from "components/views/MyLikes";
+import PartyCreationOrEdit from "../../views/Party_creation_or_edit";
 
 /**
  * Main router of your application.
@@ -70,7 +70,13 @@ const AppRouter = () => {
 
                 <Route exact path="/parties-creation">
                     <HomeGuard>
-                        <PartyCreation/>
+                        <PartyCreationOrEdit isCreation = {true}/>
+                    </HomeGuard>
+                </Route>
+
+                <Route path="/parties-edit/:partyId">
+                    <HomeGuard>
+                        <PartyCreationOrEdit isCreation = {false}/>
                     </HomeGuard>
                 </Route>
 

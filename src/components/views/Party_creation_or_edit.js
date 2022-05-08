@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import React from "react";
 import "styles/views/Recipe.scss";
 import EditFormField from "../FormField/EditFormField";
@@ -21,7 +21,7 @@ const fakeDate = {
     "partyAttendantsList": ["name1", "name2", "name3"]
 }
 
-const PartyCreation = () => {
+const PartyCreationOrEdit = ({isCreation}) => {
     const partyHostId = localStorage.getItem("id");
     const [partyName, setPartyName] = useState("");
     const [partyIntro, setPartyIntro] = useState("");
@@ -30,7 +30,38 @@ const PartyCreation = () => {
     const [recipeUsedId, setRecipeUsedId] = useState(0);
     const [partyAttendantsList, setPartyAttendantsList] = useState([]);
 
+    const [partyId,setPartyId] = useState(null);
+
     const [isValid, setIsValid] = useState(true);
+
+    useEffect(() => {
+        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
+        async function fetchData() {
+            try {
+                if(!isCreation){
+                    const path = window.location.pathname;
+                    const partyId = path.substring(path.lastIndexOf('/')+1);
+                    setPartyId(partyId);
+                    const response = await api.get(`users/${partyHostId}/parties/${partyId}`);
+                    const myParty = response.data;
+                    setPartyName(myParty.partyName);
+                    setPartyIntro(myParty.partyIntro);
+                    setRecipeUsedId(myParty.recipeUsedId);
+                    setPlace(myParty.place);
+                    setTime(myParty.time);
+                    console.log(myParty.partyAttendantsList);
+                    setPartyAttendantsList(myParty.partyAttendantsList);
+
+                }
+
+            } catch (error) {
+                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("Something went wrong while fetching the recipes! See the console for details.");
+            }
+        }
+        fetchData();
+    }, []);
 
     const checkDateFormat = () => {
         setIsValid(false);
@@ -60,13 +91,24 @@ const PartyCreation = () => {
                 recipeUsedId,
                 partyAttendantsList
             });
-            const response = await api.post('/parties', requestBody);
-            window.location.href = `/parties/${response.data.partyId}`;
+            if (partyId){ // edit
+                const response = await api.put(`users/${partyHostId}/parties/${partyId}`, requestBody);
+                window.location.href = `/parties/${partyId}`;
+
+            }else{
+                const response = await api.post('/parties', requestBody);
+                window.location.href = `/parties/${response.data.partyId}`;
+            }
 
         } catch (error) {
             alert(`Something went wrong during the edit: \n${handleError(error)}`);
         }
     };
+
+    const doCancel = () => {
+        let path = `/parties/${partyId}`;
+        window.location.href = path;
+    }
 
     return (
         <div className="recipe creation box">
@@ -99,15 +141,17 @@ const PartyCreation = () => {
                         <p className="profile edit wrongFormat party"> Invalid Date Format!</p>
                     </div>
                 }
-                <Autocomplete
-                    className="recipe creation container"
-                    onChange={(event, newValue) => {
-                        setRecipeUsedId(newValue.recipeId);
-                    }}
-                    options={UserLikedRecipeOptions()}
-                    getOptionLabel={(option) => option.recipeName}
-                    renderInput={(params) => <TextField {...params} label="Choose a recipe from your Likes"/>}
-                />
+                {isCreation &&
+                    <Autocomplete
+                        className="recipe creation container"
+                        onChange={(event, newValue) => {
+                            setRecipeUsedId(newValue.recipeId);
+                        }}
+                        options={UserLikedRecipeOptions()}
+                        getOptionLabel={(option) => option.recipeName}
+                        renderInput={(params) => <TextField {...params} label="Choose a recipe from your Likes"/>}
+                    />
+                }
                 <TextFormField
                     className="recipe creation container"
                     label="Party Intro"
@@ -121,10 +165,12 @@ const PartyCreation = () => {
                 <h3><span className="line"></span> Invitation <span className="line"></span></h3>
 
                 <UserInvitation
+                    value={partyAttendantsList}
                     options={UsernameOptions()}
                     onChange={(event, newValue) => {
                         setPartyAttendantsList(newValue);
                     }}
+                    isCreation={isCreation}
                 />
             </div>
 
@@ -142,11 +188,14 @@ const PartyCreation = () => {
                             || !partyAttendantsList
                         }
                         onClick={checkDateFormat}
-                >
-                    Let's Party!
+                >{ isCreation ?
+                    "Let's Party!" : "Save Changes"
+                }
+
                 </Button>
                 <Button className="profile edit button-container cancel"
                         width="100%"
+                        onClick={doCancel}
                 >
                     Cancel
                 </Button>
@@ -156,4 +205,4 @@ const PartyCreation = () => {
     )
 }
 
-export default PartyCreation;
+export default PartyCreationOrEdit;
