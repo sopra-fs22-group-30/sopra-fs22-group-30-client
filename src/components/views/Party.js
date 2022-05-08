@@ -6,17 +6,12 @@ import party from "party.jpg"
 import {styled} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
 import Stack from "@mui/material/Stack";
 import {api, handleError} from "../../helpers/api";
 import TextsmsIcon from '@mui/icons-material/Textsms';
 import GroupIcon from '@mui/icons-material/Group';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
 import {useStompClient, useSubscription} from 'react-stomp-hooks';
 
 const Item = styled(Paper)(({theme}) => ({
