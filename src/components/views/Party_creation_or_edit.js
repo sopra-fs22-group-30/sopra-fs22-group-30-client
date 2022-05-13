@@ -106,12 +106,18 @@ const PartyCreationOrEdit = ({isCreation}) => {
     };
 
     const doCancel = () => {
-        let path = `/parties/${partyId}`;
-        window.location.href = path;
+        let path1 = `/parties/${partyId}`;
+        let path2=`/home`
+        if(partyId!=null) {
+            window.location.href = path1;
+        }
+        else{
+            window.location.href=path2;
+        }
     }
 
     return (
-        <div className="recipe creation box">
+        <div className="party creation box" align="center">
             <div className="recipe creation column">
                 <h3><span className="line"></span> Standard <span className="line"></span></h3>
                 <EditFormField
@@ -163,7 +169,6 @@ const PartyCreationOrEdit = ({isCreation}) => {
             </div>
             <div className="recipe creation column">
                 <h3><span className="line"></span> Invitation <span className="line"></span></h3>
-
                 <UserInvitation
                     value={partyAttendantsList}
                     options={UsernameOptions()}
@@ -172,12 +177,11 @@ const PartyCreationOrEdit = ({isCreation}) => {
                     }}
                     isCreation={isCreation}
                 />
-            </div>
 
-            <div className="recipe creation column">
-                <h3><span className="line"></span> &nbsp;&nbsp; Picture &nbsp;&nbsp; <span className="line"></span></h3>
-                <div className="upload-pic"></div>
-                <Button className="profile edit button-container"
+            </div>
+            <div className="party creation container">
+                <span>
+                <Button className="party creation button-container"
                         width="100%"
                         disabled={
                             !partyName
@@ -191,16 +195,16 @@ const PartyCreationOrEdit = ({isCreation}) => {
                 >{ isCreation ?
                     "Let's Party!" : "Save Changes"
                 }
-
                 </Button>
-                <Button className="profile edit button-container cancel"
+                <Button className="party creation cancel"
                         width="100%"
                         onClick={doCancel}
                 >
                     Cancel
                 </Button>
-            </div>
+            </span>
 
+            </div>
         </div>
     )
 }

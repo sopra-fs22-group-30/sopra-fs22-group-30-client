@@ -199,4 +199,34 @@
       justify-content:center;
     }
   }
+
+  &.creation{
+    &.box {
+      margin: 0 auto;
+      width: 900px;
+      align-items:center;
+      flex-direction: column;
+    }
+    &.button-container{
+      display: flex;
+      justify-content: center;
+      padding:0.8em;
+      margin-top: 2em;
+      text-transform: uppercase;
+      color: #424242;
+      background-color: #EDCEBC;
+      max-width: 300px;
+    }
+    &.cancel {
+      display: flex;
+      justify-content: center;
+      padding:0.8em;
+      text-transform: uppercase;
+      color: #424242;
+      max-width: 300px;
+      margin-top: 1em;
+      margin-bottom: 2em;
+      background-color: #b9b9b9;
+    }
+  }
 }
