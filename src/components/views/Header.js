@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import "styles/views/Header.scss";
 import icon_post from 'icon_post.svg';
 import {api, handleError} from "../../helpers/api";
+import Notification from "./Notification";
+
 
 /**
  * This is an example of a Functional and stateless component (View) in React. Functional components are not classes and thus don't handle internal state changes.
@@ -11,6 +13,7 @@ import {api, handleError} from "../../helpers/api";
  * https://reactjs.org/docs/components-and-props.html
  * @FunctionalComponent
  */
+
 
 const Logo = props => (
     <div className="header logo">
@@ -22,17 +25,17 @@ const Logo = props => (
 )
 
 const Navigate = props => {
-    const goHome =() =>{
+    const goHome = () => {
         let path = `/home`;
         window.location.href = path;
     }
 
-    const goMyProfile =() =>{
+    const goMyProfile = () => {
         const myUserId = localStorage.getItem('id');
         window.location.href = `/users/${myUserId}`;
     }
 
-    const goRecipeCreation =() =>{
+    const goRecipeCreation = () => {
         window.location.href = `/recipes-creation`;
     }
 
@@ -53,7 +56,7 @@ const Navigate = props => {
             <li className="header navigate item" onClick={() => doLogout()} style={{border: "none"}}>Logout</li>
             <li className="header navigate item" onClick={() => goMyProfile()}>My Profile</li>
             <li className="header navigate item" onClick={() => goRecipeCreation()}>
-                <img src={icon_post} className="header navigate post_icon" alt="icon_post" />
+                <img src={icon_post} className="header navigate post_icon" alt="icon_post"/>
                 <span>New Recipe</span>
             </li>
             <li className="header navigate item" onClick={() => goHome()}>Home</li>
@@ -63,14 +66,17 @@ const Navigate = props => {
 }
 
 
-const Header = props => (
-    <div className="header container">
-        <Logo/>
-        { localStorage.getItem("id")
-            && <Navigate/>
-        }
-    </div>
-);
+const Header = props => {
+    return (
+        <div className="header container">
+            <Logo/>
+            {localStorage.getItem("id")
+                && <Navigate/>
+            }
+            <Notification/>
+        </div>
+    )
+};
 
 
 /**
