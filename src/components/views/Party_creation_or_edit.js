@@ -10,6 +10,7 @@ import UserLikedRecipeOptions from "../FormField/UserLikesRecipeOptions";
 import UserInvitation from "../FormField/UserInvitation";
 import UsernameOptions from "../FormField/UsernameOptions";
 import convertDateToJavaDateFormat from "../date/ToJavaDateFormat";
+import Grid from '@mui/material/Grid';
 
 const fakeDate = {
     "partyName": "testPartyName",
@@ -117,7 +118,7 @@ const PartyCreationOrEdit = ({isCreation}) => {
     }
 
     return (
-        <div className="party creation box" align="center">
+        <div className="party creation box" >
             <div className="recipe creation column">
                 <h3><span className="line"></span> Standard <span className="line"></span></h3>
                 <EditFormField
@@ -180,30 +181,27 @@ const PartyCreationOrEdit = ({isCreation}) => {
 
             </div>
             <div className="party creation container">
-                <span>
-                <Button className="party creation button-container"
-                        width="100%"
-                        disabled={
-                            !partyName
-                            || !partyIntro
-                            || !place
-                            || !time
-                            || !recipeUsedId
-                            || !partyAttendantsList
-                        }
-                        onClick={checkDateFormat}
-                >{ isCreation ?
-                    "Let's Party!" : "Save Changes"
-                }
-                </Button>
-                <Button className="party creation cancel"
-                        width="100%"
-                        onClick={doCancel}
-                >
-                    Cancel
-                </Button>
-            </span>
-
+                    <Button className="party creation button-container"
+                            width="100%"
+                            disabled={
+                                !partyName
+                                || !partyIntro
+                                || !place
+                                || !time
+                                || !recipeUsedId
+                                || !partyAttendantsList
+                            }
+                            onClick={checkDateFormat}
+                    >{ isCreation ?
+                        "Let's Party!" : "Save Changes"
+                    }
+                    </Button>
+                    <Button className="party creation cancel"
+                            width="100%"
+                            onClick={doCancel}
+                    >
+                        Cancel
+                    </Button>
             </div>
         </div>
     )

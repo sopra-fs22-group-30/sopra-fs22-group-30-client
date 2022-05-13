@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import "styles/views/Profile.scss";
 import {styled} from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
 import food from 'food.jpg';
 import {useEffect} from "react";
 import {api, handleError} from "../../helpers/api";
@@ -31,11 +30,6 @@ const Item = styled(Paper)(({theme}) => ({
 }));
 
 
-const RecipePhoto = () => {
-    return (
-        <img src={food} className="food" alt="food"/>
-    )
-}
 
 const Recipe = () => {
 
@@ -148,7 +142,7 @@ const Recipe = () => {
 
         return (
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 200}} size="small" aria-label="a dense table">
+                <Table sx={{ minWidth: 200, backgroundColor:"#fff7e5"}} size="medium" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Name</TableCell>
@@ -159,9 +153,9 @@ const Recipe = () => {
                         {ingredients.map((item,index) => (
                             <TableRow
                                 key={index}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                sx={{'&:last-child td, &:last-child th': { border: 0 }} }
                             >
-                                <TableCell component="th" scope="row">
+                                <TableCell component="th" scope="row" >
                                     {item.name}
                                 </TableCell>
                                 <TableCell align="right">{item.amount}</TableCell>
@@ -190,42 +184,47 @@ const Recipe = () => {
     return (
         <div className="party detail box">
             <div className="party detail left column">
-                <div>
-                    {likeButton}
-                </div>
                 <div className="display-pic">
-
                     <Image style={{maxHeight:300,maxWidth:700}}cloudName="dgnzmridn" publicId={recipe.pictureLocation}/>
-
                 </div>
                 <div>
                     <h1 align="left">{recipe.recipeName} Created by <span
                         onClick={handleOnClickAuthorProfile}>{user.username}</span></h1>
                 </div>
-
-                <div>
-                    <Grid container spacing={2} justifyContent="flex-end">
-                        <Item style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                        }}><AccessAlarmsIcon/> Time:{recipe.timeConsumed} minutes</Item>
-                        <Item style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                        }}><PaidIcon/> Price:chf {recipe.cost}</Item>
-                        <Item style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                        }}><GroupIcon/> Portion:{recipe.portion}</Item>
-                        <Item style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                        }}><FoodBankIcon/> Cuisine:{recipe.cuisine}</Item>
-                    </Grid>
+                <div align="right">
+                    {likeButton}
+                </div>
+                <div className="party detail display-container" >
+                    <h4>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}>
+                        <AccessAlarmsIcon/>Time:{recipe.timeConsumed} minutes
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}>
+                        <PaidIcon/> Price:chf {recipe.cost}
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}>
+                        <GroupIcon/> Portion:{recipe.portion}
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}>
+                        <FoodBankIcon/> Cuisine:{recipe.cuisine}
+                    </div>
+                    </h4>
+                </div>
+                <div className="party detail display-content-container">
                     <h3 align="left">{recipe.content}</h3>
                 </div>
-
-
             </div>
             <div className="party detail right column">
                 <div>
