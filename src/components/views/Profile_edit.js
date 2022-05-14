@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Button} from 'components/ui/Button';
 import BaseContainer from "components/ui/BaseContainer";
-import convertDateToJavaDateFormat from "components/date/ToJavaDateFormat";
+import convertDateToJavaDateFormat from "components/date/convertDateToJavaDateFormat";
 import "styles/views/Profile.scss";
 import EditFormField from "components/FormField/EditFormField";
 import GenderRadioFormField from "components/FormField/GenderRadioFormField";

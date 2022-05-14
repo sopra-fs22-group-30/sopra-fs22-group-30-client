@@ -1,14 +1,8 @@
-import TextField from "@mui/material/TextField";
-import React, {useState} from "react";
+import React from "react";
 import {Slider} from "@mui/material";
 
 
 const BasicSlider = props => {
-
-    // const handleSliderChange = (event, newValue) => {
-    //     setValue(newValue);
-    // };
-
 
     return (
         <Slider

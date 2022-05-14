@@ -13,7 +13,7 @@ import MyLikes from "components/views/MyLikes";
 import PartyCreationOrEdit from "../../views/Party_creation_or_edit";
 import Notification from "../../views/Notification";
 import React from "react";
-import {useStompClient, useSubscription} from "react-stomp-hooks";
+import {useStompClient} from "react-stomp-hooks";
 
 /**
  * Main router of your application.

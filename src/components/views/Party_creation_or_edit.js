@@ -6,10 +6,10 @@ import TextFormField from "../FormField/TextFormField";
 import {Button} from "../ui/Button";
 import {api, handleError} from "../../helpers/api";
 import {Autocomplete, Input, TextField} from "@mui/material";
-import UserLikedRecipeOptions from "../FormField/UserLikesRecipeOptions";
+import UserLikedRecipeOptions from "../FormField/UserLikedRecipeOptions";
 import UserInvitation from "../FormField/UserInvitation";
 import UsernameOptions from "../FormField/UsernameOptions";
-import convertDateToJavaDateFormat from "../date/ToJavaDateFormat";
+import convertDateToJavaDateFormat from "../date/convertDateToJavaDateFormat";
 import Grid from '@mui/material/Grid';
 import {useSubscription} from "react-stomp-hooks";
 

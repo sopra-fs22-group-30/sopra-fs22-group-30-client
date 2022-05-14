@@ -11,12 +11,10 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const Notification = (props) => {
     const [open, setOpen] = useState(false);
-    const stompClient = props.client;
     const userId = localStorage.getItem("id")
     const [partyId, setPartyId] = useState(0);
     const [partyName, setPartyName] = useState('');
     const [hostName, setHostName] = useState('');
-    const history = useHistory();
 
     useSubscription(`/invitation/${userId}/fetch`, (msg) => {
         const dto = JSON.parse(msg.body);

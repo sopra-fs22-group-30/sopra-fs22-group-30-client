@@ -1,4 +1,4 @@
-import {api, handleError} from "../../helpers/api";
+import {api} from "../../helpers/api";
 import {useEffect, useState} from "react";
 
 const UsernameOptions = () => {
