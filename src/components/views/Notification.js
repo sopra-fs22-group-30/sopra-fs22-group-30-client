@@ -16,7 +16,7 @@ const Notification = (props) => {
     const [partyName, setPartyName] = useState('');
     const [hostName, setHostName] = useState('');
 
-    useSubscription(`/invitation/fetch`, (msg) => {
+    useSubscription(`/invitation/${userId}/fetch`, (msg) => {
         const dto = JSON.parse(msg.body);
         setPartyId(dto.partyId);
         setPartyName(dto.partyName);
