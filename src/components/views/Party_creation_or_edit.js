@@ -5,13 +5,11 @@ import EditFormField from "../FormField/EditFormField";
 import TextFormField from "../FormField/TextFormField";
 import {Button} from "../ui/Button";
 import {api, handleError} from "../../helpers/api";
-import {Autocomplete, Input, TextField} from "@mui/material";
+import {Autocomplete, TextField} from "@mui/material";
 import UserLikedRecipeOptions from "../FormField/UserLikedRecipeOptions";
 import UserInvitation from "../FormField/UserInvitation";
 import UsernameOptions from "../FormField/UsernameOptions";
 import convertDateToJavaDateFormat from "../date/convertDateToJavaDateFormat";
-import Grid from '@mui/material/Grid';
-import {useSubscription} from "react-stomp-hooks";
 
 const fakeDate = {
     "partyName": "testPartyName",
@@ -99,7 +97,6 @@ const PartyCreationOrEdit = ({isCreation, client}) => {
                 window.location.href = `/parties/${partyId}`;
 
             }else{ // post
-
                 const response = await api.post('/parties', requestBody);
                 const WSBody=JSON.stringify({
                     partyId: response.data.partyId,
@@ -109,8 +106,7 @@ const PartyCreationOrEdit = ({isCreation, client}) => {
                     destination: `/app/invitation/fetch`,
                     body: WSBody
                 });
-
-                // window.location.href = `/parties/${response.data.partyId}`;
+                window.location.href = `/parties/${response.data.partyId}`;
             }
 
         } catch (error) {
