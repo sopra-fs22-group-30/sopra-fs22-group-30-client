@@ -15,6 +15,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import {Image} from "cloudinary-react";
+import {useSubscription} from "react-stomp-hooks";
 
 
 const Recipe = ({recipe}) => {
@@ -101,6 +102,7 @@ const Home = () => {
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [recipes, setRecipes] = useState(null);
     const [parties, setParties] = useState(null);
+    const [trigger, setTrigger] = useState(false);
     const userID = localStorage.getItem('id');
 
     useEffect(() => {
@@ -118,7 +120,11 @@ const Home = () => {
             }
         }
         fetchData();
-    },[]);
+    },[trigger]);
+
+    useSubscription(`/invitation/${userID}/fetch`, () => {
+        setTrigger(!trigger);
+    });
 
 
     let recipePanel = <Spinner/>;
