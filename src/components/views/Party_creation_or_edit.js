@@ -11,6 +11,7 @@ import UserInvitation from "../FormField/UserInvitation";
 import UsernameOptions from "../FormField/UsernameOptions";
 import convertDateToJavaDateFormat from "../date/ToJavaDateFormat";
 import Grid from '@mui/material/Grid';
+import {useSubscription} from "react-stomp-hooks";
 
 const fakeDate = {
     "partyName": "testPartyName",
@@ -22,7 +23,8 @@ const fakeDate = {
     "partyAttendantsList": ["name1", "name2", "name3"]
 }
 
-const PartyCreationOrEdit = ({isCreation}) => {
+const PartyCreationOrEdit = ({isCreation, client}) => {
+    const stompClient = client;
     const partyHostId = localStorage.getItem("id");
     const [partyName, setPartyName] = useState("");
     const [partyIntro, setPartyIntro] = useState("");
@@ -96,9 +98,21 @@ const PartyCreationOrEdit = ({isCreation}) => {
                 const response = await api.put(`users/${partyHostId}/parties/${partyId}`, requestBody);
                 window.location.href = `/parties/${partyId}`;
 
-            }else{
+            }else{ // post
+
                 const response = await api.post('/parties', requestBody);
-                window.location.href = `/parties/${response.data.partyId}`;
+                const WSBody=JSON.stringify({
+                    partyId: response.data.partyId,
+                    partyAttendantsList
+                })
+
+                stompClient.publish({
+                    destination: `/app/invitation/fetch`,
+                    body: WSBody
+                });
+                console.log(WSBody)
+
+                // window.location.href = `/parties/${response.data.partyId}`;
             }
 
         } catch (error) {
@@ -116,6 +130,7 @@ const PartyCreationOrEdit = ({isCreation}) => {
             window.location.href=path2;
         }
     }
+
 
     return (
         <div className="party creation box" >

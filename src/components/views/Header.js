@@ -73,7 +73,6 @@ const Header = props => {
             {localStorage.getItem("id")
                 && <Navigate/>
             }
-            <Notification/>
         </div>
     )
 };

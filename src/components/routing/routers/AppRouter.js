@@ -11,6 +11,9 @@ import RecipeCreationOrEdit from "../../views/Recipe_creation_or_edit";
 import Party from "../../views/Party";
 import MyLikes from "components/views/MyLikes";
 import PartyCreationOrEdit from "../../views/Party_creation_or_edit";
+import Notification from "../../views/Notification";
+import React from "react";
+import {useStompClient, useSubscription} from "react-stomp-hooks";
 
 /**
  * Main router of your application.
@@ -22,8 +25,10 @@ import PartyCreationOrEdit from "../../views/Party_creation_or_edit";
  * Documentation about routing in React: https://reacttraining.com/react-router/web/guides/quick-start
  */
 const AppRouter = () => {
+    const stompClient = useStompClient();
     return (
         <BrowserRouter>
+            <Notification client={stompClient}/>
             <Switch>
                 {/*just for test /profile, need change it to /users/:id */}
                 <Route exact path="/users/:id">
@@ -70,13 +75,13 @@ const AppRouter = () => {
 
                 <Route exact path="/parties-creation">
                     <HomeGuard>
-                        <PartyCreationOrEdit isCreation = {true}/>
+                        <PartyCreationOrEdit isCreation = {true} client={stompClient}/>
                     </HomeGuard>
                 </Route>
 
                 <Route path="/parties-edit/:partyId">
                     <HomeGuard>
-                        <PartyCreationOrEdit isCreation = {false}/>
+                        <PartyCreationOrEdit isCreation = {false} client={stompClient}/>
                     </HomeGuard>
                 </Route>
 
