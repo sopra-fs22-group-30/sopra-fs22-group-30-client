@@ -105,12 +105,10 @@ const PartyCreationOrEdit = ({isCreation, client}) => {
                     partyId: response.data.partyId,
                     partyAttendantsList
                 })
-
                 stompClient.publish({
                     destination: `/app/invitation/fetch`,
                     body: WSBody
                 });
-                console.log(WSBody)
 
                 // window.location.href = `/parties/${response.data.partyId}`;
             }
