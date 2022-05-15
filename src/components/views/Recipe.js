@@ -188,42 +188,43 @@ const Recipe = () => {
                     <Image style={{maxHeight:300,maxWidth:700}}cloudName="dgnzmridn" publicId={recipe.pictureLocation}/>
                 </div>
                 <div>
-                    <h1 align="left">{recipe.recipeName} Created by <span
-                        onClick={handleOnClickAuthorProfile}>{user.username}</span></h1>
-                </div>
-                <div align="right">
-                    {likeButton}
+                    <h1 align="left">{recipe.recipeName} {likeButton}</h1>
+                        <div className="party detail party-author"
+                             onClick={handleOnClickAuthorProfile} align="right">
+                            Author:{user.username}
+                        </div>
+
                 </div>
                 <div className="party detail display-container" >
-                    <h4>
+
                     <div style={{
                         display: 'flex',
                         alignItems: 'center',
                     }}>
-                        <AccessAlarmsIcon/>Time:{recipe.timeConsumed} minutes
+                        <AccessAlarmsIcon/>&nbsp;Time:&nbsp;{recipe.timeConsumed} minutes
                     </div>
                     <div style={{
                         display: 'flex',
                         alignItems: 'center',
                     }}>
-                        <PaidIcon/> Price:chf {recipe.cost}
+                        <PaidIcon/>&nbsp;Price:&nbsp;CHF {recipe.cost}
                     </div>
                     <div style={{
                         display: 'flex',
                         alignItems: 'center',
                     }}>
-                        <GroupIcon/> Portion:{recipe.portion}
+                        <GroupIcon/>&nbsp;Portion:&nbsp;{recipe.portion}
                     </div>
                     <div style={{
                         display: 'flex',
                         alignItems: 'center',
                     }}>
-                        <FoodBankIcon/> Cuisine:{recipe.cuisine}
+                        <FoodBankIcon/>&nbsp;Cuisine:&nbsp;{recipe.cuisine}
                     </div>
-                    </h4>
+
                 </div>
                 <div className="party detail display-content-container">
-                    <h3 align="left">{recipe.content}</h3>
+                    <div>{recipe.content}</div>
                 </div>
             </div>
             <div className="party detail right column">
