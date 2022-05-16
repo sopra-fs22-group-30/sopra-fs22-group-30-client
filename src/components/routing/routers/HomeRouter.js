@@ -1,4 +1,4 @@
-import {Redirect, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import Home from "components/views/Home";
 import PropTypes from 'prop-types';
 

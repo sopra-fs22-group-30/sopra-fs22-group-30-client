@@ -1,19 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
+import {api} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 import "styles/views/Home.scss";
 import "styles/views/MyLikes.scss";
-import icon_post from "../../icon_post.svg";
-import clock from "../../clock.svg";
-import cuisine from "../../cuisine_tag.svg";
-import food from "../../food.jpg";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTime";
 import PaidIcon from "@mui/icons-material/Paid";
 import GroupsIcon from "@mui/icons-material/Groups";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+
 
 const Recipe = ({recipe}) => {
     const redirectToDetailPage = (recipe) => {

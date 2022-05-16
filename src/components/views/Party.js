@@ -57,7 +57,6 @@ const Party = () => {
     const userID = localStorage.getItem('id');
     const stompClient = useStompClient();
     const [partyFetchSwitch, setPartyFetchSwitch] = useState(false);
-    // const [test,setTest] = useState(null)
 
 
     useEffect(() => {

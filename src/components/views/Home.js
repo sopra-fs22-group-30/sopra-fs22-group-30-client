@@ -5,16 +5,13 @@ import {Link, useHistory} from 'react-router-dom';
 import PropTypes from "prop-types";
 import "styles/views/Home.scss";
 import icon_post from "../../icon_post.svg";
-import clock from "../../clock.svg";
 import cuisine from "../../cuisine_tag.svg";
-import food from "../../food.jpg";
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTime';
 import PaidIcon from '@mui/icons-material/Paid';
 import GroupsIcon from '@mui/icons-material/Groups';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
-import {Image} from "cloudinary-react";
 import {useSubscription} from "react-stomp-hooks";
 
 
@@ -110,7 +107,7 @@ const Home = () => {
             try {
                 const recipesResponse = await api.get('/recipes');
                 const partiesResponse = await api.get(`/users/parties/${userID}`);
-                //const partiesResponse = await api.get(`/parties`);
+
                 setRecipes(recipesResponse.data);
                 setParties(partiesResponse.data);
             } catch (error) {

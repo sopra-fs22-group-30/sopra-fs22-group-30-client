@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import "styles/views/Header.scss";
 import icon_post from 'icon_post.svg';
-import {api, handleError} from "../../helpers/api";
-import Notification from "./Notification";
+import {handleError} from "../../helpers/api";
 
 
 /**
@@ -15,7 +14,7 @@ import Notification from "./Notification";
  */
 
 
-const Logo = props => (
+const Logo = () => (
     <div className="header logo">
         <p className="header logo text">
             <span className="header logo first-part">Cook</span>
@@ -24,7 +23,7 @@ const Logo = props => (
     </div>
 )
 
-const Navigate = props => {
+const Navigate = () => {
     const goHome = () => {
         let path = `/home`;
         window.location.href = path;
@@ -66,7 +65,7 @@ const Navigate = props => {
 }
 
 
-const Header = props => {
+const Header = () => {
     return (
         <div className="header container">
             <Logo/>

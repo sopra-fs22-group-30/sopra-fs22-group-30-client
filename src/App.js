@@ -1,7 +1,7 @@
 import Header from "components/views/Header";
 import AppRouter from "components/routing/routers/AppRouter";
 import {getWebsocketDomain} from "./helpers/getDomain";
-import {StompSessionProvider, useStompClient} from "react-stomp-hooks";
+import {StompSessionProvider} from "react-stomp-hooks";
 import React from "react";
 
 /**

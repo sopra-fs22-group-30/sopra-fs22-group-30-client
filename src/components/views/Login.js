@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import User from 'models/User';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useHistory, withRouter } from 'react-router-dom';
 import {GreenButton} from "../ui/GreenButton";
 import 'styles/views/Login.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
-import { withRouter } from 'react-router-dom';
 
 /**
 It is possible to add multiple components inside a single file,

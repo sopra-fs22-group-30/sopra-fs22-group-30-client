@@ -28,7 +28,7 @@ const AppRouter = () => {
     const stompClient = useStompClient();
     return (
         <BrowserRouter>
-            <Notification client={stompClient}/>
+            <Notification />
             <Switch>
                 {/*just for test /profile, need change it to /users/:id */}
                 <Route exact path="/users/:id">
