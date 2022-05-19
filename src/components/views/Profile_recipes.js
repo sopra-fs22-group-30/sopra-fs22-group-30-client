@@ -3,12 +3,16 @@ import profile_photo from 'profile_photo.svg';
 import {useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {api, handleError} from "../../helpers/api";
+import {Image, Transformation} from 'cloudinary-react';
 import Stack from '@mui/material/Stack';
 
 
 const Photo = () => {
     return (
         <img src={profile_photo} className="profile photo" alt="profile_photo"/>
+        //<Image publicId="https://res.cloudinary.com/dgnzmridn/image/upload/v1650889351/xnqp6ymq1ro6rm82onbj.jpg">
+            //<Transformation width="100" height="100" radius="max" crop="fill"/>
+        //</Image>
     )
 }
 

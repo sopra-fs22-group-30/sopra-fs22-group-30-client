@@ -118,6 +118,11 @@
   }
 
   &.edit {
+    .display-image{
+      weight:200px;
+      height:200px;
+      border-radius: 100px;
+    }
     &.box {
       margin-top: 2em;
       min-height: 300px;

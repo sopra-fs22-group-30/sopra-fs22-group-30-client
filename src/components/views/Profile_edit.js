@@ -7,6 +7,9 @@ import "styles/views/Profile.scss";
 import EditFormField from "components/FormField/EditFormField";
 import GenderRadioFormField from "components/FormField/GenderRadioFormField";
 import TextFormField from "components/FormField/TextFormField";
+import Axios from "axios";
+import {Transformation} from "cloudinary-react";
+
 
 
 const EditBox = (props) => {
@@ -17,6 +20,9 @@ const EditBox = (props) => {
     const [gender, setGender] = useState("");
     const [intro, setIntro] = useState("");
     const [isValid, setIsValid] = useState(true);
+    const [profilepictureLocation,setprofilepictureLocation]=useState("https://res.cloudinary.com/dgnzmridn/image/upload/v1650889351/xnqp6ymq1ro6rm82onbj.jpg")
+    const [image, setImage]=useState("");
+    const [loading,setLoading]=useState(false);
 
     const checkDateFormat = () => {
         setIsValid(false);
@@ -40,7 +46,7 @@ const EditBox = (props) => {
             // we need id to identity a user
             setBirthday(convertDateToJavaDateFormat(birthday));
 
-            const requestBody = JSON.stringify({id: userId, username, birthday, gender, intro});
+            const requestBody = JSON.stringify({id: userId, username, birthday, gender, intro,profilepictureLocation});
             await api.put(`/users/${userId}`, requestBody);
 
             // submit successfully worked --> navigate to his/her own profile
@@ -66,6 +72,7 @@ const EditBox = (props) => {
                 setBirthday(response.data.birthday);
                 setGender(response.data.gender);
                 setIntro(response.data.intro);
+                setprofilepictureLocation(response.data.profilepictureLocation);
 
             } catch (error) {
                 console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
@@ -76,6 +83,43 @@ const EditBox = (props) => {
 
         fetchData();
     }, []);
+
+    function Picture_Upload(){
+        const [ImageSelected, setImageSelected]=useState("");
+        const UploadImage=()=>{
+            const formData = new FormData;
+            formData.append("file",ImageSelected);
+            formData.append("upload_preset","kkluslzq");
+            setLoading(true);
+
+            Axios.post("https://api.cloudinary.com/v1_1/dgnzmridn/image/upload",formData
+            ).then((response)=>{
+                    //console.log(response)
+                    //console.log(response.data['secure_url']);
+                    let newprofilepictureLocation=response.data['secure_url'].toString();
+                    setprofilepictureLocation(newprofilepictureLocation);
+                    setImage(newprofilepictureLocation);
+                    setLoading(false);
+                    console.log({image});
+                }
+            )
+        }
+        return (
+            <div align="center">
+                <input type="file"
+                       onChange={(event)=>{
+                           setImageSelected(event.target.files[0]);
+                       }
+                       }/>
+                <div><button onClick={UploadImage}>Upload</button></div>
+                <br/>
+                <div>
+                    {loading? (<b>Loading</b>): <img src={image} className="profile edit display-image"/>}
+                </div>
+            </div>
+        )
+
+    }
 
 
     return (
@@ -116,6 +160,10 @@ const EditBox = (props) => {
                     value={intro}
                     onChange={un => setIntro(un)}
                 />
+
+                <div className="recipe creation upload-pic">
+                    <Picture_Upload/>
+                </div>
 
                 <Button className="profile edit button-container"
                         disabled={!username}
