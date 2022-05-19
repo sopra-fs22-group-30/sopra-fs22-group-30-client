@@ -12,7 +12,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
-import {useSubscription} from "react-stomp-hooks";
+import {useStompClient, useSubscription} from "react-stomp-hooks";
 
 
 const Recipe = ({recipe}) => {
@@ -101,6 +101,8 @@ const Home = () => {
     const [parties, setParties] = useState(null);
     const [trigger, setTrigger] = useState(false);
     const userID = localStorage.getItem('id');
+    const stompClient = useStompClient();
+
 
     useEffect(() => {
         async function fetchData(){
@@ -120,6 +122,10 @@ const Home = () => {
     },[trigger]);
 
     useSubscription(`/invitation/${userID}/fetch`, () => {
+        setTrigger(!trigger);
+    });
+
+    useSubscription(`/recipeUpdating/fetch`, () => {
         setTrigger(!trigger);
     });
 

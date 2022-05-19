@@ -15,7 +15,8 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Axios from "axios";
 
-const RecipeCreationOrEdit = ({isCreation}) => {
+const RecipeCreationOrEdit = ({isCreation, client}) => {
+    const stompClient = client;
     const authorId = localStorage.getItem("id");
     const [recipeName, setRecipeName] = useState("");
     const [cuisine, setCuisine] = useState("");
@@ -94,6 +95,9 @@ const RecipeCreationOrEdit = ({isCreation}) => {
                 window.location.href = `/recipes/${recipeId}`;
             }else{
                 const response = await api.post('/recipes', requestBody);
+                stompClient.publish({
+                    destination: `/app//recipeUpdating/fetch`
+                });
                 window.location.href = `/recipes/${response.data.recipeId}`;
             }
 

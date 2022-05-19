@@ -57,7 +57,7 @@ const AppRouter = () => {
 
                 <Route exact path="/recipes-creation">
                     <HomeGuard>
-                        <RecipeCreationOrEdit isCreation = {true}/>
+                        <RecipeCreationOrEdit isCreation = {true} client={stompClient}/>
                     </HomeGuard>
                 </Route>
 
