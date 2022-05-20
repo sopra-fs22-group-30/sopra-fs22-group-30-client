@@ -174,6 +174,7 @@ const EditBox = (props) => {
                 >
                     Upload
                 </Button>
+
                 <Button className="profile edit button-container cancel"
                         width="100%"
                         onClick={() => doCancel()}

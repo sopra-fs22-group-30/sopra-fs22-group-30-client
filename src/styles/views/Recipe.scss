@@ -1,11 +1,12 @@
 @import 'styles/theme';
 
 .recipe {
+
   &.creation {
 
     &.container {
       margin: 7px 0;
-      width: 95%;
+      width: 100%;
     }
 
     &.column {
@@ -25,6 +26,27 @@
       margin: 0 auto;
       width: 1300px;
       align-items:center;
+    }
+    &.title container{
+      width: 100%;
+      align-items: end;
+      display: flex;
+    }
+    &.title{
+      font-size: 30px;
+      font-weight: bold;
+      display: flex;
+    }
+    &.author {
+      margin-left: auto;
+      margin-top: auto;
+      margin-right: 0.5em;
+      font-family: "Roboto Mono", monospace;
+      font-size: 18px;
+      font-weight: 200;
+      text-decoration: underline;
+      font-style: italic;
+      cursor: pointer;
     }
 
     .line {

@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {Link, useHistory, withRouter } from 'react-router-dom';
-import {GreenButton} from "../ui/GreenButton";
+import {Button} from "../ui/Button";
 import 'styles/views/Login.scss';
+import 'styles/views/Profile.scss'
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 
@@ -83,15 +84,18 @@ const Login = props => {
               value={password}
               onChange={n => setPassword(n)}
           />
-          <div className="login button-container">
-            <GreenButton
+
+          <div>
+            <Button
+                className="login main-button-container"
               disabled={!username || !password}
               width="100%"
               onClick={() => doLogin()}
             >
               Sign in
-            </GreenButton>
+            </Button>
           </div>
+
           <div className="login button-container">
             Don't have an account?
             <Link to={`/register`}>Sign up</Link>

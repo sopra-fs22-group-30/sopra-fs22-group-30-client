@@ -20,6 +20,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import {pink, red} from "@mui/material/colors";
 import {Image} from 'cloudinary-react';
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import TextsmsIcon from "@mui/icons-material/Textsms";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -187,42 +190,53 @@ const Recipe = () => {
                 <div className="display-pic">
                     <Image style={{maxHeight:300,maxWidth:700}}cloudName="dgnzmridn" publicId={recipe.pictureLocation}/>
                 </div>
+
+                <div className="recipe creation title container">
+                    <div className="recipe creation title" align="left">
+                        {recipe.recipeName}
+                    </div>
+
+                    <div className="recipe creation author"
+                         onClick={handleOnClickAuthorProfile} align="right">
+                        Author:{user.username}
+                    </div>
+
+                    <div align="right">
+                        {likeButton}
+                    </div>
+                </div>
                 <div>
-                    <h1 align="left">{recipe.recipeName} {likeButton}</h1>
-                        <div className="party detail party-author"
-                             onClick={handleOnClickAuthorProfile} align="right">
-                            Author:{user.username}
+                    <div className="party detail info-container">
+                        <div className="party detail info-label">
+                            <AccessAlarmsIcon className="party detail info-icon"/>
+                            Time:
                         </div>
-
-                </div>
-                <div className="party detail display-container" >
-
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                    }}>
-                        <AccessAlarmsIcon/>&nbsp;Time:&nbsp;{recipe.timeConsumed} minutes
-                    </div>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                    }}>
-                        <PaidIcon/>&nbsp;Price:&nbsp;CHF {recipe.cost}
-                    </div>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                    }}>
-                        <GroupIcon/>&nbsp;Portion:&nbsp;{recipe.portion}
-                    </div>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                    }}>
-                        <FoodBankIcon/>&nbsp;Cuisine:&nbsp;{recipe.cuisine}
+                        <div className="party detail info-value">{recipe.timeConsumed} minutes</div>
                     </div>
 
-                </div>
+                    <div className="party detail info-container">
+                        <div className="party detail info-label">
+                            <PaidIcon className="party detail info-icon"/>
+                            Price:
+                        </div>
+                        <div className="party detail info-value">{recipe.cost} CHF</div>
+                    </div>
+
+                    <div className="party detail info-container">
+                        <div className="party detail info-label">
+                            <GroupIcon className="party detail info-icon"/>
+                            Portion:
+                        </div>
+                        <div className="party detail info-value text">{recipe.portion}</div>
+                    </div>
+                    <div className="party detail info-container">
+                        <div className="party detail info-label">
+                            <FoodBankIcon className="party detail info-icon"/>
+                            Cuisine:
+                        </div>
+                        <div className="party detail info-value">{recipe.cuisine}</div>
+                    </div>
+                    </div>
                 <div className="party detail display-content-container">
                     <div>{recipe.content}</div>
                 </div>

@@ -86,8 +86,9 @@ const Register = props => {
                         onChange={n => setPassword(n)}
                     />
 
-                    <div className="register button-container">
+                    <div>
                         <Button
+                            className="login main-button-container"
                             disabled={!username || !password}
                             width="100%"
                             onClick={() => doRegister()}

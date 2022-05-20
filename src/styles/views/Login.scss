@@ -50,6 +50,16 @@
     top: calc(50% - 40px / 2 + 125px);
     margin-bottom: 10px;
   }
+  &.main-button-container{
+    display: flex;
+    justify-content: center;
+    padding:0.8em;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #4f9a2c;
+  }
+
   a:link,a:visited{
     color:#5A9D79;
     text-decoration: none;
