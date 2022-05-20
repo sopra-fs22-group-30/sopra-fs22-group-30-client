@@ -20,7 +20,7 @@ const EditBox = (props) => {
     const [gender, setGender] = useState("");
     const [intro, setIntro] = useState("");
     const [isValid, setIsValid] = useState(true);
-    const [profilepictureLocation,setprofilepictureLocation]=useState("https://res.cloudinary.com/dgnzmridn/image/upload/v1650889351/xnqp6ymq1ro6rm82onbj.jpg")
+    const [profilePictureLocation,setProfilePictureLocation]=useState("https://res.cloudinary.com/dgnzmridn/image/upload/v1650889351/xnqp6ymq1ro6rm82onbj.jpg")
     const [image, setImage]=useState("");
     const [loading,setLoading]=useState(false);
 
@@ -46,7 +46,7 @@ const EditBox = (props) => {
             // we need id to identity a user
             setBirthday(convertDateToJavaDateFormat(birthday));
 
-            const requestBody = JSON.stringify({id: userId, username, birthday, gender, intro,profilepictureLocation});
+            const requestBody = JSON.stringify({id: userId, username, birthday, gender, intro, profilePictureLocation});
             await api.put(`/users/${userId}`, requestBody);
 
             // submit successfully worked --> navigate to his/her own profile
@@ -72,7 +72,7 @@ const EditBox = (props) => {
                 setBirthday(response.data.birthday);
                 setGender(response.data.gender);
                 setIntro(response.data.intro);
-                setprofilepictureLocation(response.data.profilepictureLocation);
+                setProfilePictureLocation(response.data.profilePictureLocation);
 
             } catch (error) {
                 console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
@@ -94,10 +94,8 @@ const EditBox = (props) => {
 
             Axios.post("https://api.cloudinary.com/v1_1/dgnzmridn/image/upload",formData
             ).then((response)=>{
-                    //console.log(response)
-                    //console.log(response.data['secure_url']);
                     let newprofilepictureLocation=response.data['secure_url'].toString();
-                    setprofilepictureLocation(newprofilepictureLocation);
+                    setProfilePictureLocation(newprofilepictureLocation);
                     setImage(newprofilepictureLocation);
                     setLoading(false);
                     console.log({image});
@@ -105,18 +103,21 @@ const EditBox = (props) => {
             )
         }
         return (
-            <div align="center">
-                <input type="file"
-                       onChange={(event)=>{
-                           setImageSelected(event.target.files[0]);
-                       }
-                       }/>
-                <div><button onClick={UploadImage}>Upload</button></div>
-                <br/>
-                <div>
-                    {loading? (<b>Loading</b>): <img src={image} className="profile edit display-image"/>}
+            <div className="profile edit upload-image">
+                <div align="center">
+                    <input type="file"
+                           onChange={(event)=>{
+                               setImageSelected(event.target.files[0]);
+                           }
+                           }/>
+                    <div><button onClick={UploadImage}>Upload Profile Picture</button></div>
+                    <br/>
+                    <div>
+                        {loading? (<b>Loading</b>): <img src={image} className="profile edit display-image"/>}
+                    </div>
                 </div>
             </div>
+
         )
 
     }
@@ -126,6 +127,11 @@ const EditBox = (props) => {
         <div className="profile edit box">
             <div className="profile edit form">
                 <h2>Upload your profile:</h2>
+
+                <div className="recipe creation upload-pic">
+                    <Picture_Upload/>
+                </div>
+
                 <EditFormField
                     label="Username"
                     value={username}
@@ -160,10 +166,6 @@ const EditBox = (props) => {
                     value={intro}
                     onChange={un => setIntro(un)}
                 />
-
-                <div className="recipe creation upload-pic">
-                    <Picture_Upload/>
-                </div>
 
                 <Button className="profile edit button-container"
                         disabled={!username}

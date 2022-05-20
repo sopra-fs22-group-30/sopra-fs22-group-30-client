@@ -121,7 +121,11 @@
     .display-image{
       weight:200px;
       height:200px;
-      border-radius: 100px;
+    }
+    .upload-image{
+      border-radius: 5px;
+      border: 1px #b9b9b9 solid;
+      padding-top: 2em;
     }
     &.box {
       margin-top: 2em;

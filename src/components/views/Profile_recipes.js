@@ -4,17 +4,13 @@ import {useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {api, handleError} from "../../helpers/api";
 import {Image, Transformation} from 'cloudinary-react';
-import Stack from '@mui/material/Stack';
+import {AdvancedImage} from "@cloudinary/react";
+import {CloudinaryImage} from "@cloudinary/url-gen";
+import {fill, scale} from "@cloudinary/url-gen/actions/resize";
+import {outline, cartoonify} from "@cloudinary/url-gen/actions/effect";
+import {max} from "@cloudinary/url-gen/actions/roundCorners";
+import {outer} from "@cloudinary/url-gen/qualifiers/outlineMode";
 
-
-const Photo = () => {
-    return (
-        <img src={profile_photo} className="profile photo" alt="profile_photo"/>
-        //<Image publicId="https://res.cloudinary.com/dgnzmridn/image/upload/v1650889351/xnqp6ymq1ro6rm82onbj.jpg">
-            //<Transformation width="100" height="100" radius="max" crop="fill"/>
-        //</Image>
-    )
-}
 
 const Username = ({user}) => {
     return (
@@ -51,6 +47,7 @@ const Profile_recipes = (props) => {
             creationDate: "",
             birthday: "",
             intro: "",
+            profilePictureLocation:"",
         }
     );
     const [recipes,setRecipes]=useState([]);
@@ -107,6 +104,30 @@ const Profile_recipes = (props) => {
         window.location.href = `/users/likes/${userId}`;
     }
 
+    const Profilepicture=()=>{
+        const imageUrl=user.profilePictureLocation
+        if(imageUrl!=null){
+            const rawimage=imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
+            const userImage = new CloudinaryImage(rawimage,{cloudName:"dgnzmridn"});
+            userImage.resize(fill().height(200).width(200)).roundCorners(max())
+            return(
+                <div>
+                    <AdvancedImage cldImg={userImage}/>
+                </div>
+            )
+        }else{
+            const fakeimageUrl="https://res.cloudinary.com/dgnzmridn/image/upload/v1653055086/n9miv50ifxgpwgshy09w.jpg"
+            const rawimage=fakeimageUrl.substring(fakeimageUrl.lastIndexOf('/') + 1);
+            const userImage = new CloudinaryImage(rawimage,{cloudName:"dgnzmridn"});
+            userImage.resize(fill().height(200).width(200)).roundCorners(max())
+            return(
+                <div>
+                    <AdvancedImage cldImg={userImage}/>
+                </div>
+            )
+        }
+    }
+
     const Recipe = (props) => {
         return (
             <div className="profile recipe container">
@@ -129,7 +150,7 @@ const Profile_recipes = (props) => {
 
     return (
         <div className="profile column left">
-            <Photo/>
+            <Profilepicture/>
             <Username user={user}/>
             <MyLikesButton
                 onClick={redirectToMyLikes}
