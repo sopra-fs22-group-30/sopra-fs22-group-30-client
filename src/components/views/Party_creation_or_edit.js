@@ -145,7 +145,7 @@ const PartyCreationOrEdit = ({isCreation, client}) => {
                     onChange={un => setPlace(un)}
                 />
                 <EditFormField
-                    label="Time of your party"
+                    label="Date of your party"
                     value={time}
                     placeholder="dd.MM.yyyy"
                     className="recipe creation container"

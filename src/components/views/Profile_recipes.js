@@ -53,6 +53,7 @@ const Profile_recipes = (props) => {
     const [recipes,setRecipes]=useState([]);
     const path = window.location.pathname;
     const userID = path.substring(path.lastIndexOf('/') + 1);
+    const ID = localStorage.getItem('id');
 
 
     useEffect(() => {
@@ -129,22 +130,33 @@ const Profile_recipes = (props) => {
     }
 
     const Recipe = (props) => {
-        return (
-            <div className="profile recipe container">
-                <div id={"recipe-name-" + props.id} className="profile recipe recipe-name" onClick={handleOnClickRecipeName}>
-                    {props.recipeName}
+        if(ID==userID){
+            return (
+                <div className="profile recipe container">
+                    <div id={"recipe-name-" + props.id} className="profile recipe recipe-name" onClick={handleOnClickRecipeName}>
+                        {props.recipeName}
+                    </div>
+                    <div className="profile recipe button container">
+                        <ProfileRecipeButton id={"recipe-edit-" + props.id}
+                                             label="EDIT"
+                                             onClick={handleOnClickRecipeEdit}
+                        />
+                        <ProfileRecipeButton id={"recipe-delete-" + props.id}
+                                             label="DELETE"
+                                             onClick={handleOnClickRecipeDelete}/>
+                    </div>
                 </div>
-                <div className="profile recipe button container">
-                    <ProfileRecipeButton id={"recipe-edit-" + props.id}
-                                         label="EDIT"
-                                         onClick={handleOnClickRecipeEdit}
-                    />
-                    <ProfileRecipeButton id={"recipe-delete-" + props.id}
-                                         label="DELETE"
-                                         onClick={handleOnClickRecipeDelete}/>
+            )
+        }else{
+            return (
+                <div className="profile recipe container">
+                    <div id={"recipe-name-" + props.id} className="profile recipe recipe-name" onClick={handleOnClickRecipeName}>
+                        {props.recipeName}
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
+
     }
 
 

@@ -13,9 +13,13 @@ import {handleError} from "../../helpers/api";
  * @FunctionalComponent
  */
 
+const goHome = () => {
+    let path = `/home`;
+    window.location.href = path;
+}
 
 const Logo = () => (
-    <div className="header logo">
+    <div className="header logo" onClick={()=>goHome()}>
         <p className="header logo text">
             <span className="header logo first-part">Cook</span>
             <span className="header logo last-part">ever</span>
