@@ -1,8 +1,10 @@
 @import 'styles/theme';
 
+.IngredientsBox{
+  min-height:450px ;
+}
 .party {
   &.detail {
-
     &.party-title {
       background: #F0E4C6;
       border-radius: 0.75em;
