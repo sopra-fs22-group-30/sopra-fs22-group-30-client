@@ -19,19 +19,18 @@ const RecipeCreationOrEdit = ({isCreation, client}) => {
     const stompClient = client;
     const authorId = localStorage.getItem("id");
     const [recipeName, setRecipeName] = useState("");
-    const [cuisine, setCuisine] = useState("");
+    const [cuisine, setCuisine] = useState(null);
     const [timeConsumed, setTimeConsumed] = useState(50);
     const [cost, setCost] = useState(50);
     const [content, setContent] = useState("");
     const [portion, setPortion] = useState(1);
     const [ingredients, setIngredients] = useState(
-        [{name: "", amount: 0}]
+        [{name: "", amount:0}]
     );
     const [pictureLocation,setPictureLocation]=useState("https://res.cloudinary.com/dgnzmridn/image/upload/v1650889351/xnqp6ymq1ro6rm82onbj.jpg");
 
     const [recipeId,setRecipeId] = useState(null);
 
-    const [oldRecipe, setOldRecipe] = useState(null);
     const [image, setImage]=useState("");
     const [loading,setLoading]=useState(false);
 

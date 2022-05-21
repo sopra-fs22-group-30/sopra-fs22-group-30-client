@@ -96,7 +96,6 @@ const Recipe = () => {
                 const userId = localStorage.getItem("id");
                 const response3 = await api.get(`/users/${userId}/recipes/${recipeID}/likes`);
                 setLikes(response3.data);
-                console.log(likes);
             } catch (error) {
                 console.error(`Something went wrong while fetching the liked recipes: \n${handleError(error)}`);
             }
@@ -109,9 +108,7 @@ const Recipe = () => {
         window.location.href = `/users/${authorID}`;
     }
 
-    let likeButton
-
-    console.log(likes);
+    let likeButton;
 
     if (likes === true) {
         likeButton = (

@@ -14,8 +14,6 @@ const UserLikedRecipeOptions = () => {
             try {
                 const userId = localStorage.getItem("id");
                 const response = await api.get(`/users/${userId}`);
-                console.log(response.data.likeList);
-
                 const likedRecipes = response.data.likeList.map(({recipeName,recipeId}) =>
                     JSON.parse(JSON.stringify({
                         recipeName,
@@ -29,7 +27,6 @@ const UserLikedRecipeOptions = () => {
 
         fetchData();
     }, []);
-    console.log(likedRecipes);
     return (
         likedRecipes
     )

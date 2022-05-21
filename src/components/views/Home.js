@@ -34,7 +34,7 @@ const Recipe = ({recipe}) => {
                     </h3>
                 </div>
             </div>
-            <div class="home recipe recipe_pic">
+            <div className="home recipe recipe_pic">
                 <img src={recipe.pictureLocation}  className="home recipe_photo" alt="profile_photo"/>
             </div>
 
@@ -61,13 +61,13 @@ const Party = ({party}) => {
                     {party.partyName}
                 </h2>
                 <div className="home party info">
-                    <div className>
+                    <div>
                         <AccessTimeFilledIcon className="home icons"/> Time:{party.time}
                     </div>
-                    <div className>
+                    <div>
                         <LocationOnIcon className="home icons"/> Place:{party.place}
                     </div>
-                    <div className>
+                    <div>
                         <GroupsIcon className="home icons"/> Number of Attendants: {party.partyAttendantsNum+1} ppl
                     </div>
                 </div>
@@ -144,8 +144,8 @@ const Home = () => {
                   //columns={{ sm: 12, md: 12, lg:12, xl:12}}
                 >
                 {recipes.map(recipe => (
-                    <Grid item >
-                        <Recipe recipe={recipe} key={recipe.recipeName}/>
+                    <Grid item key={recipe.recipeId}>
+                        <Recipe recipe={recipe} />
                     </Grid>
                 ))}
             </Box>

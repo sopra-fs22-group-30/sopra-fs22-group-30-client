@@ -46,11 +46,11 @@ const Party = () => {
             place: "",
             time: "",
             recipeUsedId: "",
+            recipeUsedName: "",
             ingredients: [],
             partyAttendantsList: [],
         }
     )
-    const [recipe, setRecipes] = useState({recipeName: ""});
     const [user, setUsers] = useState({username: ""});
     const path = window.location.pathname;
     const partyID = path.substring(path.lastIndexOf('/') + 1);
@@ -64,13 +64,8 @@ const Party = () => {
         async function fetchData() {
             try {
                 const response = await api.get(`/users/${userID}/parties/${partyID}`);
-
                 setParty(response.data);
                 console.log(response.data);
-
-                const recipeID = response.data.recipeUsedId;
-                const response2 = await api.get('/recipes/' + recipeID);
-                setRecipes(response2.data);
 
                 const hostID = response.data.partyHostId;
                 const response3 = await api.get('/users/' + hostID);
@@ -83,21 +78,15 @@ const Party = () => {
 
         fetchData();
         // trigger
-    }, [partyFetchSwitch])
+    }, [partyFetchSwitch]);
 
     useSubscription(`/checklist/${partyID}/fetch`, (message) => {
         // trigger the user fetching switch
-        console.log(message);
         setPartyFetchSwitch(!partyFetchSwitch);
     });
 
-    console.log(partyFetchSwitch);
-    console.log(party.ingredients);
-
     function takeResponsibility(e) {
         const ingredientId = e.target.id;
-        console.log("ingredientId:", ingredientId);
-        console.log("takerId:", userID);
 
         stompClient.publish({
             destination: `/app/checklist/${partyID}/fetch`,
@@ -114,6 +103,7 @@ const Party = () => {
 
     const hostID = party.partyHostId;
     const recipeID = party.recipeUsedId;
+    const recipeName = party.recipeUsedName;
 
     function handleOnClickHostProfile(e) {
         window.location.href = `/users/${hostID}`;
@@ -236,7 +226,7 @@ const Party = () => {
                                         >
                                             <div className="party detail info-label recipe">
                                                 <FoodBankIcon className="party detail info-icon"/>
-                                                {recipe.recipeName}
+                                                {party.recipeUsedName}
                                             </div>
                                         </div>
                                     </h3>
@@ -283,8 +273,6 @@ const Party = () => {
 
                         </Stack>
                     </Box>
-
-
 
                 </div>
 
@@ -348,7 +336,6 @@ const Party = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className="party detail column right">
                     <Box sx={{width: '100%'}}>
                         <Stack spacing={6}>
@@ -363,7 +350,7 @@ const Party = () => {
                                         >
                                             <div className="party detail info-label recipe">
                                                 <FoodBankIcon className="party detail info-icon"/>
-                                                {recipe.recipeName}
+                                                {party.recipeUsedName}
                                             </div>
                                         </div>
                                     </h3>

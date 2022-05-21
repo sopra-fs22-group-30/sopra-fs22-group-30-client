@@ -30,9 +30,7 @@ const PartyCreationOrEdit = ({isCreation, client}) => {
     const [time, setTime] = useState("");
     const [recipeUsedId, setRecipeUsedId] = useState(0);
     const [partyAttendantsList, setPartyAttendantsList] = useState([]);
-
     const [partyId,setPartyId] = useState(null);
-
     const [isValid, setIsValid] = useState(true);
 
     useEffect(() => {
@@ -50,9 +48,7 @@ const PartyCreationOrEdit = ({isCreation, client}) => {
                     setRecipeUsedId(myParty.recipeUsedId);
                     setPlace(myParty.place);
                     setTime(myParty.time);
-                    console.log(myParty.partyAttendantsList);
                     setPartyAttendantsList(myParty.partyAttendantsList);
-
                 }
 
             } catch (error) {

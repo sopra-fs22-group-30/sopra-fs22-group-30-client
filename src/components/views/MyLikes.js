@@ -61,14 +61,11 @@ const MyLikes = () => {
 
     let recipePanel = <Spinner/>;
 
-    // recipes = UserLikedRecipeOptions()
-    console.log(recipes)
-
     if(recipes) {
         recipePanel = (
             <div className="myLikes recipes_container">
                 {recipes.map(recipe => (
-                    <Recipe recipe={recipe} key={recipe.recipeName}/>
+                    <Recipe recipe={recipe} key={recipe.recipeId}/>
                 ))}
             </div>
         );
