@@ -64,7 +64,6 @@ const Party = () => {
             try {
                 const response = await api.get(`/users/${userID}/parties/${partyID}`);
                 setParty(response.data);
-                console.log(response.data);
 
                 const hostID = response.data.partyHostId;
                 const response3 = await api.get('/users/' + hostID);
@@ -190,7 +189,7 @@ const Party = () => {
                         </div>
                         <div className="party detail info-value text">
                             {party.partyAttendantsList.map((item, index) => (
-                                <div className="party detail attendant-container">
+                                <div key={index} className="party detail attendant-container">
                                     <AccountCircleIcon className="party detail info-icon"/>
                                     {item}
                                 </div>

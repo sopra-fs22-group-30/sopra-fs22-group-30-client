@@ -8,11 +8,10 @@ import EditFormField from "components/FormField/EditFormField";
 import GenderRadioFormField from "components/FormField/GenderRadioFormField";
 import TextFormField from "components/FormField/TextFormField";
 import Axios from "axios";
-import {Transformation} from "cloudinary-react";
 
 
 
-const EditBox = (props) => {
+const EditBox = () => {
 
     const userId = localStorage.getItem("id");
     const [username, setUsername] = useState("");
@@ -69,9 +68,9 @@ const EditBox = (props) => {
             try {
                 const response = await api.get('/users/' + userId);
                 setUsername(response.data.username);
-                setBirthday(response.data.birthday);
-                setGender(response.data.gender);
-                setIntro(response.data.intro);
+                if(response.data.birthday){ setBirthday(response.data.birthday); }
+                if(response.data.gender){ setGender(response.data.gender); }
+                if(response.data.gender) {setIntro(response.data.gender); }
                 setProfilePictureLocation(response.data.profilePictureLocation);
 
             } catch (error) {
