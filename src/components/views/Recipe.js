@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import "styles/views/Profile.scss";
 import {styled} from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import food from 'food.jpg';
 import {useEffect} from "react";
 import {api, handleError} from "../../helpers/api";
 import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
@@ -20,9 +19,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import {pink, red} from "@mui/material/colors";
 import {Image} from 'cloudinary-react';
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import TextsmsIcon from "@mui/icons-material/Textsms";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -195,10 +191,10 @@ const Recipe = () => {
 
                     <div className="recipe creation author"
                          onClick={handleOnClickAuthorProfile} align="right">
-                        Author:{user.username}
+                         Author:{user.username}
                     </div>
 
-                    <div align="right">
+                    <div align="right" className="likeIcon">
                         {likeButton}
                     </div>
                 </div>
