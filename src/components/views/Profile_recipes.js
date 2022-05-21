@@ -66,9 +66,8 @@ const Profile_recipes = (props) => {
                 setRecipes(response.data.recipes);
 
             } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error(`Something went wrong while fetching the user's recipes: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
             }
         }
 

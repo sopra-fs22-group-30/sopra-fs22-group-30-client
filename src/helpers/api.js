@@ -23,6 +23,7 @@ export const handleError = error => {
     }
 
     console.log('The request was made and answered but was unsuccessful.', error.response);
+    window.location.href = `/home`;
     return info;
   } else {
     if (error.message.match(/Network Error/)) {

@@ -168,6 +168,12 @@ const PartyCreationOrEdit = ({isCreation, client}) => {
                         renderInput={(params) => <TextField {...params} label="Choose a recipe from your Likes"/>}
                     />
                 }
+                {!recipeUsedId &&
+                    <div className="recipe creation container">
+                        <p className="profile edit wrongFormat recipe"> * You have to select a recipe here from your like list.</p>
+                    </div>
+                }
+
                 <TextFormField
                     className="recipe creation container"
                     label="Party Intro"

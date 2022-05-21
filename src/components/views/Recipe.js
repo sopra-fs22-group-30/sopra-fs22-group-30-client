@@ -80,9 +80,9 @@ const Recipe = () => {
 
 
             } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error(`Something went wrong while fetching the recipe: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
+                alert(`There is no recipe or it has been deleted: \n${handleError(error)}`);
             }
         }
 
@@ -98,7 +98,7 @@ const Recipe = () => {
                 setLikes(response3.data);
                 console.log(likes);
             } catch (error) {
-                alert("Something went wrong while fetching the users! See the console for details.");
+                console.error(`Something went wrong while fetching the liked recipes: \n${handleError(error)}`);
             }
         }
         fetchData2();

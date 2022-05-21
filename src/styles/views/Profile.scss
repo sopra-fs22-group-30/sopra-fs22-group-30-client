@@ -181,8 +181,11 @@
       font-size: 13px;
       &.party{
         height: 20px;
-        margin: 0 0 0 2px;
-
+        margin: -2px 0 2px 2px;
+      }
+      &.recipe{
+        height: 20px;
+        margin: -2px 0 2px 2px;
       }
     }
 

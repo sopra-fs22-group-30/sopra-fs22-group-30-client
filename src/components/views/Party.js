@@ -76,9 +76,8 @@ const Party = () => {
                 const response3 = await api.get('/users/' + hostID);
                 setUsers(response3.data);
             } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
+                console.error(`Something went wrong while fetching the party: \n${handleError(error)}`);
+                alert(`You cannot access this party or the party has been dismissed: \n${handleError(error)}`);
             }
         }
 
