@@ -46,6 +46,7 @@ const EditBox = () => {
             setBirthday(convertDateToJavaDateFormat(birthday));
 
             const requestBody = JSON.stringify({id: userId, username, birthday, gender, intro, profilePictureLocation});
+            console.log(requestBody);
             await api.put(`/users/${userId}`, requestBody);
 
             // submit successfully worked --> navigate to his/her own profile
@@ -68,9 +69,9 @@ const EditBox = () => {
             try {
                 const response = await api.get('/users/' + userId);
                 setUsername(response.data.username);
-                if(response.data.birthday){ setBirthday(response.data.birthday); }
-                if(response.data.gender){ setGender(response.data.gender); }
-                if(response.data.gender) {setIntro(response.data.gender); }
+                setBirthday(response.data.birthday);
+                setGender(response.data.gender);
+                setIntro(response.data.intro);
                 setProfilePictureLocation(response.data.profilePictureLocation);
 
             } catch (error) {
