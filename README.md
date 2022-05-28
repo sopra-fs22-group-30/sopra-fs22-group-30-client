@@ -49,11 +49,35 @@ The application is deployed on [heroku](https://sopra-fs22-group-30-client.herok
 
 ## Illustrations
 
+![chrome_eIdE4H9bWQ](https://user-images.githubusercontent.com/49683560/170843937-5c11e43e-9d3f-42aa-95b8-3f6e6dc8c136.png)
 
+When you first arrived at the website, you are first asked to either signup or signin. Notice that signing up will automatically logining in and entering the home page. 
+
+On the home page, you will find a navigation panel above, where you can create a new recipe, head to your own profile, come back to the home page or logout. In the main part of the home page, on the left side, you can see the recipe created by other users. On the right side, you can see the parties you are in.
+
+![chrome_kM97Wmro3u](https://user-images.githubusercontent.com/49683560/170844061-311c74aa-803c-4f11-b426-79f815025cc2.png)
+
+By clicking the "New Recipe" Button, you will enter a recipe creation page where you fill in the information such as the time cost, for how many peoples and ingredients. You can upload a picture for your recipe as well!
+
+![chrome_JFe09KcEr1](https://user-images.githubusercontent.com/49683560/170844117-50a538e8-b591-4ada-98e1-f791e355945f.png)
+
+After clicking the submit button, your recipe will be created and you will head to the recipe page. On every recipe page, there is a "heart" button where you can hit to like the recipe. This recipe will then be seen by other users. 
+
+![chrome_JgY1atql1m](https://user-images.githubusercontent.com/49683560/170844153-d43e62f2-3317-471d-a1dc-875f2df51524.png)
+
+By clicking the "New Party" Button, you can head to the party creation page where you filled in the basic info such as the time and the used recipe and invited other users. The users that you selected will receive the invitation notification and be added to the party. You can also be invited by other users. You will see a green notification pop up and the party will show on your home page.
+
+![chrome_DhIQyxNboW](https://user-images.githubusercontent.com/49683560/170844175-ac009913-7cdf-416b-9bc5-2a4dc53c4dfa.png)
+
+Clicking the party name on the notification or the party bar on the home page will bring you to the party detail page where you will see the time, place and other info of the party. More importantly, there is an ingredient panel. The ingredients on that panel are imported by the party holder by selecting the used recipe. You can select the ingredient you want to bring and your name will be marked. This can also be seen by other users so everyone will know who is bring what to the party so that there won't be any ingredient missed or duplicatedly brought.
+
+![chrome_SQ6OPtmBNd](https://user-images.githubusercontent.com/49683560/170844229-351e02c2-9a66-4400-9b16-7372d8c17bd5.png)
+
+In the recipe detail page and the party detail page, you can visit the profile page of recipe author or the other users. You can also visit your own profile page through the navigation bar. In the profile page, you can fill in your personal info such as your birthday and upload an image as your profile avatar. You can also checkout your recipe and the recipe you liked.
 
 ![chrome_1ope5x9cKs](https://user-images.githubusercontent.com/49683560/170843871-51d470be-731e-4a92-a4dc-4021d68df6af.png)
 
-
+This is basic illustration of the user flow of our app. Hope you will find it interesting and useful!
 
 
 
