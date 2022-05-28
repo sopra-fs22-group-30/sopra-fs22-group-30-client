@@ -51,7 +51,7 @@ The application is deployed on [heroku](https://sopra-fs22-group-30-client.herok
 
 ![chrome_eIdE4H9bWQ](https://user-images.githubusercontent.com/49683560/170843937-5c11e43e-9d3f-42aa-95b8-3f6e6dc8c136.png)
 
-When you first arrived at the website, you are first asked to either signup or signin. Notice that signing up will automatically logining in and entering the home page. 
+When you first arrive at the website, you are first asked to either signup or signin. Notice that signing up will automatically logining in and entering the home page. 
 
 On the home page, you will find a navigation panel above, where you can create a new recipe, head to your own profile, come back to the home page or logout. In the main part of the home page, on the left side, you can see the recipe created by other users. On the right side, you can see the parties you are in.
 
