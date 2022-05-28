@@ -49,6 +49,17 @@ The application is deployed on [heroku](https://sopra-fs22-group-30-client.herok
 
 ## Illustrations
 
+
+
+![chrome_1ope5x9cKs](https://user-images.githubusercontent.com/49683560/170843871-51d470be-731e-4a92-a4dc-4021d68df6af.png)
+
+
+
+
+
+
+
+
 ## Roadmap
 - Add comments on recipes:<br/>
 Users can comment on a recipe, posting their thoughts on the recipe.
