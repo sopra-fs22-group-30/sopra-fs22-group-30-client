@@ -1,6 +1,7 @@
 # SoPra FS22 - Group 30 - Cookever (Client)
 
 ## Introduction
+Our project is a website which enables users to share the recipes they created and organize parties. To utilize our website, users need to register first. A registered user can browse all the recipes on the home page, and create their own recipes. And the other major function of our website is party organisation. Users can create parties and invite other users to join their parties, moreover, the host of the party can import one recipe into the party, and every participant of the party can use our real-time ingredients checklist on the party page to manage who is going to bring what ingredients.
 
 ## Technologies
 * React
@@ -12,7 +13,12 @@
 * Heroku: Cloud Application Platform
 
 ## High-level components
-
+[User Information Management](https://github.com/sopra-fs22-group-30/sopra-fs22-group-30-client/blob/master/src/components/views/Profile_edit.js) <br/>
+This component allows users to edit the information of their own profile(e.g. profile picture, username, gender, birthday and self-intro).<br/>
+[Recipe Creation and Edit](https://github.com/sopra-fs22-group-30/sopra-fs22-group-30-client/blob/master/src/components/views/Recipe_creation_or_edit.js) <br/>
+This component allows users to create and edit their own recipes. There are certain information users need to provide for the recipes including recipe name, cuisine, time consumed, ingredients and so on.<br/>
+[Party](https://github.com/sopra-fs22-group-30/sopra-fs22-group-30-client/blob/master/src/components/views/Party.js) <br/>
+This component displays the detailed party page which shows the basic information about the party. In addition, there is an ingredients checklist on this page, which provides all participants of the party to manage the preparation of the ingredients in real-time.<br/>
 ## Launch & Deployment
 
 ## Illustrations
