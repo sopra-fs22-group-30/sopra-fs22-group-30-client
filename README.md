@@ -61,7 +61,7 @@ By clicking the "New Recipe" Button, you will enter a recipe creation page where
 
 ![chrome_JFe09KcEr1](https://user-images.githubusercontent.com/49683560/170844117-50a538e8-b591-4ada-98e1-f791e355945f.png)
 
-After clicking the submit button, your recipe will be created and you will head to the recipe page. On every recipe page, there is a "heart" button where you can hit to like the recipe. This recipe will then be seen by other users. 
+After clicking the submit button, your recipe will be created and you will head to the recipe page. This recipe will then be seen by other users. On every recipe page, there is a "heart" button where you can hit to like the recipe. 
 
 ![chrome_JgY1atql1m](https://user-images.githubusercontent.com/49683560/170844153-d43e62f2-3317-471d-a1dc-875f2df51524.png)
 
