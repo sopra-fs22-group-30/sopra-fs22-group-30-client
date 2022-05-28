@@ -49,34 +49,33 @@ The application is deployed on [heroku](https://sopra-fs22-group-30-client.herok
 
 ## Illustrations
 
-![chrome_eIdE4H9bWQ](https://user-images.githubusercontent.com/49683560/170843937-5c11e43e-9d3f-42aa-95b8-3f6e6dc8c136.png)
+![1 login](https://user-images.githubusercontent.com/49683560/170845037-d938d945-7519-439c-aab2-ba32de68083a.png)
 
 When you first arrive at the website, you are first asked to either signup or signin. Notice that signing up will automatically logining in and entering the home page. 
 
 On the home page, you will find a navigation panel above, where you can create a new recipe, head to your own profile, come back to the home page or logout. In the main part of the home page, on the left side, you can see the recipe created by all users. On the right side, you can see the parties you hold and you are invited to join.
 
-![chrome_kM97Wmro3u](https://user-images.githubusercontent.com/49683560/170844061-311c74aa-803c-4f11-b426-79f815025cc2.png)
+![2 home page](https://user-images.githubusercontent.com/49683560/170845039-d262bf88-6ae0-4214-a101-dcbdde0fc63a.png)
 
 By clicking the "New Recipe" Button, you will enter a recipe creation page where you fill in the information such as the time cost, for how many peoples and ingredients. You can upload a picture for your recipe as well!
 
-![20220529003834](https://user-images.githubusercontent.com/49683560/170844903-233fcf5f-e81f-4f36-8408-b63c1cebc3ca.png)
-
+![3 recipe creation](https://user-images.githubusercontent.com/49683560/170845044-95e8849f-d6d2-4410-8bf5-c5ba2fcbfe5a.png)
 
 After clicking the submit button, your recipe will be created and you will head to the recipe page. This recipe will then be seen by other users. On every recipe page, there is a "heart" button where you can hit to like the recipe. 
 
-![chrome_JgY1atql1m](https://user-images.githubusercontent.com/49683560/170844153-d43e62f2-3317-471d-a1dc-875f2df51524.png)
+![4 recipe detail](https://user-images.githubusercontent.com/49683560/170845047-5a9a8ce8-9a89-4250-9a88-9e10e69ba4e9.png)
 
 By clicking the "New Party" Button, you can head to the party creation page where you filled in the basic info such as the time and the used recipe and invited other users. The users that you selected will receive the invitation notification and be added to the party. You can also be invited by other users. You will see a green notification pop up and the party will show on your home page.
 
-![chrome_DhIQyxNboW](https://user-images.githubusercontent.com/49683560/170844175-ac009913-7cdf-416b-9bc5-2a4dc53c4dfa.png)
+![5 party creation](https://user-images.githubusercontent.com/49683560/170845058-863e2422-8430-4528-96f3-b71f0b87df24.png)
 
 Clicking the party name on the notification or the party bar on the home page will bring you to the party detail page where you will see the time, place and other info of the party. More importantly, there is an ingredient panel. The ingredients on that panel are imported by the party holder by selecting the used recipe. You can select the ingredient you want to bring and your name will be marked. This can also be seen by other users so everyone will know who is bring what to the party so that there won't be any ingredient missed or duplicatedly brought.
 
-![chrome_SQ6OPtmBNd](https://user-images.githubusercontent.com/49683560/170844229-351e02c2-9a66-4400-9b16-7372d8c17bd5.png)
+![6 party detail](https://user-images.githubusercontent.com/49683560/170845086-58809554-7e1c-4a0a-98ef-56e25ae7839d.png)
 
 In the recipe detail page and the party detail page, you can visit the profile page of recipe author or the other users. You can also visit your own profile page through the navigation bar. In the profile page, you can fill in your personal info such as your birthday and upload an image as your profile avatar. You can also checkout your recipe and the recipe you liked.
 
-![chrome_1ope5x9cKs](https://user-images.githubusercontent.com/49683560/170843871-51d470be-731e-4a92-a4dc-4021d68df6af.png)
+![7 profile](https://user-images.githubusercontent.com/49683560/170845089-0c42021a-6a02-4159-9084-561765f8087b.png)
 
 This is a basic illustration of the user flow of our app. 
 Hope you will find it interesting and useful! Thank you!
