@@ -20,6 +20,32 @@ This component allows users to create and edit their own recipes. There are cert
 [Party](https://github.com/sopra-fs22-group-30/sopra-fs22-group-30-client/blob/master/src/components/views/Party.js) <br/>
 This component displays the detailed party page which shows the basic information about the party. In addition, there is an ingredients checklist on this page, which provides all participants of the party to manage the preparation of the ingredients in real-time.<br/>
 ## Launch & Deployment
+For your local development environment you'll need Node.js >= 8.10. You can download it [here](https://nodejs.org/en/). All other dependencies including React get installed with:
+
+`npm install`
+
+This has to be done before starting the application for the first time (only once).
+
+`npm run dev`
+
+Runs the app in the development mode.
+
+Open http://localhost:3000 to view it in the browser.
+
+The page will reload if you make edits.
+You will also see any lint errors in the console (use Google Chrome!).
+
+`npm run test`
+
+Launches the test runner in the interactive watch mode.
+See the section about [running tests](https://create-react-app.dev/docs/running-tests/) for more information.
+
+`npm run build`
+
+Builds the app for production to the build folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The application is deployed on [heroku](https://sopra-fs22-group-30-client.herokuapp.com/login).
 
 ## Illustrations
 
