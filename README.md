@@ -77,7 +77,8 @@ In the recipe detail page and the party detail page, you can visit the profile p
 
 ![chrome_1ope5x9cKs](https://user-images.githubusercontent.com/49683560/170843871-51d470be-731e-4a92-a4dc-4021d68df6af.png)
 
-This is basic illustration of the user flow of our app. Hope you will find it interesting and useful!
+This is a basic illustration of the user flow of our app. 
+Hope you will find it interesting and useful! Thank you!
 
 
 
