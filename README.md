@@ -59,7 +59,8 @@ On the home page, you will find a navigation panel above, where you can create a
 
 By clicking the "New Recipe" Button, you will enter a recipe creation page where you fill in the information such as the time cost, for how many peoples and ingredients. You can upload a picture for your recipe as well!
 
-![chrome_JFe09KcEr1](https://user-images.githubusercontent.com/49683560/170844117-50a538e8-b591-4ada-98e1-f791e355945f.png)
+![20220529003834](https://user-images.githubusercontent.com/49683560/170844903-233fcf5f-e81f-4f36-8408-b63c1cebc3ca.png)
+
 
 After clicking the submit button, your recipe will be created and you will head to the recipe page. This recipe will then be seen by other users. On every recipe page, there is a "heart" button where you can hit to like the recipe. 
 
