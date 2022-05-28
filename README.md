@@ -49,7 +49,7 @@ The application is deployed on [heroku](https://sopra-fs22-group-30-client.herok
 
 ## Illustrations
 
-![1 login](https://user-images.githubusercontent.com/49683560/170845037-d938d945-7519-439c-aab2-ba32de68083a.png)
+![1 login](https://user-images.githubusercontent.com/49683560/170845161-0fc26952-dc93-4d34-b19a-365425459347.png)
 
 When you first arrive at the website, you are first asked to either signup or signin. Notice that signing up will automatically logining in and entering the home page. 
 
